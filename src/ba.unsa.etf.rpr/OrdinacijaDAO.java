@@ -491,4 +491,36 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             e.printStackTrace();
         }
     }
+
+    public Pregled dajPregled(int id) {
+        // neki belaj ima ovdje s rs-om
+        try {
+            dajPregledUpit.setInt(1, id);
+
+            var rs = dajPregledUpit.executeQuery();
+
+            if(rs.next()) {
+
+                id = rs.getInt(1);
+
+                dajPacijentaUpit.setInt(1, rs.getInt(2));
+
+                var set = dajPacijentaUpit.executeQuery();
+
+                Pacijent patient = dajPacijentaIzResultSeta(set);
+
+                dajLjekaraUpit.setInt(1, rs.getInt(3));
+
+                set = dajLjekaraUpit.executeQuery();
+
+                Ljekar doctor = dajLjekaraIzResultSeta(set);
+
+                return dajPregledIzResultSeta(rs, doctor, patient);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
