@@ -60,7 +60,14 @@ public class LjekarController {
         Stage stage = (Stage) odjavaBtn.getScene().getWindow();
         stage.close();
     }
-    public void dodajUsluguClick(ActionEvent actionEvent){}
+    public void dodajUsluguClick(ActionEvent actionEvent){
+        if(uslugeLjekara.contains(uslugeCB.getValue()) || uslugeCB.getValue()==null) return;
+        getTrenutnoPrijavljeniLjekar().setUsluge(uslugeView.getItems());
+        uslugeLjekara.add(uslugeCB.getValue());
+        dao.dodajUsluguZaLjekara(getTrenutnoPrijavljeniLjekar().getId() , uslugeCB.getValue());
+        pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniLjekar.getUsername()));
+        preglediTable.setItems(pregledi);
+    }
 
     public void izbrisiUsluguClick(ActionEvent actionEvent){
 
