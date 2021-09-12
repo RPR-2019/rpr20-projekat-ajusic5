@@ -5,10 +5,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class AboutController {
-    public Button ureduBtn;
+    public Button okBtn;
 
-    public void ureduClick(ActionEvent actionEvent){
-        Stage stage = (Stage)ureduBtn.getScene().getWindow();
+    public void okClick(ActionEvent actionEvent){
+        Stage stage = (Stage) okBtn.getScene().getWindow();
         stage.close();
     }
 }

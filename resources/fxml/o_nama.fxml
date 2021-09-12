@@ -60,7 +60,7 @@
             </padding>
         </Label>
         <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="3" />
-        <Button fx:id="ureduBtn" mnemonicParsing="false" onAction="#ureduClick" text="%Uredu" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+        <Button fx:id="okBtn" mnemonicParsing="false" onAction="#okClick" text="%Uredu" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

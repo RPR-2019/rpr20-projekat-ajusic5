@@ -11,30 +11,30 @@ import java.util.ArrayList;
 
 public class HistoryOfExaminationsController {
     public TableView<Examination> historyTable;
-    public TableColumn<Examination, String> prezimeCol;
-    public TableColumn<Examination,String> imeCol;
-    public TableColumn datumCol;
-    public TableColumn vrstaPregledaCol;
-    private ObservableList<Examination> pregledi;
-    User k;
+    public TableColumn<Examination, String> surnameCol;
+    public TableColumn<Examination,String> nameCol;
+    public TableColumn dateCol;
+    public TableColumn typeOfExaminationCol;
+    private ObservableList<Examination> examinations;
+    private User u;
 
-    public HistoryOfExaminationsController(ArrayList<Examination> pregledi, User k) {
-        this.pregledi= FXCollections.observableArrayList(pregledi);
-        this.k = k;
+    public HistoryOfExaminationsController(ArrayList<Examination> examinations, User u) {
+        this.examinations = FXCollections.observableArrayList(examinations);
+        this.u = u;
     }
     public void initialize(){
 
-        historyTable.setItems(pregledi);
+        historyTable.setItems(examinations);
 
-        if(k.getClass().getName().equals("ba.unsa.etf.rpr.probniprojekat.Pacijent")){
-            prezimeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getPrezime()));
-            imeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getIme()));
+        if(u.getClass().getName().equals("ba.unsa.etf.rpr.probniprojekat.Pacijent")){
+            surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getPrezime()));
+            nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getIme()));
         }else {
-            prezimeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getPrezime()));
-            imeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getIme()));
+            surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getPrezime()));
+            nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getIme()));
         }
-        datumCol.setCellValueFactory(new PropertyValueFactory<>("datumIVrijemePregleda"));
-        vrstaPregledaCol.setCellValueFactory(new PropertyValueFactory<>("vrstaPregleda"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("datumIVrijemePregleda"));
+        typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("vrstaPregleda"));
 
     }
 }
