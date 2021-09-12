@@ -174,9 +174,8 @@ public class MainController {
     }
 
     public void izlazClick(ActionEvent actionEvent){
-
+        Stage stage = (Stage) prijavaBtn.getScene().getWindow();
+        stage.close();
     }
-
-
 
 }
