@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
@@ -296,5 +297,24 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         }
         return null;
     }
+
+    public List<Integer> dajSveLjekare() {
+
+        try {
+            var rs = dajSveLjekareUpit.executeQuery();
+
+            List<Integer> ljekari = new ArrayList<>();
+
+            while (rs.next())
+                ljekari.add(rs.getInt(1));
+
+            return ljekari;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }
