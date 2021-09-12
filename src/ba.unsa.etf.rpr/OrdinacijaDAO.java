@@ -479,4 +479,16 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             e.printStackTrace();
         }
     }
+
+    public void dodajDijagnozu(int id, int doctorId, String dijagnoza) {
+
+        try {
+            dodajDijagnozuUpit.setString(1, dijagnoza);
+            dodajDijagnozuUpit.setInt(2, doctorId);
+            dodajDijagnozuUpit.setInt(3, id);
+            dodajDijagnozuUpit.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
