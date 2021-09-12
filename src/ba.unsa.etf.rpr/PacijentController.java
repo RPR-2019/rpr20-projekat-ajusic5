@@ -7,14 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +77,27 @@ public class PacijentController {
 
     }
 
-    public void otkazivanjeClick(ActionEvent actionEvent){}
+    public void otkazivanjeClick(ActionEvent actionEvent){
+        if(preglediTable.getSelectionModel().getSelectedItem() == null) return;
+
+        var pregled = preglediTable.getSelectionModel().getSelectedItem();
+        Duration duration = Duration.between(pregled.getVrijemeZakazivanjaTermina(), LocalDateTime.now());
+        var stringSplit = duration.toString().split("PT|H");
+
+        if(stringSplit[1].length()<3 && Integer.parseInt(stringSplit[1]) > 23){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greška");
+            alert.setHeaderText("Neispravni podaci");
+            alert.setContentText("Nemoguće je otkazati pregled koji je zakazan prije više od 24 sata!");
+            alert.setResizable(true);
+            alert.show();
+            return;
+        }
+        dao.otkaziPregled(pregled.getId());
+        var p = preglediTable.getSelectionModel().getSelectedItem();
+        appointments.remove(p);
+        preglediTable.setItems(FXCollections.observableArrayList(appointments));
+    }
 
     public void historijaClick(ActionEvent actionEvent) throws IOException{}
 
