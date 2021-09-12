@@ -24,11 +24,11 @@
                     <items>
                         <Menu mnemonicParsing="false" text="%Jezik">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#bosanskiClick" text="%Bosanski" />
-                                <MenuItem mnemonicParsing="false" onAction="#engleskiClick" text="%Engleski" />
+                                <MenuItem mnemonicParsing="false" onAction="#bosnianClick" text="%Bosanski" />
+                                <MenuItem mnemonicParsing="false" onAction="#englishClick" text="%Engleski" />
                             </items>
                         </Menu>
-                        <MenuItem fx:id="izlaz" mnemonicParsing="false" onAction="#izlazClick" text="%Izlaz" />
+                        <MenuItem fx:id="Exit" mnemonicParsing="false" onAction="#exitClick" text="%Izlaz" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="%Pomoc">
@@ -49,9 +49,9 @@
                 <Font size="14.0" />
             </font>
         </TextArea>
-        <TableView fx:id="uslugeTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+        <TableView fx:id="servicesTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
             <columns>
-                <TableColumn fx:id="uslugeCol" maxWidth="1.7976931348623157E308" prefWidth="540.0" text="%Usluge_koje_nudimo" />
+                <TableColumn fx:id="servicesCol" maxWidth="1.7976931348623157E308" prefWidth="540.0" text="%Usluge_koje_nudimo" />
             </columns>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -82,7 +82,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </GridPane.margin>
                 </Label>
-                <PasswordField fx:id="lozinkaFld" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <PasswordField fx:id="passwordFld" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </GridPane.margin>
@@ -97,7 +97,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </Label>
-                <TextField fx:id="kImeFld" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+                <TextField fx:id="usernameFld" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </GridPane.margin>
@@ -105,7 +105,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </TextField>
-                <Button fx:id="prijavaBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#prijavaClick" text="%Prijava" GridPane.columnIndex="2">
+                <Button fx:id="signInBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signInClick" text="%Prijava" GridPane.columnIndex="2">
                     <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </GridPane.margin>
@@ -113,7 +113,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </Button>
-                <Button fx:id="registracijaBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registracijaClick" text="%Registracija" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Button fx:id="registerBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerClick" text="%Registracija" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>

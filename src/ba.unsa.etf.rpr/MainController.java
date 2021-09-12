@@ -18,17 +18,17 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class MainController {
     @FXML
-    private TextField kImeFld = new TextField();
+    private TextField usernameFld = new TextField();
     @FXML
-    private PasswordField lozinkaFld = new PasswordField();
+    private PasswordField passwordFld = new PasswordField();
     @FXML
-    private Button prijavaBtn;
+    private Button signInBtn;
     @FXML
     private TextArea txtAreaFld = new TextArea("");
     @FXML
-    public TableView<Usluga> uslugeTab = new TableView<>();
+    public TableView<Usluga> servicesTab = new TableView<>();
     @FXML
-    public TableColumn uslugeCol;
+    public TableColumn servicesCol;
     private DoctorsOfficeDAO dao;
 
     public MainController() {
@@ -40,18 +40,18 @@ public class MainController {
         txtAreaFld.appendText("Dobro došli na aplikaciju naše ljekarske ordinacije.\nZakažite pregled iz udobnosti svog doma" +
                 "\nNaše usluge su dostupne svaki dan od 08:00 do 16:00");
         var lis = FXCollections.observableArrayList(dao.dajSveUsluge());
-        uslugeTab.setItems(lis);
-        uslugeCol.setCellValueFactory(new PropertyValueFactory("name"));
+        servicesTab.setItems(lis);
+        servicesCol.setCellValueFactory(new PropertyValueFactory("name"));
 
     }
 
-    public void prijavaClick(ActionEvent actionEvent) throws IOException {
+    public void signInClick(ActionEvent actionEvent) throws IOException {
 
-        var username = kImeFld.getText();
-        var password = lozinkaFld.getText();
+        var username = usernameFld.getText();
+        var password = passwordFld.getText();
         var mode = dao.provjeriPrijavu(username, password);
-        kImeFld.setText("");
-        lozinkaFld.setText("");
+        usernameFld.setText("");
+        passwordFld.setText("");
         if(mode == 1){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ljekar_naslovna.fxml"), bundle);
@@ -89,7 +89,7 @@ public class MainController {
 
     }
 
-    public void registracijaClick(ActionEvent actionEvent) throws IOException {
+    public void registerClick(ActionEvent actionEvent) throws IOException {
 
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_forma.fxml"), bundle);
@@ -107,14 +107,14 @@ public class MainController {
             Patient patient = controller.getPacijent();
             Doctor doctor = controller.getLjekar();
 
-            int imaRegistrovan = 0;
+            int registred = 0;
             if(patient != null){
-                imaRegistrovan = dao.provjeriPrijavu(patient.getUsername(), patient.getPassword());
+                registred = dao.provjeriPrijavu(patient.getUsername(), patient.getPassword());
             }
             else if(doctor !=null ){
-                imaRegistrovan = dao.provjeriPrijavu(doctor.getUsername(), doctor.getPassword());
+                registred = dao.provjeriPrijavu(doctor.getUsername(), doctor.getPassword());
             }
-            if(imaRegistrovan==-1){
+            if(registred==-1){
                 if(controller.getVrstaKRBC().equalsIgnoreCase("pacijent")) dao.dodajPacijenta(controller.getPacijent());
                 else dao.dodajLjekara(controller.getLjekar());
             }
@@ -122,8 +122,8 @@ public class MainController {
 
     }
 
-    public void bosanskiClick(ActionEvent actionEvent) throws IOException {
-        Stage primaryStage = (Stage) kImeFld.getScene().getWindow();
+    public void bosnianClick(ActionEvent actionEvent) throws IOException {
+        Stage primaryStage = (Stage) usernameFld.getScene().getWindow();
         primaryStage.close();
 
         MainController ctrl = new MainController();
@@ -139,9 +139,9 @@ public class MainController {
 
     }
 
-    public void engleskiClick(ActionEvent actionEvent) throws IOException {
+    public void englishClick(ActionEvent actionEvent) throws IOException {
 
-        Stage primaryStage = (Stage) kImeFld.getScene().getWindow();
+        Stage primaryStage = (Stage) usernameFld.getScene().getWindow();
         primaryStage.close();
 
         MainController ctrl = new MainController();
@@ -171,8 +171,8 @@ public class MainController {
 
     }
 
-    public void izlazClick(ActionEvent actionEvent){
-        Stage stage = (Stage) prijavaBtn.getScene().getWindow();
+    public void exitClick(ActionEvent actionEvent){
+        Stage stage = (Stage) signInBtn.getScene().getWindow();
         stage.close();
     }
 
