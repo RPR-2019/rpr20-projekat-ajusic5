@@ -573,4 +573,26 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         }
         return false;
     }
+
+    public ArrayList<Pregled> dajPregledeKojeJePacijentZakazao(int id) {
+
+        try {
+            dajPregledeKojeJePacijentZakazaoUpit.setInt(1,id);
+
+            var rs = dajPregledeKojeJePacijentZakazaoUpit.executeQuery();
+            ArrayList<Pregled> appointments = new ArrayList<>();
+
+            while(rs.next()){
+                dajPacijentaUpit.setInt(1, rs.getInt(2));
+                var set = dajPacijentaUpit.executeQuery();
+                Pacijent patient = dajPacijentaIzResultSeta(set);
+                Pregled appointment = dajPregledIzResultSeta(rs, null, patient);
+                appointments.add(appointment);
+            }
+            return appointments;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
