@@ -14,7 +14,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/naslovna_stranica.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/naslovna_stranica.fxml"), bundle);
         MainController controller = new MainController();
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load(), Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
