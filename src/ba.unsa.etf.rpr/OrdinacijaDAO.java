@@ -604,4 +604,21 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             e.printStackTrace();
         }
     }
+
+    public ArrayList<String> dajNaziveUsluga() {
+
+        try {
+            var rs = dajSveUslugeUpit.executeQuery();
+
+            ArrayList<String> l = new ArrayList<>();
+
+            while(rs.next()){
+                l.add(rs.getString(2));
+            }
+            return l;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
