@@ -119,12 +119,11 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         var username = set.getString(1);
         var password = set.getString(2);
         var dateOfBirth = set.getString(5).split("-");
-        var profileType = set.getString(6);
         var sex = set.getString(7);
         var fieldOfExpertise = set.getString(8);
         var doctorId = set.getInt(9);
 
-        return new Ljekar(doctorId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, profileType, sex, fieldOfExpertise);
+        return new Ljekar(doctorId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, VrstaKorisnickogRacuna.LJEKAR, sex, fieldOfExpertise);
     }
 
     private Pacijent dajPacijentaIzResultSeta(ResultSet set) throws SQLException {
@@ -134,12 +133,11 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         var username = set.getString(1);
         var password = set.getString(2);
         var dateOfBirth = set.getString(5).split("-");
-        var profileType = set.getString(6);
         var sex = set.getString(7);
         var patientCardNumber = set.getInt(8);
         var patientId = set.getInt(9);
 
-        return new Pacijent(patientId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, profileType, sex, patientCardNumber);
+        return new Pacijent(patientId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, VrstaKorisnickogRacuna.PACIJENT, sex, patientCardNumber);
     }
 
     private Pregled dajPregledIzResultSeta(ResultSet rs, Ljekar doctor, Pacijent patient) throws SQLException {
@@ -407,7 +405,7 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             int mjesec = Integer.parseInt(splitString[1]);
             int dan = Integer.parseInt(splitString[2]);
 
-            return new Ljekar(rs.getInt(9), rs.getString(4), rs.getString(5), LocalDate.of(godina, mjesec, dan), rs.getString(1), rs.getString(2), rs.getString(6), rs.getString(7), rs.getString(8));
+            return new Ljekar(rs.getInt(9), rs.getString(4), rs.getString(5), LocalDate.of(godina, mjesec, dan), rs.getString(1), rs.getString(2), VrstaKorisnickogRacuna.LJEKAR, rs.getString(7), rs.getString(8));
         } catch (SQLException e) {
             e.printStackTrace();
         }

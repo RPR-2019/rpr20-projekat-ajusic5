@@ -103,9 +103,6 @@ public class RegisterController {
     }
 
     public void registracijaAction(ActionEvent actionEvent) {
-        //provjera baze
-        // za slučaj da već ima neko s istim podacima ide alert i ponovo unošenje podataka
-        //u suprotnom upisuju se podaci u bazu i otvaranje ponovo naslovne strane he he
 
         int dan = Integer.parseInt((String) danCB.getValue());
         int mjesec =Integer.parseInt((String) mjesecCB.getValue());
@@ -113,15 +110,12 @@ public class RegisterController {
         LocalDate datum = LocalDate.of(godina, mjesec, dan);
         String spol = (String) spolCB.getValue();
 
-        if(vrstaKRBC.getValue().equals("Pacijent")){
-            //Pacijent
-            pacijent = new Pacijent(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), (String) vrstaKRBC.getValue(), spol, 1 );
-        }
+        if(vrstaKRBC.getValue().equals("Pacijent"))
+            pacijent = new Pacijent(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.PACIJENT, spol, 1 );
 
-        else {
-            // Ljekar
-            ljekar = new Ljekar(0,prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(),(String)vrstaKRBC.getValue(), spol, specCB.getValue(), null);
-        }
+        else
+            ljekar = new Ljekar(0,prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(),VrstaKorisnickogRacuna.LJEKAR, spol, specCB.getValue(), null);
+
         Stage stage = (Stage) registracijaBtn.getScene().getWindow();
         stage.close();
     }

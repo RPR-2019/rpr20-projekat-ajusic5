@@ -14,7 +14,6 @@ public class Report extends JFrame {
         String reportsDir = getClass().getResource("/reports/").getFile();
 
         JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
-        // Fields for resources path
         HashMap<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("reportsDirPath", reportsDir);
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();

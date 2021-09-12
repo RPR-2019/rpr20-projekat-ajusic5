@@ -9,13 +9,13 @@ public class Korisnik {
     private LocalDate datumRodjenja;
     private String username;
     private String password;
-    private String vrsta;
+    private VrstaKorisnickogRacuna vrsta;
     private String spol;
 
     public Korisnik() {
     }
 
-    public Korisnik(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, String vrsta, String spol) {
+    public Korisnik(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, VrstaKorisnickogRacuna vrsta, String spol) {
         this.id = id;
         this.prezime = prezime;
         this.ime = ime;
@@ -75,10 +75,10 @@ public class Korisnik {
     }
 
     public String getVrsta() {
-        return vrsta;
+        return vrsta.toString();
     }
 
-    public void setVrsta(String vrsta) {
+    public void setVrsta(VrstaKorisnickogRacuna vrsta) {
         this.vrsta = vrsta;
     }
 

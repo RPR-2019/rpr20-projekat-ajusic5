@@ -9,7 +9,7 @@ public class Pacijent extends Korisnik{
     public Pacijent() {
     }
 
-    public Pacijent(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, String vrsta, String spol, int brojKartona) {
+    public Pacijent(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, VrstaKorisnickogRacuna vrsta, String spol, int brojKartona) {
         super(id, prezime, ime, datumRodjenja, username, password, vrsta, spol);
         this.brojKartona = brojKartona;
     }
