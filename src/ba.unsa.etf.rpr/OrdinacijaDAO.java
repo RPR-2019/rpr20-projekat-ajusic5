@@ -123,4 +123,18 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         return new Ljekar(doctorId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, profileType, sex, fieldOfExpertise);
     }
 
+    private Pacijent dajPacijentaIzResultSeta(ResultSet set) throws SQLException {
+
+        var surname = set.getString(4);
+        var name = set.getString(3);
+        var username = set.getString(1);
+        var password = set.getString(2);
+        var dateOfBirth = set.getString(5).split("-");
+        var profileType = set.getString(6);
+        var sex = set.getString(7);
+        var patientCardNumber = set.getInt(8);
+        var patientId = set.getInt(9);
+
+        return new Pacijent(patientId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, profileType, sex, patientCardNumber);
+    }
 }
