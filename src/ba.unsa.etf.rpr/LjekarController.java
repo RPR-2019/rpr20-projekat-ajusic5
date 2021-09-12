@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,7 +57,8 @@ public class LjekarController {
 
 
     public void odjavaClick(ActionEvent actionEvent){
-
+        Stage stage = (Stage) odjavaBtn.getScene().getWindow();
+        stage.close();
     }
     public void dodajUsluguClick(ActionEvent actionEvent){}
 
