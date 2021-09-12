@@ -458,4 +458,13 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         }
     }
 
+    public void obrisiPregled(int id) {
+
+        try {
+            obrisiPregledUpit.setInt(1, id);
+            obrisiPregledUpit.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
