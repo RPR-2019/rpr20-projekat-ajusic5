@@ -110,12 +110,20 @@ public class RegisterController {
         LocalDate datum = LocalDate.of(godina, mjesec, dan);
         String spol = (String) spolCB.getValue();
 
-        if(vrstaKRBC.getValue().equals("Pacijent"))
-            pacijent = new Pacijent(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.PACIJENT, spol, 1 );
+        if(vrstaKRBC.getValue().equals("Pacijent")) {
+            if(spol=="M")
+            pacijent = new Pacijent(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.PACIJENT, Spol.MUSKI, 1);
+            else
+                pacijent = new Pacijent(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.PACIJENT, Spol.ZENSKI, 1);
 
-        else
-            ljekar = new Ljekar(0,prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(),VrstaKorisnickogRacuna.LJEKAR, spol, specCB.getValue(), null);
+        }
+        else {
+            if(spol=="M")
+            ljekar = new Ljekar(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.LJEKAR, Spol.MUSKI, specCB.getValue(), null);
+            else
+                ljekar = new Ljekar(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.LJEKAR, Spol.ZENSKI, specCB.getValue(), null);
 
+        }
         Stage stage = (Stage) registracijaBtn.getScene().getWindow();
         stage.close();
     }

@@ -10,12 +10,12 @@ public class Korisnik {
     private String username;
     private String password;
     private VrstaKorisnickogRacuna vrsta;
-    private String spol;
+    private Spol spol;
 
     public Korisnik() {
     }
 
-    public Korisnik(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, VrstaKorisnickogRacuna vrsta, String spol) {
+    public Korisnik(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, VrstaKorisnickogRacuna vrsta, Spol spol) {
         this.id = id;
         this.prezime = prezime;
         this.ime = ime;
@@ -93,10 +93,10 @@ public class Korisnik {
     }
 
     public String getSpol() {
-        return spol;
+        return spol.toString();
     }
 
-    public void setSpol(String spol) {
+    public void setSpol(Spol spol) {
         this.spol = spol;
     }
 }
