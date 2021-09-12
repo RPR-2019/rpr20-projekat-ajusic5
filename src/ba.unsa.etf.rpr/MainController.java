@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -123,7 +124,20 @@ public class MainController {
 
     }
 
-    public void bosanskiClick(ActionEvent actionEvent){
+    public void bosanskiClick(ActionEvent actionEvent) throws IOException {
+        Stage primaryStage = (Stage) kImeFld.getScene().getWindow();
+        primaryStage.close();
+
+        MainController ctrl = new MainController();
+        Locale.setDefault(new Locale("bs_BA", "BA"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/naslovna_stranica.fxml" ), bundle);
+
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        primaryStage.setTitle("Naslovna stranica");
+        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.show();
 
     }
 
