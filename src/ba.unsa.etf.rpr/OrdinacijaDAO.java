@@ -425,7 +425,6 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
     }
 
     public void obrisiUsluguZaLjekara(int idLjekara, String u) {
-
         try {
             dajIdUslugeUpit.setString(1, u);
             var idUsluge = dajIdUslugeUpit.executeQuery().getInt(1);
@@ -437,4 +436,26 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             e.printStackTrace();
         }
     }
+
+    public void dodajPregled(Pregled pregled) {
+        try {
+            var id = dajSljedeciIdZaPregledUpit.executeQuery().getInt(1);
+
+            zakaziTerminUpit.setInt(1, id);
+            zakaziTerminUpit.setInt(2, pregled.getPacijent().getId());
+            zakaziTerminUpit.setInt(3, -1);
+            zakaziTerminUpit.setString(4, pregled.getVrstaPregleda());
+            zakaziTerminUpit.setString(5,null);
+            zakaziTerminUpit.setString(6, pregled.getDatumIVrijemePregleda().toString());
+            zakaziTerminUpit.setString(7, pregled.getVrijemeZakazivanjaTermina().toString());
+            zakaziTerminUpit.setBoolean(8, false);
+            zakaziTerminUpit.setString(9, null);
+            zakaziTerminUpit.setBoolean(10, false);
+            zakaziTerminUpit.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
