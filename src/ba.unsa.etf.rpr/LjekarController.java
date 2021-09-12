@@ -109,7 +109,12 @@ public class LjekarController {
         });
     }
 
-    public void obrisiPregledClick(ActionEvent actionEvent){}
+    public void obrisiPregledClick(ActionEvent actionEvent){
+        if(preglediTable.getSelectionModel().getSelectedItem() == null) return;
+        dao.obrisiPregled(preglediTable.getSelectionModel().getSelectedItem().getId());
+        int index = preglediTable.getSelectionModel().getSelectedIndex();
+        preglediTable.getItems().remove(index);
+    }
 
     public void historijaPregledaClick(ActionEvent actionEvent) {}
 }
