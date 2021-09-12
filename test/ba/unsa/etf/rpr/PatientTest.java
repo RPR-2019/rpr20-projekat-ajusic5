@@ -16,5 +16,12 @@ class PatientTest {
         assertEquals("Jusić", p.getSurname());
     }
 
+    @Test
+    void patientEmptyStringExceptionTest(){
+        Patient p = new Patient();
+
+        assertThrows(EmptyStringException.class, ()->p.getName());
+    }
+
 
 }
