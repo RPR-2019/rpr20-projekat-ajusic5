@@ -5,12 +5,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class LjekarController {
 
@@ -70,10 +76,38 @@ public class LjekarController {
     }
 
     public void izbrisiUsluguClick(ActionEvent actionEvent){
-
+        var usluga = uslugeView.getSelectionModel().getSelectedItem();
+        if(!uslugeLjekara.contains(usluga) || usluga==null) return;
+        uslugeView.getItems().remove(usluga);
+        dao.obrisiUsluguZaLjekara(getTrenutnoPrijavljeniLjekar().getId(), usluga);
+        pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniLjekar.getUsername()));
+        preglediTable.setItems(pregledi);
     }
 
-    public void unesiDijagnozuITerapijuClick(ActionEvent actionEvent) {}
+    public void unesiDijagnozuITerapijuClick(ActionEvent actionEvent) throws IOException {
+        if(preglediTable.getSelectionModel().getSelectedItem() == null) return;
+        var id = preglediTable.getSelectionModel().getSelectedItem().getId();
+
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tekstualno_polje.fxml"), bundle);
+        TekstualnoPoljeController controller = new TekstualnoPoljeController();
+        loader.setController(controller);
+        Parent root = null;
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Unos dijagnoze");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(true);
+        stage.show();
+
+        stage.setOnHiding(event -> {
+            String dijagnoza = controller.getDijagnozaText();
+            String terapija = controller.getTerapijaText();
+            dao.dodajDijagnozu(id, trenutnoPrijavljeniLjekar.getId(), dijagnoza);
+            dao.dodajTerapiju(id, trenutnoPrijavljeniLjekar.getId(), terapija);
+            pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniLjekar.getUsername()));
+        });
+    }
 
     public void obrisiPregledClick(ActionEvent actionEvent){}
 
