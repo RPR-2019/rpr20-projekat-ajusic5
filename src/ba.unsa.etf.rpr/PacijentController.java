@@ -99,7 +99,19 @@ public class PacijentController {
         preglediTable.setItems(FXCollections.observableArrayList(appointments));
     }
 
-    public void historijaClick(ActionEvent actionEvent) throws IOException{}
+    public void historijaClick(ActionEvent actionEvent) throws IOException{
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historija_pregleda.fxml"), bundle);
+        HistorijaPregledaController controller = new HistorijaPregledaController(dao.dajSvePregledeKojeJePacijentObavio(trenutnoPrijavljeniPacijent.getUsername()), trenutnoPrijavljeniPacijent);
+        loader.setController(controller);
+        Parent root = null;
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Historija pregleda");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(true);
+        stage.show();
+    }
 
     public void odjavaClick(ActionEvent actionEvent){
         Stage stage = (Stage) odjavaBtn.getScene().getWindow();

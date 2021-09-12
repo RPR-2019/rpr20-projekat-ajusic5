@@ -542,7 +542,6 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             while (rs.next()){
                 dajLjekaraUpit.setInt(1, rs.getInt(3));
                 var set = dajLjekaraUpit.executeQuery();
-                System.out.println(set.getInt(1));
                 Ljekar d = dajLjekaraIzResultSeta(set);
                 appointments.add(dajPregledIzResultSeta(rs, d, p));
             }
