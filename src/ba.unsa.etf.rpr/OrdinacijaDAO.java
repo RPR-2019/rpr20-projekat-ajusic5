@@ -392,5 +392,22 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         return null;
     }
 
+    public Ljekar dajTrenutnoPrijavljenogLjekara(String username) {
+        try {
+            dajTrenutnoPrijavljenogLjekaraUpit.setString(1, username);
 
+            var rs = dajTrenutnoPrijavljenogLjekaraUpit.executeQuery();
+
+            var splitString = rs.getString(5).split("-");
+            int godina = Integer.parseInt(splitString[0]);
+            int mjesec = Integer.parseInt(splitString[1]);
+            int dan = Integer.parseInt(splitString[2]);
+
+            return new Ljekar(rs.getInt(9), rs.getString(4), rs.getString(5), LocalDate.of(godina, mjesec, dan), rs.getString(1), rs.getString(2), rs.getString(6), rs.getString(7), rs.getString(8));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
