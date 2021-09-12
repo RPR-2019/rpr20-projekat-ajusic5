@@ -316,5 +316,25 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         return null;
     }
 
+    public ArrayList<String> dajUslugeZaLjekara(String username) {
+
+        try {
+            dajIdLjekaraUpit.setString(1, username);
+            var id = dajIdLjekaraUpit.executeQuery().getInt(1);
+            dajSveUslugeZaLjekaraUpit.setInt(1, id);
+            var rs = dajSveUslugeZaLjekaraUpit.executeQuery();
+
+            ArrayList<String> usluge = new ArrayList<>();
+
+            while (rs.next())
+                usluge.add(rs.getString(1));
+
+            return usluge;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
