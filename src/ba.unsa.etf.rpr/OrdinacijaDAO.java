@@ -553,4 +553,24 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         return null;
     }
 
+    public boolean provjeriPregled(String vrstaPregleda, String datumPregleda) {
+
+        try {
+            dajIdUslugeUpit.setString(1, vrstaPregleda);
+            var idUsluge = dajIdUslugeUpit.executeQuery().getInt(1);
+
+            dajIdLjekaraKojiMoguObavitiPregledUpit.setInt(1, idUsluge);
+            var rs = dajIdLjekaraKojiMoguObavitiPregledUpit.executeQuery();
+
+            while(rs.next()){
+                provjeriTerminUpit.setInt(1, rs.getInt(1));
+                provjeriTerminUpit.setString(2, datumPregleda);
+                var set = provjeriTerminUpit.executeQuery();
+                if(!set.next()) return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
