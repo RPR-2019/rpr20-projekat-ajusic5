@@ -115,7 +115,7 @@ public class MainController {
                 registred = dao.provjeriPrijavu(doctor.getUsername(), doctor.getPassword());
             }
             if(registred==-1){
-                if(controller.getVrstaKRBC().equalsIgnoreCase("pacijent")) dao.dodajPacijenta(controller.getPacijent());
+                if(controller.getProfileTypeCB().equalsIgnoreCase("pacijent")) dao.dodajPacijenta(controller.getPacijent());
                 else dao.dodajLjekara(controller.getLjekar());
             }
         });

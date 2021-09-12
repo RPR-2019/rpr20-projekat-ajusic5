@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class RegisterController {
 
-    private ObservableList<String> lista;
+    private ObservableList<String> list;
     private ObservableList<String> l1;
     private ObservableList<String> l2;
     private ObservableList<String> l3;
@@ -24,36 +24,36 @@ public class RegisterController {
     private Patient patient;
     private Doctor doctor;
     @FXML
-    public Button registracijaBtn = new Button();
+    public Button registerBtn = new Button();
     @FXML
-    public ChoiceBox danCB = new ChoiceBox();
+    public ChoiceBox dayCB = new ChoiceBox();
     @FXML
-    public ChoiceBox mjesecCB = new ChoiceBox();
+    public ChoiceBox monthCB = new ChoiceBox();
     @FXML
-    public ChoiceBox godinaCB = new ChoiceBox();
+    public ChoiceBox yearCB = new ChoiceBox();
     @FXML
-    public ChoiceBox<String> vrstaKRBC = new ChoiceBox();
+    public ChoiceBox<String> profileTypeCB = new ChoiceBox();
     @FXML
-    public ChoiceBox<String> specCB = new ChoiceBox();
+    public ChoiceBox<String> specializationCB = new ChoiceBox();
     @FXML
-    public ChoiceBox<String> spolCB = new ChoiceBox();
+    public ChoiceBox<String> sexCB = new ChoiceBox();
     @FXML
-    public TextField imeFld = new TextField();
+    public TextField nameFld = new TextField();
     @FXML
-    public TextField prezimeFld = new TextField();
+    public TextField surnameFld = new TextField();
     @FXML
-    public TextField kImeFld = new TextField();
+    public TextField usernameFld = new TextField();
     @FXML
-    public PasswordField lozinkaFld = new PasswordField();
+    public PasswordField passwordFld = new PasswordField();
 
     @FXML
     public void initialize(){
-        danCB.setItems(lista);
-        mjesecCB.setItems(l1);
-        godinaCB.setItems(l2);
-        vrstaKRBC.setItems(l3);
-        spolCB.setItems(l4);
-        specCB.setItems(l5);
+        dayCB.setItems(list);
+        monthCB.setItems(l1);
+        yearCB.setItems(l2);
+        profileTypeCB.setItems(l3);
+        sexCB.setItems(l4);
+        specializationCB.setItems(l5);
         doctor = null;
         patient = null;
     }
@@ -64,7 +64,7 @@ public class RegisterController {
         for(int i=1; i<32; i++)
             l.add(String.valueOf(i));
 
-        lista= FXCollections.observableArrayList(l);
+        list = FXCollections.observableArrayList(l);
         l.clear();
 
         for(int i=1; i<13; i++)
@@ -90,8 +90,8 @@ public class RegisterController {
         l5=FXCollections.observableArrayList(l);
     }
 
-    public String getVrstaKRBC() {
-        return vrstaKRBC.getValue();
+    public String getProfileTypeCB() {
+        return profileTypeCB.getValue();
     }
 
     public Patient getPacijent() {
@@ -104,27 +104,27 @@ public class RegisterController {
 
     public void registracijaAction(ActionEvent actionEvent) {
 
-        int dan = Integer.parseInt((String) danCB.getValue());
-        int mjesec =Integer.parseInt((String) mjesecCB.getValue());
-        int godina = Integer.parseInt((String) godinaCB.getValue());
+        int dan = Integer.parseInt((String) dayCB.getValue());
+        int mjesec =Integer.parseInt((String) monthCB.getValue());
+        int godina = Integer.parseInt((String) yearCB.getValue());
         LocalDate datum = LocalDate.of(godina, mjesec, dan);
-        String spol = (String) spolCB.getValue();
+        String sex = sexCB.getValue();
 
-        if(vrstaKRBC.getValue().equals("Pacijent")) {
-            if(spol=="M")
-            patient = new Patient(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.PACIJENT, SexOfAUser.MUSKI, 1);
+        if(profileTypeCB.getValue().equals("Pacijent")) {
+            if(sex=="M")
+            patient = new Patient(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.PACIJENT, SexOfAUser.MUSKI, 1);
             else
-                patient = new Patient(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.PACIJENT, SexOfAUser.ZENSKI, 1);
+                patient = new Patient(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.PACIJENT, SexOfAUser.ZENSKI, 1);
 
         }
         else {
-            if(spol=="M")
-            doctor = new Doctor(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.LJEKAR, SexOfAUser.MUSKI, specCB.getValue(), null);
+            if(sex=="M")
+            doctor = new Doctor(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.LJEKAR, SexOfAUser.MUSKI, specializationCB.getValue(), null);
             else
-                doctor = new Doctor(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.LJEKAR, SexOfAUser.ZENSKI, specCB.getValue(), null);
+                doctor = new Doctor(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.LJEKAR, SexOfAUser.ZENSKI, specializationCB.getValue(), null);
 
         }
-        Stage stage = (Stage) registracijaBtn.getScene().getWindow();
+        Stage stage = (Stage) registerBtn.getScene().getWindow();
         stage.close();
     }
 
