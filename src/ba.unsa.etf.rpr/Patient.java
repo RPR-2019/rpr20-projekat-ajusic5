@@ -4,21 +4,21 @@ import java.time.LocalDate;
 
 public class Patient extends User {
 
-    private int brojKartona;
+    private int patientCardNumber;
 
     public Patient() {
     }
 
-    public Patient(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, ProfileType vrsta, SexOfAUser sexOfAUser, int brojKartona) {
-        super(id, prezime, ime, datumRodjenja, username, password, vrsta, sexOfAUser);
-        this.brojKartona = brojKartona;
+    public Patient(int id, String surname, String name, LocalDate dateOfBirth, String username, String password, ProfileType profileType, SexOfAUser sexOfAUser, int patientCardNumber) {
+        super(id, surname, name, dateOfBirth, username, password, profileType, sexOfAUser);
+        this.patientCardNumber = patientCardNumber;
     }
 
-    public int getBrojKartona() {
-        return brojKartona;
+    public int getPatientCardNumber() {
+        return patientCardNumber;
     }
 
-    public void setBrojKartona(int brojKartona) {
-        this.brojKartona = brojKartona;
+    public void setPatientCardNumber(int patientCardNumber) {
+        this.patientCardNumber = patientCardNumber;
     }
 }

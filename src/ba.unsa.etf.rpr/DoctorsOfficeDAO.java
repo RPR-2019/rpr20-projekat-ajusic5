@@ -210,7 +210,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             pacijentRegistracijaUpit.setString(5, patient.getDateOfBirth().toString());
             pacijentRegistracijaUpit.setString(6, patient.getProfileType());
             pacijentRegistracijaUpit.setString(7, patient.getSpol());
-            pacijentRegistracijaUpit.setInt(8, patient.getBrojKartona());
+            pacijentRegistracijaUpit.setInt(8, patient.getPatientCardNumber());
             var id = dajSljedeciIdZaPacijentaUpit.executeQuery().getInt(1);
             pacijentRegistracijaUpit.setInt(9, id);
             pacijentRegistracijaUpit.executeUpdate();
