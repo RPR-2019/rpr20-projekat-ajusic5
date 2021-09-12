@@ -4,25 +4,25 @@ import java.time.LocalDate;
 
 public class User {
     private int id;
-    private String prezime;
-    private String ime;
-    private LocalDate datumRodjenja;
+    private String surname;
+    private String name;
+    private LocalDate dateOfBirth;
     private String username;
     private String password;
-    private ProfileType vrsta;
+    private ProfileType profileType;
     private SexOfAUser sexOfAUser;
 
     public User() {
     }
 
-    public User(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, ProfileType vrsta, SexOfAUser sexOfAUser) {
+    public User(int id, String surname, String name, LocalDate dateOfBirth, String username, String password, ProfileType profileType, SexOfAUser sexOfAUser) {
         this.id = id;
-        this.prezime = prezime;
-        this.ime = ime;
-        this.datumRodjenja = datumRodjenja;
+        this.surname = surname;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
         this.username = username;
         this.password = password;
-        this.vrsta = vrsta;
+        this.profileType = profileType;
         this.sexOfAUser = sexOfAUser;
     }
 
@@ -34,38 +34,38 @@ public class User {
         this.id = id;
     }
 
-    public String getPrezime() throws EmptyStringException {
-        if(prezime==null || prezime.equals(""))
+    public String getSurname() throws EmptyStringException {
+        if(surname ==null || surname.equals(""))
             throw new EmptyStringException("Nemoguće da osoba nema prezime!");
-        return prezime;
+        return surname;
     }
 
-    public void setPrezime(String prezime) throws EmptyStringException {
-        if(prezime==null || prezime.equals(""))
+    public void setSurname(String surname) throws EmptyStringException {
+        if(surname ==null || surname.equals(""))
             throw new EmptyStringException("Nemoguće da osoba nema prezime!");
-        this.prezime = prezime;
+        this.surname = surname;
     }
 
-    public String getIme() throws EmptyStringException {
-        if(ime==null || ime.equals(""))
+    public String getName() throws EmptyStringException {
+        if(name ==null || name.equals(""))
             throw new EmptyStringException("Nemoguće da osoba nema ime!");
-        return ime;
+        return name;
     }
 
-    public void setIme(String ime) throws EmptyStringException {
+    public void setName(String name) throws EmptyStringException {
 
-        if(ime==null || ime.equals(""))
+        if(name ==null || name.equals(""))
             throw new EmptyStringException("Nemoguće da osoba nema ime!");
 
-        this.ime = ime;
+        this.name = name;
     }
 
-    public LocalDate getDatumRodjenja() {
-        return datumRodjenja;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDatumRodjenja(LocalDate datumRodjenja) {
-        this.datumRodjenja = datumRodjenja;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getUsername() {
@@ -84,12 +84,12 @@ public class User {
         this.password = password;
     }
 
-    public String getVrsta() {
-        return vrsta.toString();
+    public String getProfileType() {
+        return profileType.toString();
     }
 
-    public void setVrsta(ProfileType vrsta) {
-        this.vrsta = vrsta;
+    public void setProfileType(ProfileType profileType) {
+        this.profileType = profileType;
     }
 
     public String getSpol() {

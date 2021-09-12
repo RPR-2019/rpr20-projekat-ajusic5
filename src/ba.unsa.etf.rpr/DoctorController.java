@@ -51,8 +51,8 @@ public class DoctorController {
     @FXML
     public void initialize(){
         preglediTable.setItems(pregledi);
-        prezimeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getPrezime()));
-        imeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getIme()));
+        prezimeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getSurname()));
+        imeCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getName()));
         datumIVrijemeCol.setCellValueFactory(new PropertyValueFactory<>("datumIVrijemePregleda"));
         vrstaPregledaCol.setCellValueFactory(new PropertyValueFactory<>("vrstaPregleda"));
         uslugeView.setItems(uslugeLjekara);

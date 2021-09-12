@@ -121,6 +121,6 @@ public class Examination {
 
     @Override
     public String toString(){
-        return patient.getPrezime()+" "+ patient.getIme()+" "+datumIVrijemePregleda.toString()+" "+vrstaPregleda;
+        return patient.getSurname()+" "+ patient.getName()+" "+datumIVrijemePregleda.toString()+" "+vrstaPregleda;
     }
 }
