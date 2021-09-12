@@ -75,10 +75,10 @@ public class ExaminationController {
             return null;
         }
 
-        examination.setVrstaPregleda(vrstaPregledaCB.getValue());
-        examination.setVrijemeZakazivanjaTermina(LocalDateTime.now());
-        examination.setDatumIVrijemePregleda(LocalDateTime.of(datumPregledaDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
-        examination.setVrijemeZakazivanjaTermina(LocalDateTime.now());
+        examination.setTypeOfExamination(vrstaPregledaCB.getValue());
+        examination.setDateAndTimeOfReservation(LocalDateTime.now());
+        examination.setDateAndTimeOfAppointment(LocalDateTime.of(datumPregledaDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
+        examination.setDateAndTimeOfReservation(LocalDateTime.now());
         examination.setPacijent(patient);
         dao.dodajPregled(examination);
         Stage stage = (Stage) okBtn.getScene().getWindow();

@@ -81,7 +81,7 @@ public class PatientController {
         if(preglediTable.getSelectionModel().getSelectedItem() == null) return;
 
         var pregled = preglediTable.getSelectionModel().getSelectedItem();
-        Duration duration = Duration.between(pregled.getVrijemeZakazivanjaTermina(), LocalDateTime.now());
+        Duration duration = Duration.between(pregled.getDateAndTimeOfReservation(), LocalDateTime.now());
         var stringSplit = duration.toString().split("PT|H");
 
         if(stringSplit[1].length()<3 && Integer.parseInt(stringSplit[1]) > 23){

@@ -7,36 +7,36 @@ public class Examination {
     private int id;
     private Patient patient;
     private Doctor doctor;
-    private String vrstaPregleda;
-    private String dijagnoza;
-    private String terapija;
-    private LocalDateTime datumIVrijemePregleda;
-    private LocalDateTime vrijemeZakazivanjaTermina; // treba za mogućnost otkazivanja u roku od 24h
-    private boolean uspjesan;
-    private boolean arhiviran;
+    private String typeOfExamination;
+    private String diagnosis;
+    private String therapy;
+    private LocalDateTime dateAndTimeOfAppointment;
+    private LocalDateTime dateAndTimeOfReservation; // treba za mogućnost otkazivanja u roku od 24h
+    private boolean successful;
+    private boolean archived;
 
     public Examination() {
     }
 
-    public Examination(int id, Patient patient, String vrstaPregleda, LocalDateTime datumIVrijemePregleda, LocalDateTime vrijemeZakazivanjaTermina) {
+    public Examination(int id, Patient patient, String typeOfExamination, LocalDateTime dateAndTimeOfAppointment, LocalDateTime dateAndTimeOfReservation) {
         this.id = id;
         this.patient = patient;
-        this.vrstaPregleda = vrstaPregleda;
-        this.datumIVrijemePregleda = datumIVrijemePregleda;
-        this.vrijemeZakazivanjaTermina = vrijemeZakazivanjaTermina;
+        this.typeOfExamination = typeOfExamination;
+        this.dateAndTimeOfAppointment = dateAndTimeOfAppointment;
+        this.dateAndTimeOfReservation = dateAndTimeOfReservation;
     }
 
-    public Examination(int id, Patient patient, Doctor doctor, String vrstaPregleda, String dijagnoza, String terapija, LocalDateTime datumIVrijemePregleda, LocalDateTime vrijemeZakazivanjaTermina, boolean uspjesan, boolean arhiviran) {
+    public Examination(int id, Patient patient, Doctor doctor, String typeOfExamination, String diagnosis, String therapy, LocalDateTime dateAndTimeOfAppointment, LocalDateTime dateAndTimeOfReservation, boolean successful, boolean archived) {
         this.id = id;
         this.patient = patient;
         this.doctor = doctor;
-        this.vrstaPregleda = vrstaPregleda;
-        this.dijagnoza = dijagnoza;
-        this.terapija = terapija;
-        this.datumIVrijemePregleda = datumIVrijemePregleda;
-        this.vrijemeZakazivanjaTermina = vrijemeZakazivanjaTermina;
-        this.uspjesan = uspjesan;
-        this.arhiviran = arhiviran;
+        this.typeOfExamination = typeOfExamination;
+        this.diagnosis = diagnosis;
+        this.therapy = therapy;
+        this.dateAndTimeOfAppointment = dateAndTimeOfAppointment;
+        this.dateAndTimeOfReservation = dateAndTimeOfReservation;
+        this.successful = successful;
+        this.archived = archived;
     }
 
     public int getId() {
@@ -63,64 +63,64 @@ public class Examination {
         this.patient = patient;
     }
 
-    public String getVrstaPregleda() {
-        return vrstaPregleda;
+    public String getTypeOfExamination() {
+        return typeOfExamination;
     }
 
-    public void setVrstaPregleda(String vrstaPregleda) {
-        this.vrstaPregleda = vrstaPregleda;
+    public void setTypeOfExamination(String typeOfExamination) {
+        this.typeOfExamination = typeOfExamination;
     }
 
-    public String getDijagnoza() {
-        return dijagnoza;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setDijagnoza(String dijagnoza) {
-        this.dijagnoza = dijagnoza;
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
-    public String getTerapija() {
-        return terapija;
+    public String getTherapy() {
+        return therapy;
     }
 
-    public void setTerapija(String terapija) {
-        this.terapija = terapija;
+    public void setTherapy(String therapy) {
+        this.therapy = therapy;
     }
 
-    public LocalDateTime getDatumIVrijemePregleda() {
-        return datumIVrijemePregleda;
+    public LocalDateTime getDateAndTimeOfAppointment() {
+        return dateAndTimeOfAppointment;
     }
 
-    public void setDatumIVrijemePregleda(LocalDateTime datumIVrijemePregleda) {
-        this.datumIVrijemePregleda = datumIVrijemePregleda;
+    public void setDateAndTimeOfAppointment(LocalDateTime dateAndTimeOfAppointment) {
+        this.dateAndTimeOfAppointment = dateAndTimeOfAppointment;
     }
 
-    public LocalDateTime getVrijemeZakazivanjaTermina() {
-        return vrijemeZakazivanjaTermina;
+    public LocalDateTime getDateAndTimeOfReservation() {
+        return dateAndTimeOfReservation;
     }
 
-    public void setVrijemeZakazivanjaTermina(LocalDateTime vrijemeZakazivanjaTermina) {
-        this.vrijemeZakazivanjaTermina = vrijemeZakazivanjaTermina;
+    public void setDateAndTimeOfReservation(LocalDateTime dateAndTimeOfReservation) {
+        this.dateAndTimeOfReservation = dateAndTimeOfReservation;
     }
 
-    public boolean isUspjesan() {
-        return uspjesan;
+    public boolean isSuccessful() {
+        return successful;
     }
 
-    public void setUspjesan(boolean uspjesan) {
-        this.uspjesan = uspjesan;
+    public void setSuccessful(boolean successful) {
+        this.successful = successful;
     }
 
-    public boolean isArhiviran() {
-        return arhiviran;
+    public boolean isArchived() {
+        return archived;
     }
 
-    public void setArhiviran(boolean arhiviran) {
-        this.arhiviran = arhiviran;
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 
     @Override
     public String toString(){
-        return patient.getSurname()+" "+ patient.getName()+" "+datumIVrijemePregleda.toString()+" "+vrstaPregleda;
+        return patient.getSurname()+" "+ patient.getName()+" "+ dateAndTimeOfAppointment.toString()+" "+ typeOfExamination;
     }
 }
