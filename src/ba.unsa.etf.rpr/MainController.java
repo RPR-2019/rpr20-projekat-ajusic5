@@ -159,7 +159,17 @@ public class MainController {
 
     }
 
-    public void aboutClick(ActionEvent actionEvent){
+    public void aboutClick(ActionEvent actionEvent) throws IOException {
+
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/o_nama.fxml"), bundle);
+        AboutController controller = new AboutController();
+        loader.setController(controller);
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("About");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
 
     }
 
