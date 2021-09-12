@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -15,6 +18,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class PacijentController {
 
@@ -50,7 +56,26 @@ public class PacijentController {
         this.uslugeView.setItems(uslugeView);
     }
 
-    public void pregledClick(ActionEvent actionEvent){
+    public void pregledClick(ActionEvent actionEvent) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/zakazivanje_termina_forma.fxml"), bundle);
+        PregledController controller = new PregledController(usluge, trenutnoPrijavljeniPacijent, idLjekara);
+        loader.setController(controller);
+        Parent root = null;
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Zakazivanje termina");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(true);
+        stage.show();
+
+        stage.setOnHiding(event -> {
+            Pregled p = controller.getPregled();
+            if(p != null){
+                appointments.add(p);
+                preglediTable.setItems(FXCollections.observableArrayList(appointments));
+            }
+        });
 
     }
 
