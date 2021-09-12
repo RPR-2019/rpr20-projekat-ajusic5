@@ -5,39 +5,39 @@ import java.util.List;
 
 public class Doctor extends User {
 
-    private String specijalizacija;
-    private List<String> usluge;
+    private String specialization;
+    private List<String> services;
 
-    public Doctor(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, ProfileType vrsta, SexOfAUser sexOfAUser, String specijalizacija) {
+    public Doctor(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, ProfileType vrsta, SexOfAUser sexOfAUser, String specialization) {
         super(id, prezime, ime, datumRodjenja, username, password, vrsta, sexOfAUser);
-        this.specijalizacija=specijalizacija;
+        this.specialization = specialization;
     }
 
-    public Doctor(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, ProfileType vrsta, SexOfAUser sexOfAUser, String specijalizacija, List<String> usluge) {
+    public Doctor(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, ProfileType vrsta, SexOfAUser sexOfAUser, String specialization, List<String> services) {
         super(id, prezime, ime, datumRodjenja, username, password, vrsta, sexOfAUser);
-        this.specijalizacija = specijalizacija;
-        this.usluge = usluge;
+        this.specialization = specialization;
+        this.services = services;
     }
 
-    public Doctor(int id, String prezime, String ime, String username, String password, LocalDate datumRodjenja, ProfileType vrsta, SexOfAUser sexOfAUser, String specijalizacija) {
+    public Doctor(int id, String prezime, String ime, String username, String password, LocalDate datumRodjenja, ProfileType vrsta, SexOfAUser sexOfAUser, String specialization) {
         super(id, prezime, ime, datumRodjenja, username, password, vrsta, sexOfAUser);
-        this.specijalizacija = specijalizacija;
+        this.specialization = specialization;
     }
 
 
-    public String getSpecijalizacija() {
-        return specijalizacija;
+    public String getSpecialization() {
+        return specialization;
     }
 
-    public void setSpecijalizacija(String specijalizacija) {
-        this.specijalizacija = specijalizacija;
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
     }
 
-    public List<String> getUsluge() {
-        return usluge;
+    public List<String> getServices() {
+        return services;
     }
 
-    public void setUsluge(List<String> usluge) {
-        this.usluge = usluge;
+    public void setServices(List<String> services) {
+        this.services = services;
     }
 }

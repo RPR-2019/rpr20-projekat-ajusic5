@@ -230,18 +230,18 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             ljekarRegistracijaUpit.setString(5, doctor.getDateOfBirth().toString());
             ljekarRegistracijaUpit.setString(6, doctor.getProfileType());
             ljekarRegistracijaUpit.setString(7, doctor.getSpol());
-            ljekarRegistracijaUpit.setString(8, doctor.getSpecijalizacija());
+            ljekarRegistracijaUpit.setString(8, doctor.getSpecialization());
             var id = dajSljedeciIdZaLjekaraUpit.executeQuery().getInt(1);
             ljekarRegistracijaUpit.setInt(9, id);
             ljekarRegistracijaUpit.executeUpdate();
             doctor.setId(id);
 
-            dajIdZaUsluguUpit.setString(1, doctor.getSpecijalizacija());
+            dajIdZaUsluguUpit.setString(1, doctor.getSpecialization());
             var rs = dajIdZaUsluguUpit.executeQuery();
             if (!rs.next()) {
                 id = dajSljedeciIdZaUsluguUpit.executeQuery().getInt(1);
                 dodajUsluguUpit.setInt(1, id);
-                dodajUsluguUpit.setString(2, doctor.getSpecijalizacija());
+                dodajUsluguUpit.setString(2, doctor.getSpecialization());
                 dodajUsluguUpit.executeUpdate();
             } else id = rs.getInt(1);
             poveziLjekaraSaUslugomUpit.setInt(1, id);

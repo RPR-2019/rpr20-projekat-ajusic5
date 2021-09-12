@@ -69,7 +69,7 @@ public class DoctorController {
     }
     public void dodajUsluguClick(ActionEvent actionEvent){
         if(uslugeLjekara.contains(uslugeCB.getValue()) || uslugeCB.getValue()==null) return;
-        getTrenutnoPrijavljeniLjekar().setUsluge(uslugeView.getItems());
+        getTrenutnoPrijavljeniLjekar().setServices(uslugeView.getItems());
         uslugeLjekara.add(uslugeCB.getValue());
         dao.dodajUsluguZaLjekara(getTrenutnoPrijavljeniLjekar().getId() , uslugeCB.getValue());
         pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniDoctor.getUsername()));
