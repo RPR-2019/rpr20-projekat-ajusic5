@@ -19,11 +19,6 @@ public class Doctor extends User {
         this.services = services;
     }
 
-    public Doctor(int id, String prezime, String ime, String username, String password, LocalDate datumRodjenja, ProfileType vrsta, SexOfAUser sexOfAUser, String specialization) {
-        super(id, prezime, ime, datumRodjenja, username, password, vrsta, sexOfAUser);
-        this.specialization = specialization;
-    }
-
 
     public String getSpecialization() {
         return specialization;
