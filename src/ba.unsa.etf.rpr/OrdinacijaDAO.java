@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
@@ -136,5 +138,22 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         var patientId = set.getInt(9);
 
         return new Pacijent(patientId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, profileType, sex, patientCardNumber);
+    }
+
+    private Pregled dajPregledIzResultSeta(ResultSet rs, Ljekar doctor, Pacijent patient) throws SQLException {
+
+        var id = rs.getInt(1);
+        var typeOfExamination = rs.getString(4);
+        var therapy = rs.getString(5);
+        var dateAndTime1 = rs.getString(6).split("-|T|:");
+        var dateAndTime2 = rs.getString(7).split("-|T|:");
+        var successful = rs.getBoolean(8);
+        var diagnosis = rs.getString(9);
+        var archived = rs.getBoolean(10);
+        var dateAndTimeOfAppoitment = LocalDateTime.of(LocalDate.of(Integer.parseInt(dateAndTime1[0]), Integer.parseInt(dateAndTime1[1]), Integer.parseInt(dateAndTime1[2])), LocalTime.of(Integer.parseInt(dateAndTime1[3]), Integer.parseInt(dateAndTime1[4])));
+        var dateAndTimeOfReservation = LocalDateTime.of(LocalDate.of(Integer.parseInt(dateAndTime2[0]), Integer.parseInt(dateAndTime2[1]), Integer.parseInt(dateAndTime2[2])), LocalTime.of(Integer.parseInt(dateAndTime2[3]), Integer.parseInt(dateAndTime2[4])));
+
+        return new Pregled(id, patient, doctor, typeOfExamination, diagnosis, therapy, dateAndTimeOfAppoitment, dateAndTimeOfReservation, successful, archived);
+
     }
 }
