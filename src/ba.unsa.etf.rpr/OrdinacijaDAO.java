@@ -189,4 +189,55 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         }
         return -1;
     }
+
+    public void dodajPacijenta(Pacijent pacijent) {
+        try {
+            pacijentRegistracijaUpit.setString(1, pacijent.getUsername());
+            pacijentRegistracijaUpit.setString(2, pacijent.getPassword());
+            pacijentRegistracijaUpit.setString(3, pacijent.getIme());
+            pacijentRegistracijaUpit.setString(4, pacijent.getPrezime());
+            pacijentRegistracijaUpit.setString(5, pacijent.getDatumRodjenja().toString());
+            pacijentRegistracijaUpit.setString(6, pacijent.getVrsta());
+            pacijentRegistracijaUpit.setString(7, pacijent.getSpol());
+            pacijentRegistracijaUpit.setInt(8, pacijent.getBrojKartona());
+            var id = dajSljedeciIdZaPacijentaUpit.executeQuery().getInt(1);
+            pacijentRegistracijaUpit.setInt(9, id);
+            pacijentRegistracijaUpit.executeUpdate();
+            pacijent.setId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dodajLjekara(Ljekar ljekar) {
+        try {
+            ljekarRegistracijaUpit.setString(1, ljekar.getUsername());
+            ljekarRegistracijaUpit.setString(2, ljekar.getPassword());
+            ljekarRegistracijaUpit.setString(3, ljekar.getIme());
+            ljekarRegistracijaUpit.setString(4, ljekar.getPrezime());
+            ljekarRegistracijaUpit.setString(4, ljekar.getPrezime());
+            ljekarRegistracijaUpit.setString(5, ljekar.getDatumRodjenja().toString());
+            ljekarRegistracijaUpit.setString(6, ljekar.getVrsta());
+            ljekarRegistracijaUpit.setString(7, ljekar.getSpol());
+            ljekarRegistracijaUpit.setString(8, ljekar.getSpecijalizacija());
+            var id = dajSljedeciIdZaLjekaraUpit.executeQuery().getInt(1);
+            ljekarRegistracijaUpit.setInt(9, id);
+            ljekarRegistracijaUpit.executeUpdate();
+            ljekar.setId(id);
+
+            dajIdZaUsluguUpit.setString(1, ljekar.getSpecijalizacija());
+            var rs = dajIdZaUsluguUpit.executeQuery();
+            if (!rs.next()) {
+                id = dajSljedeciIdZaUsluguUpit.executeQuery().getInt(1);
+                dodajUsluguUpit.setInt(1, id);
+                dodajUsluguUpit.setString(2, ljekar.getSpecijalizacija());
+                dodajUsluguUpit.executeUpdate();
+            } else id = rs.getInt(1);
+            poveziLjekaraSaUslugomUpit.setInt(1, id);
+            poveziLjekaraSaUslugomUpit.setInt(2, ljekar.getId());
+            poveziLjekaraSaUslugomUpit.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
