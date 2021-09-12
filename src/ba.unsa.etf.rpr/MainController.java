@@ -54,7 +54,7 @@ public class MainController {
         lozinkaFld.setText("");
         if(mode == 1){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ljekar_naslovna.fxml"), bundle);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ljekar_naslovna.fxml"), bundle);
 
             LjekarController controller = new LjekarController(dao.dajUslugeZaLjekara(username), dao.dajSvePregledeKojeLjekarMozeObaviti(username), dao.dajSvePregledeKojeJeLjekarObavio(username), dao.dajTrenutnoPrijavljenogLjekara(username), dao.dajNaziveUsluga());
             loader.setController(controller);
@@ -65,12 +65,10 @@ public class MainController {
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setResizable(true);
             stage.show();
-
-
         }
         else if(mode == 2){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("pacijent_naslovna.fxml"), bundle);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pacijent_naslovna.fxml"), bundle);
             PacijentController controller = new PacijentController(dao.dajNaziveUsluga(), dao.dajSveZakazanePreglede(), dao.dajTrenutnoPrijavljenogPacijenta(username, password), dao.dajSveLjekare());
             loader.setController(controller);
             Parent root = loader.load();
