@@ -595,4 +595,13 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         }
         return null;
     }
+
+    public void otkaziPregled(int id) {
+        try {
+            otkaziTerminUpit.setInt(1, id);
+            otkaziTerminUpit.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
