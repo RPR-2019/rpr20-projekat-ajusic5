@@ -410,4 +410,17 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
 
         return null;
     }
+
+    public void dodajUsluguZaLjekara(int idLjekara, String u) {
+        try {
+            dajIdUslugeUpit.setString(1, u);
+            var idUsluge = dajIdUslugeUpit.executeQuery().getInt(1);
+            dodajUsluguZaLjekaraUpit.setInt(1, idUsluge);
+            dodajUsluguZaLjekaraUpit.setInt(2, idLjekara);
+            dodajUsluguZaLjekaraUpit.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
