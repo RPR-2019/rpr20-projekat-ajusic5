@@ -15,7 +15,7 @@
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <TextArea fx:id="dijagnozaArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+        <TextArea fx:id="dijagnosisArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
@@ -38,7 +38,7 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </ButtonBar>
-        <TextArea fx:id="terapijaArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <TextArea fx:id="therapyArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
@@ -46,7 +46,7 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </TextArea>
-        <Label fx:id="dijagnozaLbl" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%Dijagnoza">
+        <Label fx:id="dijagnosisLbl" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%Dijagnoza">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
@@ -54,7 +54,7 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <Label fx:id="terapijaLbl" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%Terapija" GridPane.rowIndex="1">
+        <Label fx:id="therapyLbl" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%Terapija" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>

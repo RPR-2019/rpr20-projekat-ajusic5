@@ -52,8 +52,8 @@ public class DoctorController {
         examinationsTable.setItems(examinations);
         surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getSurname()));
         nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getName()));
-        dateAndTimeCol.setCellValueFactory(new PropertyValueFactory<>("datumIVrijemePregleda"));
-        typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("vrstaPregleda"));
+        dateAndTimeCol.setCellValueFactory(new PropertyValueFactory<>("dateAndTimeOfAppointment"));
+        typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("typeOfExamination"));
         servicesView.setItems(doctorsServices);
         servicesCB.setItems(allServices);
     }
@@ -101,8 +101,8 @@ public class DoctorController {
         stage.show();
 
         stage.setOnHiding(event -> {
-            String diagnosis = controller.getDijagnozaText();
-            String therapy = controller.getTerapijaText();
+            String diagnosis = controller.getDiagnosisText();
+            String therapy = controller.getTherapyText();
             dao.dodajDijagnozu(id, doctor.getId(), diagnosis);
             dao.dodajTerapiju(id, doctor.getId(), therapy);
             examinations = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(doctor.getUsername()));

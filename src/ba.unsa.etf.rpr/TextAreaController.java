@@ -9,21 +9,21 @@ import javafx.stage.Stage;
 
 public class TextAreaController {
     public Button okBtn;
-    public TextArea dijagnozaArea;
-    public TextArea terapijaArea;
-    private SimpleStringProperty dijagnozaText;
-    private SimpleStringProperty terapijaText;
+    public TextArea dijagnosisArea;
+    public TextArea therapyArea;
+    private SimpleStringProperty diagnosisText;
+    private SimpleStringProperty therapyText;
 
     public TextAreaController() {
-        dijagnozaText = new SimpleStringProperty("");
-        terapijaText = new SimpleStringProperty("");
+        diagnosisText = new SimpleStringProperty("");
+        therapyText = new SimpleStringProperty("");
 
     }
 
     @FXML
     public void initialize(){
-        dijagnozaArea.textProperty().bindBidirectional(dijagnozaText);
-        terapijaArea.textProperty().bindBidirectional(terapijaText);
+        dijagnosisArea.textProperty().bindBidirectional(diagnosisText);
+        therapyArea.textProperty().bindBidirectional(therapyText);
     }
 
     public void okClick(ActionEvent actionEvent){
@@ -31,11 +31,11 @@ public class TextAreaController {
         stage.close();
     }
 
-    public String getDijagnozaText() {
-        return dijagnozaText.getValue();
+    public String getDiagnosisText() {
+        return diagnosisText.getValue();
     }
 
-    public String getTerapijaText() {
-        return terapijaText.getValue();
+    public String getTherapyText() {
+        return therapyText.getValue();
     }
 }
