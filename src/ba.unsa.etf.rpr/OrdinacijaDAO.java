@@ -280,4 +280,21 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         return null;
     }
 
+    public Pacijent dajTrenutnoPrijavljenogPacijenta(String username, String password) {
+
+        try {
+            dajTrenutnogPrijavljenogPacijentaUpit.setString(1, username);
+            dajTrenutnogPrijavljenogPacijentaUpit.setString(2, password);
+            var rs = dajTrenutnogPrijavljenogPacijentaUpit.executeQuery();
+            return dajPacijentaIzResultSeta(rs);// ovdje pošutat' sve ove iz result seta
+            // i onda u pacijent ili pregled controlleru (nisam više sigurna gdje mi je šta Bgmi) update-ovati preko ovoga tamo pacijenta
+            // i onda pošto će se vršiti provjera u pregled controlleru (valjda) ako ta provjera prođe
+            // u main controlleru pozvati upis pregleda u bazu
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
