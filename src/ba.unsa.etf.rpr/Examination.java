@@ -47,19 +47,19 @@ public class Examination {
         this.id = id;
     }
 
-    public Doctor getLjekar() {
+    public Doctor getDoctor() {
         return doctor;
     }
 
-    public void setLjekar(Doctor doctor) {
+    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
-    public Patient getPacijent() {
+    public Patient getPatient() {
         return patient;
     }
 
-    public void setPacijent(Patient patient) {
+    public void setPatient(Patient patient) {
         this.patient = patient;
     }
 

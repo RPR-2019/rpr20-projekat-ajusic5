@@ -27,11 +27,11 @@ public class HistoryOfExaminationsController {
         historyTable.setItems(examinations);
 
         if(u.getClass().getName().equals(ProfileType.PACIJENT)){
-            surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getSurname()));
-            nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getName()));
+            surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDoctor().getSurname()));
+            nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDoctor().getName()));
         }else {
-            surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getSurname()));
-            nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getName()));
+            surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPatient().getSurname()));
+            nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPatient().getName()));
         }
         dateCol.setCellValueFactory(new PropertyValueFactory<>("dateAndTimeOfAppointment"));
         typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("typeOfExamination"));

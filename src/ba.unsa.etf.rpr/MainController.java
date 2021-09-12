@@ -26,7 +26,7 @@ public class MainController {
     @FXML
     private TextArea txtAreaFld = new TextArea("");
     @FXML
-    public TableView<Usluga> servicesTab = new TableView<>();
+    public TableView<Service> servicesTab = new TableView<>();
     @FXML
     public TableColumn servicesCol;
     private DoctorsOfficeDAO dao;

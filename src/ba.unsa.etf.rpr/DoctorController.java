@@ -50,8 +50,8 @@ public class DoctorController {
     @FXML
     public void initialize(){
         examinationsTable.setItems(examinations);
-        surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getSurname()));
-        nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getName()));
+        surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPatient().getSurname()));
+        nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPatient().getName()));
         dateAndTimeCol.setCellValueFactory(new PropertyValueFactory<>("dateAndTimeOfAppointment"));
         typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("typeOfExamination"));
         servicesView.setItems(doctorsServices);

@@ -248,15 +248,15 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         }
     }
 
-    public ArrayList<Usluga> getAllServices() {
+    public ArrayList<Service> getAllServices() {
         try {
             var rs = getAllServicesQuery.executeQuery();
 
-            ArrayList<Usluga> l = new ArrayList<>();
+            ArrayList<Service> l = new ArrayList<>();
 
             while (rs.next()) {
-                Usluga usluga = new Usluga(rs.getInt(1), rs.getString(2));
-                l.add(usluga);
+                Service service = new Service(rs.getInt(1), rs.getString(2));
+                l.add(service);
             }
 
             return l;
@@ -451,7 +451,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             var id = getNextExaminationIdQuery.executeQuery().getInt(1);
 
             scheduleAnAppointmentQuery.setInt(1, id);
-            scheduleAnAppointmentQuery.setInt(2, examination.getPacijent().getId());
+            scheduleAnAppointmentQuery.setInt(2, examination.getPatient().getId());
             scheduleAnAppointmentQuery.setInt(3, -1);
             scheduleAnAppointmentQuery.setString(4, examination.getTypeOfExamination());
             scheduleAnAppointmentQuery.setString(5,null);

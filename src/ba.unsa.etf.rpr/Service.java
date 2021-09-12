@@ -1,10 +1,10 @@
 package ba.unsa.etf.rpr;
 
-public class Usluga {
+public class Service {
     private int id;
     private String name;
 
-    public Usluga(int id, String name) {
+    public Service(int id, String name) {
         this.id = id;
         this.name = name;
     }

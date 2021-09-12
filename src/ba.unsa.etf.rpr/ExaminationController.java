@@ -79,7 +79,7 @@ public class ExaminationController {
         examination.setDateAndTimeOfReservation(LocalDateTime.now());
         examination.setDateAndTimeOfAppointment(LocalDateTime.of(dateDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
         examination.setDateAndTimeOfReservation(LocalDateTime.now());
-        examination.setPacijent(patient);
+        examination.setPatient(patient);
         dao.addAnAppointment(examination);
         Stage stage = (Stage) okBtn.getScene().getWindow();
         stage.close();
