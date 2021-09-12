@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -45,8 +46,8 @@ public class PacijentController {
         datumIVrijemePregledaCol.setCellValueFactory(new PropertyValueFactory<>("datumIVrijemePregleda"));
     }
 
-    public void setUslugeView(ObservableList<String> uslugeView){
-
+    public void setUslugeView(ObservableList<String> uslugeView) {
+        this.uslugeView.setItems(uslugeView);
     }
 
     public void pregledClick(ActionEvent actionEvent){
@@ -57,5 +58,8 @@ public class PacijentController {
 
     public void historijaClick(ActionEvent actionEvent) throws IOException{}
 
-    public void odjavaClick(ActionEvent actionEvent){}
+    public void odjavaClick(ActionEvent actionEvent){
+        Stage stage = (Stage) odjavaBtn.getScene().getWindow();
+        stage.close();
+    }
 }
