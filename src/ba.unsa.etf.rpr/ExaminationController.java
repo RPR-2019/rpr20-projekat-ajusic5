@@ -16,27 +16,27 @@ public class ExaminationController {
     @FXML
     public Button okBtn = new Button();
     @FXML
-    public ChoiceBox<String> vrstaPregledaCB = new ChoiceBox<>();
+    public ChoiceBox<String> typeOfExaminationCB = new ChoiceBox<>();
     @FXML
-    public DatePicker datumPregledaDP = new DatePicker();
+    public DatePicker dateDP = new DatePicker();
     @FXML
-    public ChoiceBox<String> vrijemePregledaCB = new ChoiceBox<>();
+    public ChoiceBox<String> timeCB = new ChoiceBox<>();
 
-    private ArrayList<String> usluge;
+    private ArrayList<String> services;
     private Examination examination = new Examination();
-    private ArrayList<LocalDateTime> zakazaniPregledi = new ArrayList<>();
+    private ArrayList<LocalDateTime> appointments = new ArrayList<>();
     private Patient patient = new Patient();
-    private List<Integer> idLjekara = new ArrayList<>();
+    private List<Integer> doctorId = new ArrayList<>();
     private DoctorsOfficeDAO dao;
 
-    public ExaminationController(ArrayList<String> usluge, Patient patient, List<Integer> idLjekara) {
-        this.usluge = usluge;
+    public ExaminationController(ArrayList<String> services, Patient patient, List<Integer> doctorId) {
+        this.services = services;
         this.patient = patient;
-        this.idLjekara = idLjekara;
+        this.doctorId = doctorId;
     }
 
     public void initialize(){
-        datumPregledaDP.setDayCellFactory(picker -> new DateCell() {
+        dateDP.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
                 LocalDate today = LocalDate.now();
@@ -44,9 +44,9 @@ public class ExaminationController {
             }
         });
 
-        vrstaPregledaCB.setItems(FXCollections.observableList(usluge));
+        typeOfExaminationCB.setItems(FXCollections.observableList(services));
 
-        vrijemePregledaCB.getItems().addAll("08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30");
+        timeCB.getItems().addAll("08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30");
 
         dao = DoctorsOfficeDAO.getInstanca();
 
@@ -57,15 +57,15 @@ public class ExaminationController {
     }
 
     public Examination okClick(ActionEvent actionEvent){
-        if(vrstaPregledaCB.getValue() == null || vrijemePregledaCB.getValue() == null || datumPregledaDP.getValue() == null) return null;
+        if(typeOfExaminationCB.getValue() == null || timeCB.getValue() == null || dateDP.getValue() == null) return null;
 
-        var splitString = vrijemePregledaCB.getSelectionModel().getSelectedItem().split(":");
-        var vrstaPregleda = vrstaPregledaCB.getValue();
-        var datumPregleda = datumPregledaDP.getValue().toString() + "T" + vrijemePregledaCB.getValue();
+        var splitString = timeCB.getSelectionModel().getSelectedItem().split(":");
+        var vrstaPregleda = typeOfExaminationCB.getValue();
+        var datumPregleda = dateDP.getValue().toString() + "T" + timeCB.getValue();
 
-        var nijeZauzet = dao.provjeriPregled(vrstaPregleda, datumPregleda);
+        var available = dao.provjeriPregled(vrstaPregleda, datumPregleda);
 
-        if(!nijeZauzet){
+        if(!available){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Greška");
             alert.setHeaderText("Neispravni podaci");
@@ -75,9 +75,9 @@ public class ExaminationController {
             return null;
         }
 
-        examination.setTypeOfExamination(vrstaPregledaCB.getValue());
+        examination.setTypeOfExamination(typeOfExaminationCB.getValue());
         examination.setDateAndTimeOfReservation(LocalDateTime.now());
-        examination.setDateAndTimeOfAppointment(LocalDateTime.of(datumPregledaDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
+        examination.setDateAndTimeOfAppointment(LocalDateTime.of(dateDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
         examination.setDateAndTimeOfReservation(LocalDateTime.now());
         examination.setPacijent(patient);
         dao.dodajPregled(examination);
