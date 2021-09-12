@@ -39,7 +39,7 @@ public class MainController {
     public void initialize(){
         txtAreaFld.appendText("Dobro došli na aplikaciju naše ljekarske ordinacije.\nZakažite pregled iz udobnosti svog doma" +
                 "\nNaše usluge su dostupne svaki dan od 08:00 do 16:00");
-        var lis = FXCollections.observableArrayList(dao.dajSveUsluge());
+        var lis = FXCollections.observableArrayList(dao.getAllServices());
         servicesTab.setItems(lis);
         servicesCol.setCellValueFactory(new PropertyValueFactory("name"));
 
@@ -49,14 +49,14 @@ public class MainController {
 
         var username = usernameFld.getText();
         var password = passwordFld.getText();
-        var mode = dao.provjeriPrijavu(username, password);
+        var mode = dao.checkSignIn(username, password);
         usernameFld.setText("");
         passwordFld.setText("");
         if(mode == 1){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ljekar_naslovna.fxml"), bundle);
 
-            DoctorController controller = new DoctorController(dao.dajUslugeZaLjekara(username), dao.dajSvePregledeKojeLjekarMozeObaviti(username), dao.dajSvePregledeKojeJeLjekarObavio(username), dao.dajTrenutnoPrijavljenogLjekara(username), dao.dajNaziveUsluga());
+            DoctorController controller = new DoctorController(dao.getDoctorsServices(username), dao.getAllExaminationsDoctorCanDo(username), dao.getAllExaminationsDoctorDid(username), dao.getCurrentDoctor(username), dao.getNamesOfServices());
             loader.setController(controller);
             Parent root = null;
             root = loader.load();
@@ -69,7 +69,7 @@ public class MainController {
         else if(mode == 2){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pacijent_naslovna.fxml"), bundle);
-            PatientController controller = new PatientController(dao.dajNaziveUsluga(), dao.dajSveZakazanePreglede(), dao.dajTrenutnoPrijavljenogPacijenta(username, password), dao.dajSveLjekare());
+            PatientController controller = new PatientController(dao.getNamesOfServices(), dao.getAllAppointments(), dao.getCurrentPatient(username, password), dao.getAllDoctors());
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -109,14 +109,14 @@ public class MainController {
 
             int registred = 0;
             if(patient != null){
-                registred = dao.provjeriPrijavu(patient.getUsername(), patient.getPassword());
+                registred = dao.checkSignIn(patient.getUsername(), patient.getPassword());
             }
             else if(doctor !=null ){
-                registred = dao.provjeriPrijavu(doctor.getUsername(), doctor.getPassword());
+                registred = dao.checkSignIn(doctor.getUsername(), doctor.getPassword());
             }
             if(registred==-1){
-                if(controller.getProfileTypeCB().equalsIgnoreCase("pacijent")) dao.dodajPacijenta(controller.getPacijent());
-                else dao.dodajLjekara(controller.getLjekar());
+                if(controller.getProfileTypeCB().equalsIgnoreCase("pacijent")) dao.addAPatient(controller.getPacijent());
+                else dao.addADoctor(controller.getLjekar());
             }
         });
 

@@ -44,7 +44,7 @@ public class PatientController {
     @FXML
     public void initialize(){
         servicesView.setItems(FXCollections.observableList(services));
-        appointments = dao.dajPregledeKojeJePacijentZakazao(patient.getId());
+        appointments = dao.getAppointmentsPatitentScheduled(patient.getId());
         examinationsTable.setItems(FXCollections.observableList(appointments));
         typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("typeOfExamination"));
         dateAndTimeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("dateAndTimeOfAppointment"));
@@ -68,7 +68,7 @@ public class PatientController {
         stage.show();
 
         stage.setOnHiding(event -> {
-            Examination p = controller.getPregled();
+            Examination p = controller.getExamination();
             if(p != null){
                 appointments.add(p);
                 examinationsTable.setItems(FXCollections.observableArrayList(appointments));
@@ -93,7 +93,7 @@ public class PatientController {
             alert.show();
             return;
         }
-        dao.otkaziPregled(examination.getId());
+        dao.cancelAppointment(examination.getId());
         var e = examinationsTable.getSelectionModel().getSelectedItem();
         appointments.remove(e);
         examinationsTable.setItems(FXCollections.observableArrayList(appointments));
@@ -102,7 +102,7 @@ public class PatientController {
     public void historyClick(ActionEvent actionEvent) throws IOException{
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historija_pregleda.fxml"), bundle);
-        HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.dajSvePregledeKojeJePacijentObavio(patient.getUsername()), patient);
+        HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.getAppointmentsPatientDid(patient.getUsername()), patient);
         loader.setController(controller);
         Parent root = null;
         root = loader.load();

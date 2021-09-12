@@ -52,7 +52,7 @@ public class ExaminationController {
 
     }
 
-    public Examination getPregled() {
+    public Examination getExamination() {
         return examination;
     }
 
@@ -63,7 +63,7 @@ public class ExaminationController {
         var vrstaPregleda = typeOfExaminationCB.getValue();
         var datumPregleda = dateDP.getValue().toString() + "T" + timeCB.getValue();
 
-        var available = dao.provjeriPregled(vrstaPregleda, datumPregleda);
+        var available = dao.checkAppointment(vrstaPregleda, datumPregleda);
 
         if(!available){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -80,7 +80,7 @@ public class ExaminationController {
         examination.setDateAndTimeOfAppointment(LocalDateTime.of(dateDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
         examination.setDateAndTimeOfReservation(LocalDateTime.now());
         examination.setPacijent(patient);
-        dao.dodajPregled(examination);
+        dao.addAnAppointment(examination);
         Stage stage = (Stage) okBtn.getScene().getWindow();
         stage.close();
         return examination;

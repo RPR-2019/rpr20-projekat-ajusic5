@@ -70,8 +70,8 @@ public class DoctorController {
         if(doctorsServices.contains(servicesCB.getValue()) || servicesCB.getValue()==null) return;
         getDoctor().setServices(servicesView.getItems());
         doctorsServices.add(servicesCB.getValue());
-        dao.dodajUsluguZaLjekara(getDoctor().getId() , servicesCB.getValue());
-        examinations = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(doctor.getUsername()));
+        dao.addAServiceForADoctor(getDoctor().getId() , servicesCB.getValue());
+        examinations = FXCollections.observableArrayList(dao.getAllExaminationsDoctorCanDo(doctor.getUsername()));
         examinationsTable.setItems(examinations);
     }
 
@@ -79,8 +79,8 @@ public class DoctorController {
         var service = servicesView.getSelectionModel().getSelectedItem();
         if(!doctorsServices.contains(service) || service==null) return;
         servicesView.getItems().remove(service);
-        dao.obrisiUsluguZaLjekara(getDoctor().getId(), service);
-        examinations = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(doctor.getUsername()));
+        dao.deleteServiceForADoctor(getDoctor().getId(), service);
+        examinations = FXCollections.observableArrayList(dao.getAllExaminationsDoctorCanDo(doctor.getUsername()));
         examinationsTable.setItems(examinations);
     }
 
@@ -103,15 +103,15 @@ public class DoctorController {
         stage.setOnHiding(event -> {
             String diagnosis = controller.getDiagnosisText();
             String therapy = controller.getTherapyText();
-            dao.dodajDijagnozu(id, doctor.getId(), diagnosis);
-            dao.dodajTerapiju(id, doctor.getId(), therapy);
-            examinations = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(doctor.getUsername()));
+            dao.addDiagnosis(id, doctor.getId(), diagnosis);
+            dao.addTherapy(id, doctor.getId(), therapy);
+            examinations = FXCollections.observableArrayList(dao.getAllExaminationsDoctorCanDo(doctor.getUsername()));
         });
     }
 
     public void deleteTheExaminationClick(ActionEvent actionEvent){
         if(examinationsTable.getSelectionModel().getSelectedItem() == null) return;
-        dao.obrisiPregled(examinationsTable.getSelectionModel().getSelectedItem().getId());
+        dao.deleteAppoinment(examinationsTable.getSelectionModel().getSelectedItem().getId());
         int index = examinationsTable.getSelectionModel().getSelectedIndex();
         examinationsTable.getItems().remove(index);
     }
@@ -119,7 +119,7 @@ public class DoctorController {
     public void historyClick(ActionEvent actionEvent) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historija_pregleda.fxml"), bundle);
-        HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.dajSvePregledeKojeJeLjekarObavio(doctor.getUsername()), doctor);
+        HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.getAllExaminationsDoctorDid(doctor.getUsername()), doctor);
         loader.setController(controller);
         Parent root = null;
         root = loader.load();

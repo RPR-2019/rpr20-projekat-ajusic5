@@ -26,15 +26,15 @@ public class HistoryOfExaminationsController {
 
         historyTable.setItems(examinations);
 
-        if(u.getClass().getName().equals("ba.unsa.etf.rpr.probniprojekat.Pacijent")){
+        if(u.getClass().getName().equals(ProfileType.PACIJENT)){
             surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getSurname()));
             nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLjekar().getName()));
         }else {
             surnameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getSurname()));
             nameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPacijent().getName()));
         }
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("datumIVrijemePregleda"));
-        typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("vrstaPregleda"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("dateAndTimeOfAppointment"));
+        typeOfExaminationCol.setCellValueFactory(new PropertyValueFactory<>("typeOfExamination"));
 
     }
 }

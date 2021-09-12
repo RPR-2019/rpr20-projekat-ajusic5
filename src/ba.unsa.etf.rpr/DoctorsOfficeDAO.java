@@ -12,10 +12,11 @@ import java.util.Scanner;
 
 public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
     private Connection conn;
-    private PreparedStatement pacijentPrijavaUpit, ljekarPrijavaUpit, pacijentRegistracijaUpit, ljekarRegistracijaUpit, zakaziTerminUpit, otkaziTerminUpit, provjeriDaLiPostojiUslugaUpit,
-            dodajUsluguUpit, dajSljedeciIdZaPacijentaUpit, dajSljedeciIdZaLjekaraUpit, dajSljedeciIdZaPregledUpit, dajSljedeciIdZaUsluguUpit, dodajUsluguZaLjekaraUpit, dodajTerapijuUpit, poveziLjekaraSaUslugomUpit,
-            dajIdZaUsluguUpit, arhivirajPregledUpit, provjeriTerminUpit, dajIdLjekaraUpit, dajSveLjekareUpit, dajSveUslugeUpit, dajUslugeLjekaraUpit, dajZakazanePregledeUpit, dajTrenutnogPrijavljenogPacijentaUpit, dajSveUslugeZaLjekaraUpit,
-            dajPregledeKojeLjekarMozeObavitiUpit, dajPregledeKojeJePacijentZakazaoUpit, dajIdLjekaraKojiMoguObavitiPregledUpit, dajIdPacijentaUpit, dajPregledeKojeJePacijentObavioUpit, dajPregledeKojeJeLjekarObavioUpit, dajLjekaraUpit, dajPregledUpit, dodajDijagnozuUpit, dajPacijentaUpit, obrisiPregledUpit, izbrisiUsluguZaLjekaraUpit, provjeriDaLiJeVecDodanaUslugaUpit, dajTrenutnoPrijavljenogLjekaraUpit, dajIdUslugeUpit;
+    private PreparedStatement patientSignInQuery, doctorSignInQuery, patientRegistrationQuery, doctorRegistrationQuery, scheduleAnAppointmentQuery, cancelTheAppointmentQuery,
+            addAServiceQuery, getNextPatientIdQuery, getNextDoctorIdQuery, getNextExaminationIdQuery, getNextServiceIdQuery, addAServiceForADoctorQuery, addTherapyQuery, linkDoctorAndServiceQuery,
+            getServiceIdQuery, checkTheAppointmentQuery, getDoctorIdQuery, getAllDoctorsQuery, getAllServicesQuery,  getAllAppointmentsQuery, getCurrentPatient, getDoctorsServicesQuery,
+            getAppointmentsDoctorCanDoQuery, getAppointmentsThePatientScheduled, getIdsOfDoctorsThatCanDoTheExaminationQuery, getPatienIdQuery, getAppointmentsThatPatientDidQuery, getAppointmentsDoctorDidQuery,
+            getDoctorQuery, getAppointmentQuery, addDiagnosisQuery, getPatientQuery, deleteAppointmentQuery, deleteServiceForADoctorQuery, getCurrentDoctorQuery;
 
     private DoctorsOfficeDAO() {
         try {
@@ -24,46 +25,41 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             e.printStackTrace();
         }
         try {
-            pacijentPrijavaUpit = conn.prepareStatement("SELECT * FROM PACIJENT WHERE username=? AND password=?");
-            ljekarPrijavaUpit = conn.prepareStatement("SELECT * FROM LJEKAR WHERE username=? AND password=?");
-            pacijentRegistracijaUpit = conn.prepareStatement("INSERT INTO PACIJENT VALUES(?,?,?,?,?,?,?,?,?)");
-            ljekarRegistracijaUpit = conn.prepareStatement("INSERT INTO LJEKAR VALUES(?,?,?,?,?,?,?,?,?)");
-            zakaziTerminUpit = conn.prepareStatement("INSERT INTO PREGLED VALUES(?,?,?,?,?,?,?,?,?,?)");
-            otkaziTerminUpit = conn.prepareStatement("UPDATE PREGLED SET successful=0, doctor_id=-2 WHERE id=?");
-            provjeriDaLiPostojiUslugaUpit = conn.prepareStatement("SELECT * FROM USLUGE WHERE name=?");
-            dodajUsluguUpit = conn.prepareStatement("INSERT INTO USLUGE VALUES(?,?)");
-            dajSljedeciIdZaLjekaraUpit = conn.prepareStatement("SELECT MAX(doctor_id)+1 FROM LJEKAR");
-            dajSljedeciIdZaPacijentaUpit = conn.prepareStatement("SELECT MAX(patient_id)+1 FROM PACIJENT");
-            dajSljedeciIdZaPregledUpit = conn.prepareStatement("SELECT MAX(id)+1 FROM PREGLED");
-            dajSljedeciIdZaUsluguUpit = conn.prepareStatement("SELECT  MAX(id)+1 FROM USLUGE");
-            dodajUsluguZaLjekaraUpit = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
-            dodajTerapijuUpit = conn.prepareStatement("UPDATE PREGLED SET therapy=?, doctor_id=? WHERE id=?");
-            poveziLjekaraSaUslugomUpit = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
-            dajIdZaUsluguUpit = conn.prepareStatement("SELECT id FROM USLUGE WHERE name=?");
-            dajSveUslugeUpit = conn.prepareStatement("SELECT * FROM USLUGE");
-            dajUslugeLjekaraUpit = conn.prepareStatement("SELECT DISTINCT u.name FROM USLUGE u, lJEKAR_USLUGE lju WHERE lju.doctor_id=? AND lju.med_service_id=u.id");
-            dajZakazanePregledeUpit = conn.prepareStatement("SELECT date_and_time_of_appointment, type_of_examination, patient_id, doctor_id FROM PREGLED WHERE successful=1"); //DODATI PROVJERU VREMENA
-            dajTrenutnogPrijavljenogPacijentaUpit = conn.prepareStatement("SELECT * FROM PACIJENT WHERE username=? AND password=?");
-            dajSveLjekareUpit = conn.prepareStatement("SELECT doctor_id FROM LJEKAR");
-            provjeriTerminUpit = conn.prepareStatement("SELECT p.id FROM PREGLED p WHERE p.doctor_id=? AND p.date_and_time_of_appointment=?");
-            dajSveUslugeZaLjekaraUpit = conn.prepareStatement("SELECT u.name FROM USLUGE u, LJEKAR lj, lJEKAR_USLUGE lju WHERE u.id=lju.med_service_id AND lju.doctor_id=lj.doctor_id AND lj.doctor_id=?");
-            dajIdLjekaraUpit = conn.prepareStatement("SELECT doctor_id FROM LJEKAR where username=?");
-            dajTrenutnoPrijavljenogLjekaraUpit = conn.prepareStatement("SELECT * FROM LJEKAR WHERE username=?");
-            dajIdUslugeUpit = conn.prepareStatement("SELECT id FROM USLUGE WHERE name=?");
-            provjeriDaLiJeVecDodanaUslugaUpit = conn.prepareStatement("SELECT med_service_id FROM LJEKAR_USLUGE WHERE doctor_id=?");
-            izbrisiUsluguZaLjekaraUpit = conn.prepareStatement("DELETE FROM LJEKAR_USLUGE WHERE med_service_id=? AND doctor_id=?");
-            dajPregledeKojeLjekarMozeObavitiUpit = conn.prepareStatement("SELECT * FROM PREGLED p, LJEKAR_USLUGE lju, USLUGE u WHERE p.archived=0 AND p.doctor_id<>-2 AND p.type_of_examination=u.name AND u.id=lju.med_service_id AND SUBSTR(date_and_time_of_appointment,1,10)=CURRENT_DATE AND lju.doctor_id=?");
-            dajPacijentaUpit = conn.prepareStatement("SELECT * FROM PACIJENT WHERE patient_id=?");
-            arhivirajPregledUpit = conn.prepareStatement("UPDATE PREGLED SET archived=1, successful=1 WHERE id=?");
-            obrisiPregledUpit = conn.prepareStatement("DELETE FROM PREGLED WHERE id=?");
-            dodajDijagnozuUpit = conn.prepareStatement("UPDATE PREGLED SET diagnosis=?, doctor_id=?, archived=1 WHERE id=?");
-            dajPregledUpit = conn.prepareStatement("SELECT * FROM PREGLED WHERE id=?");
-            dajLjekaraUpit = conn.prepareStatement("SELECT * FROM LJEKAR WHERE doctor_id=?");
-            dajPregledeKojeJeLjekarObavioUpit = conn.prepareStatement("SELECT * FROM PREGLED WHERE doctor_id=?");
-            dajPregledeKojeJePacijentObavioUpit = conn.prepareStatement("SELECT * FROM PREGLED WHERE patient_id=? AND doctor_id<>-1 AND doctor_id<>-2");
-            dajIdPacijentaUpit = conn.prepareStatement("SELECT patient_id FROM PACIJENT WHERE username=?");
-            dajIdLjekaraKojiMoguObavitiPregledUpit = conn.prepareStatement("SELECT doctor_id FROM LJEKAR_USLUGE WHERE med_service_id=?");
-            dajPregledeKojeJePacijentZakazaoUpit = conn.prepareStatement("SELECT * FROM PREGLED WHERE patient_id=? AND archived=0 AND doctor_id<>-2");
+            patientSignInQuery = conn.prepareStatement("SELECT * FROM PACIJENT WHERE username=? AND password=?");
+            doctorSignInQuery = conn.prepareStatement("SELECT * FROM LJEKAR WHERE username=? AND password=?");
+            patientRegistrationQuery = conn.prepareStatement("INSERT INTO PACIJENT VALUES(?,?,?,?,?,?,?,?,?)");
+            doctorRegistrationQuery = conn.prepareStatement("INSERT INTO LJEKAR VALUES(?,?,?,?,?,?,?,?,?)");
+            scheduleAnAppointmentQuery = conn.prepareStatement("INSERT INTO PREGLED VALUES(?,?,?,?,?,?,?,?,?,?)");
+            cancelTheAppointmentQuery = conn.prepareStatement("UPDATE PREGLED SET successful=0, doctor_id=-2 WHERE id=?");
+            addAServiceQuery = conn.prepareStatement("INSERT INTO USLUGE VALUES(?,?)");
+            getNextDoctorIdQuery = conn.prepareStatement("SELECT MAX(doctor_id)+1 FROM LJEKAR");
+            getNextPatientIdQuery = conn.prepareStatement("SELECT MAX(patient_id)+1 FROM PACIJENT");
+            getNextExaminationIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM PREGLED");
+            getNextServiceIdQuery = conn.prepareStatement("SELECT  MAX(id)+1 FROM USLUGE");
+            addAServiceForADoctorQuery = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
+            addTherapyQuery = conn.prepareStatement("UPDATE PREGLED SET therapy=?, doctor_id=? WHERE id=?");
+            linkDoctorAndServiceQuery = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
+            getServiceIdQuery = conn.prepareStatement("SELECT id FROM USLUGE WHERE name=?");
+            getAllServicesQuery = conn.prepareStatement("SELECT * FROM USLUGE");
+            getAllAppointmentsQuery = conn.prepareStatement("SELECT date_and_time_of_appointment, type_of_examination, patient_id, doctor_id FROM PREGLED WHERE successful=1"); //DODATI PROVJERU VREMENA
+            getCurrentPatient = conn.prepareStatement("SELECT * FROM PACIJENT WHERE username=? AND password=?");
+            getAllDoctorsQuery = conn.prepareStatement("SELECT doctor_id FROM LJEKAR");
+            checkTheAppointmentQuery = conn.prepareStatement("SELECT p.id FROM PREGLED p WHERE p.doctor_id=? AND p.date_and_time_of_appointment=?");
+            getDoctorsServicesQuery = conn.prepareStatement("SELECT u.name FROM USLUGE u, LJEKAR lj, lJEKAR_USLUGE lju WHERE u.id=lju.med_service_id AND lju.doctor_id=lj.doctor_id AND lj.doctor_id=?");
+            getDoctorIdQuery = conn.prepareStatement("SELECT doctor_id FROM LJEKAR where username=?");
+            getCurrentDoctorQuery = conn.prepareStatement("SELECT * FROM LJEKAR WHERE username=?");
+            deleteServiceForADoctorQuery = conn.prepareStatement("DELETE FROM LJEKAR_USLUGE WHERE med_service_id=? AND doctor_id=?");
+            getAppointmentsDoctorCanDoQuery = conn.prepareStatement("SELECT * FROM PREGLED p, LJEKAR_USLUGE lju, USLUGE u WHERE p.archived=0 AND p.doctor_id<>-2 AND p.type_of_examination=u.name AND u.id=lju.med_service_id AND SUBSTR(date_and_time_of_appointment,1,10)=CURRENT_DATE AND lju.doctor_id=?");
+            getPatientQuery = conn.prepareStatement("SELECT * FROM PACIJENT WHERE patient_id=?");
+            deleteAppointmentQuery = conn.prepareStatement("DELETE FROM PREGLED WHERE id=?");
+            addDiagnosisQuery = conn.prepareStatement("UPDATE PREGLED SET diagnosis=?, doctor_id=?, archived=1 WHERE id=?");
+            getAppointmentQuery = conn.prepareStatement("SELECT * FROM PREGLED WHERE id=?");
+            getDoctorQuery = conn.prepareStatement("SELECT * FROM LJEKAR WHERE doctor_id=?");
+            getAppointmentsDoctorDidQuery = conn.prepareStatement("SELECT * FROM PREGLED WHERE doctor_id=?");
+            getAppointmentsThatPatientDidQuery = conn.prepareStatement("SELECT * FROM PREGLED WHERE patient_id=? AND doctor_id<>-1 AND doctor_id<>-2");
+            getPatienIdQuery = conn.prepareStatement("SELECT patient_id FROM PACIJENT WHERE username=?");
+            getIdsOfDoctorsThatCanDoTheExaminationQuery = conn.prepareStatement("SELECT doctor_id FROM LJEKAR_USLUGE WHERE med_service_id=?");
+            getAppointmentsThePatientScheduled = conn.prepareStatement("SELECT * FROM PREGLED WHERE patient_id=? AND archived=0 AND doctor_id<>-2");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,7 +108,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         }
     }
 
-    private Doctor dajLjekaraIzResultSeta(ResultSet set) throws SQLException {
+    private Doctor getADoctorFromResultSet(ResultSet set) throws SQLException {
 
         var surname = set.getString(4);
         var name = set.getString(3);
@@ -130,7 +126,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
 
     }
 
-    private Patient dajPacijentaIzResultSeta(ResultSet set) throws SQLException {
+    private Patient getPatientFromResultSet(ResultSet set) throws SQLException {
 
         var surname = set.getString(4);
         var name = set.getString(3);
@@ -147,7 +143,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             return new Patient(patientId, surname, name, LocalDate.of(Integer.parseInt(dateOfBirth[0]), Integer.parseInt(dateOfBirth[1]), Integer.parseInt(dateOfBirth[2])), username, password, ProfileType.PACIJENT, SexOfAUser.ZENSKI, patientCardNumber);
     }
 
-    private Examination dajPregledIzResultSeta(ResultSet rs, Doctor doctor, Patient patient) throws SQLException {
+    private Examination getAppointmentFromResultSet(ResultSet rs, Doctor doctor, Patient patient) throws SQLException {
 
         var id = rs.getInt(1);
         var typeOfExamination = rs.getString(4);
@@ -182,15 +178,15 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return conn;
     }
 
-    public int provjeriPrijavu(String username, String password) {
+    public int checkSignIn(String username, String password) {
         try {
-            ljekarPrijavaUpit.setString(1, username);
-            ljekarPrijavaUpit.setString(2, password);
-            var rs = ljekarPrijavaUpit.executeQuery();
+            doctorSignInQuery.setString(1, username);
+            doctorSignInQuery.setString(2, password);
+            var rs = doctorSignInQuery.executeQuery();
             if (!rs.next()) {
-                pacijentPrijavaUpit.setString(1, username);
-                pacijentPrijavaUpit.setString(2, password);
-                rs = pacijentPrijavaUpit.executeQuery();
+                patientSignInQuery.setString(1, username);
+                patientSignInQuery.setString(2, password);
+                rs = patientSignInQuery.executeQuery();
                 if (!rs.next()) return -1;
                 else return 2;
             } else return 1;
@@ -201,60 +197,60 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return -1;
     }
 
-    public void dodajPacijenta(Patient patient) {
+    public void addAPatient(Patient patient) {
         try {
-            pacijentRegistracijaUpit.setString(1, patient.getUsername());
-            pacijentRegistracijaUpit.setString(2, patient.getPassword());
-            pacijentRegistracijaUpit.setString(3, patient.getName());
-            pacijentRegistracijaUpit.setString(4, patient.getSurname());
-            pacijentRegistracijaUpit.setString(5, patient.getDateOfBirth().toString());
-            pacijentRegistracijaUpit.setString(6, patient.getProfileType());
-            pacijentRegistracijaUpit.setString(7, patient.getSpol());
-            pacijentRegistracijaUpit.setInt(8, patient.getPatientCardNumber());
-            var id = dajSljedeciIdZaPacijentaUpit.executeQuery().getInt(1);
-            pacijentRegistracijaUpit.setInt(9, id);
-            pacijentRegistracijaUpit.executeUpdate();
+            patientRegistrationQuery.setString(1, patient.getUsername());
+            patientRegistrationQuery.setString(2, patient.getPassword());
+            patientRegistrationQuery.setString(3, patient.getName());
+            patientRegistrationQuery.setString(4, patient.getSurname());
+            patientRegistrationQuery.setString(5, patient.getDateOfBirth().toString());
+            patientRegistrationQuery.setString(6, patient.getProfileType());
+            patientRegistrationQuery.setString(7, patient.getSpol());
+            patientRegistrationQuery.setInt(8, patient.getPatientCardNumber());
+            var id = getNextPatientIdQuery.executeQuery().getInt(1);
+            patientRegistrationQuery.setInt(9, id);
+            patientRegistrationQuery.executeUpdate();
             patient.setId(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void dodajLjekara(Doctor doctor) {
+    public void addADoctor(Doctor doctor) {
         try {
-            ljekarRegistracijaUpit.setString(1, doctor.getUsername());
-            ljekarRegistracijaUpit.setString(2, doctor.getPassword());
-            ljekarRegistracijaUpit.setString(3, doctor.getName());
-            ljekarRegistracijaUpit.setString(4, doctor.getSurname());
-            ljekarRegistracijaUpit.setString(4, doctor.getSurname());
-            ljekarRegistracijaUpit.setString(5, doctor.getDateOfBirth().toString());
-            ljekarRegistracijaUpit.setString(6, doctor.getProfileType());
-            ljekarRegistracijaUpit.setString(7, doctor.getSpol());
-            ljekarRegistracijaUpit.setString(8, doctor.getSpecialization());
-            var id = dajSljedeciIdZaLjekaraUpit.executeQuery().getInt(1);
-            ljekarRegistracijaUpit.setInt(9, id);
-            ljekarRegistracijaUpit.executeUpdate();
+            doctorRegistrationQuery.setString(1, doctor.getUsername());
+            doctorRegistrationQuery.setString(2, doctor.getPassword());
+            doctorRegistrationQuery.setString(3, doctor.getName());
+            doctorRegistrationQuery.setString(4, doctor.getSurname());
+            doctorRegistrationQuery.setString(4, doctor.getSurname());
+            doctorRegistrationQuery.setString(5, doctor.getDateOfBirth().toString());
+            doctorRegistrationQuery.setString(6, doctor.getProfileType());
+            doctorRegistrationQuery.setString(7, doctor.getSpol());
+            doctorRegistrationQuery.setString(8, doctor.getSpecialization());
+            var id = getNextDoctorIdQuery.executeQuery().getInt(1);
+            doctorRegistrationQuery.setInt(9, id);
+            doctorRegistrationQuery.executeUpdate();
             doctor.setId(id);
 
-            dajIdZaUsluguUpit.setString(1, doctor.getSpecialization());
-            var rs = dajIdZaUsluguUpit.executeQuery();
+            getServiceIdQuery.setString(1, doctor.getSpecialization());
+            var rs = getServiceIdQuery.executeQuery();
             if (!rs.next()) {
-                id = dajSljedeciIdZaUsluguUpit.executeQuery().getInt(1);
-                dodajUsluguUpit.setInt(1, id);
-                dodajUsluguUpit.setString(2, doctor.getSpecialization());
-                dodajUsluguUpit.executeUpdate();
+                id = getNextServiceIdQuery.executeQuery().getInt(1);
+                addAServiceQuery.setInt(1, id);
+                addAServiceQuery.setString(2, doctor.getSpecialization());
+                addAServiceQuery.executeUpdate();
             } else id = rs.getInt(1);
-            poveziLjekaraSaUslugomUpit.setInt(1, id);
-            poveziLjekaraSaUslugomUpit.setInt(2, doctor.getId());
-            poveziLjekaraSaUslugomUpit.executeUpdate();
+            linkDoctorAndServiceQuery.setInt(1, id);
+            linkDoctorAndServiceQuery.setInt(2, doctor.getId());
+            linkDoctorAndServiceQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Usluga> dajSveUsluge() {
+    public ArrayList<Usluga> getAllServices() {
         try {
-            var rs = dajSveUslugeUpit.executeQuery();
+            var rs = getAllServicesQuery.executeQuery();
 
             ArrayList<Usluga> l = new ArrayList<>();
 
@@ -270,10 +266,10 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public ArrayList<LocalDateTime> dajSveZakazanePreglede() {
+    public ArrayList<LocalDateTime> getAllAppointments() {
 
         try {
-            var rs = dajZakazanePregledeUpit.executeQuery();
+            var rs = getAllAppointmentsQuery.executeQuery();
 
             ArrayList<LocalDateTime> zakazaniPregledi = new ArrayList<>();
             while (rs.next()) {
@@ -290,13 +286,13 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public Patient dajTrenutnoPrijavljenogPacijenta(String username, String password) {
+    public Patient getCurrentPatient(String username, String password) {
 
         try {
-            dajTrenutnogPrijavljenogPacijentaUpit.setString(1, username);
-            dajTrenutnogPrijavljenogPacijentaUpit.setString(2, password);
-            var rs = dajTrenutnogPrijavljenogPacijentaUpit.executeQuery();
-            return dajPacijentaIzResultSeta(rs);
+            getCurrentPatient.setString(1, username);
+            getCurrentPatient.setString(2, password);
+            var rs = getCurrentPatient.executeQuery();
+            return getPatientFromResultSet(rs);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -304,17 +300,17 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public List<Integer> dajSveLjekare() {
+    public List<Integer> getAllDoctors() {
 
         try {
-            var rs = dajSveLjekareUpit.executeQuery();
+            var rs = getAllDoctorsQuery.executeQuery();
 
-            List<Integer> ljekari = new ArrayList<>();
+            List<Integer> doctors = new ArrayList<>();
 
             while (rs.next())
-                ljekari.add(rs.getInt(1));
+                doctors.add(rs.getInt(1));
 
-            return ljekari;
+            return doctors;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -322,20 +318,20 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public ArrayList<String> dajUslugeZaLjekara(String username) {
+    public ArrayList<String> getDoctorsServices(String username) {
 
         try {
-            dajIdLjekaraUpit.setString(1, username);
-            var id = dajIdLjekaraUpit.executeQuery().getInt(1);
-            dajSveUslugeZaLjekaraUpit.setInt(1, id);
-            var rs = dajSveUslugeZaLjekaraUpit.executeQuery();
+            getDoctorIdQuery.setString(1, username);
+            var id = getDoctorIdQuery.executeQuery().getInt(1);
+            getDoctorsServicesQuery.setInt(1, id);
+            var rs = getDoctorsServicesQuery.executeQuery();
 
-            ArrayList<String> usluge = new ArrayList<>();
+            ArrayList<String> services = new ArrayList<>();
 
             while (rs.next())
-                usluge.add(rs.getString(1));
+                services.add(rs.getString(1));
 
-            return usluge;
+            return services;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -343,30 +339,30 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public ArrayList<Examination> dajSvePregledeKojeLjekarMozeObaviti(String username) {
+    public ArrayList<Examination> getAllExaminationsDoctorCanDo(String username) {
 
         try {
-            dajIdLjekaraUpit.setString(1, username);
-            var id = dajIdLjekaraUpit.executeQuery().getInt(1);
+            getDoctorIdQuery.setString(1, username);
+            var id = getDoctorIdQuery.executeQuery().getInt(1);
 
-            dajPregledeKojeLjekarMozeObavitiUpit.setInt(1, id);
-            var rs = dajPregledeKojeLjekarMozeObavitiUpit.executeQuery();
+            getAppointmentsDoctorCanDoQuery.setInt(1, id);
+            var rs = getAppointmentsDoctorCanDoQuery.executeQuery();
 
-            ArrayList<Examination> pregledi = new ArrayList<>();
+            ArrayList<Examination> examinations = new ArrayList<>();
 
             while (rs.next()) {
 
                 id = rs.getInt(2);
-                dajPacijentaUpit.setInt(1,id);
-                var set = dajPacijentaUpit.executeQuery();
+                getPatientQuery.setInt(1,id);
+                var set = getPatientQuery.executeQuery();
 
-                Patient patient = dajPacijentaIzResultSeta(set);
+                Patient patient = getPatientFromResultSet(set);
 
-                Examination appointment = dajPregledIzResultSeta(rs, null, patient);
-                pregledi.add(appointment);
+                Examination appointment = getAppointmentFromResultSet(rs, null, patient);
+                examinations.add(appointment);
 
             }
-            return pregledi;
+            return examinations;
 
         }catch(SQLException e){
             e.printStackTrace();
@@ -374,25 +370,25 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public ArrayList<Examination> dajSvePregledeKojeJeLjekarObavio(String username) {
+    public ArrayList<Examination> getAllExaminationsDoctorDid(String username) {
         try {
-            dajIdLjekaraUpit.setString(1, username);
-            var set = dajIdLjekaraUpit.executeQuery();
+            getDoctorIdQuery.setString(1, username);
+            var set = getDoctorIdQuery.executeQuery();
 
-            dajPregledeKojeJeLjekarObavioUpit.setInt(1, set.getInt(1));
-            var rs = dajPregledeKojeJeLjekarObavioUpit.executeQuery();
+            getAppointmentsDoctorDidQuery.setInt(1, set.getInt(1));
+            var rs = getAppointmentsDoctorDidQuery.executeQuery();
 
-            dajLjekaraUpit.setInt(1, set.getInt(1));
-            set = dajLjekaraUpit.executeQuery();
-            Doctor d = dajLjekaraIzResultSeta(set);
+            getDoctorQuery.setInt(1, set.getInt(1));
+            set = getDoctorQuery.executeQuery();
+            Doctor d = getADoctorFromResultSet(set);
 
             ArrayList<Examination> appointments = new ArrayList<>();
 
             while (rs.next()){
-                dajPacijentaUpit.setInt(1, rs.getInt(2));
-                set = dajPacijentaUpit.executeQuery();
-                Patient p = dajPacijentaIzResultSeta(set);
-                appointments.add(dajPregledIzResultSeta(rs, d, p));
+                getPatientQuery.setInt(1, rs.getInt(2));
+                set = getPatientQuery.executeQuery();
+                Patient p = getPatientFromResultSet(set);
+                appointments.add(getAppointmentFromResultSet(rs, d, p));
             }
             return appointments;
         } catch (SQLException e) {
@@ -401,11 +397,11 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public Doctor dajTrenutnoPrijavljenogLjekara(String username) {
+    public Doctor getCurrentDoctor(String username) {
         try {
-            dajTrenutnoPrijavljenogLjekaraUpit.setString(1, username);
+            getCurrentDoctorQuery.setString(1, username);
 
-            var rs = dajTrenutnoPrijavljenogLjekaraUpit.executeQuery();
+            var rs = getCurrentDoctorQuery.executeQuery();
 
             var splitString = rs.getString(5).split("-");
             int godina = Integer.parseInt(splitString[0]);
@@ -424,111 +420,111 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public void dodajUsluguZaLjekara(int idLjekara, String u) {
+    public void addAServiceForADoctor(int idLjekara, String u) {
         try {
-            dajIdUslugeUpit.setString(1, u);
-            var idUsluge = dajIdUslugeUpit.executeQuery().getInt(1);
-            dodajUsluguZaLjekaraUpit.setInt(1, idUsluge);
-            dodajUsluguZaLjekaraUpit.setInt(2, idLjekara);
-            dodajUsluguZaLjekaraUpit.executeUpdate();
+            getServiceIdQuery.setString(1, u);
+            var idUsluge = getServiceIdQuery.executeQuery().getInt(1);
+            addAServiceForADoctorQuery.setInt(1, idUsluge);
+            addAServiceForADoctorQuery.setInt(2, idLjekara);
+            addAServiceForADoctorQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
-    public void obrisiUsluguZaLjekara(int idLjekara, String u) {
+    public void deleteServiceForADoctor(int idLjekara, String u) {
         try {
-            dajIdUslugeUpit.setString(1, u);
-            var idUsluge = dajIdUslugeUpit.executeQuery().getInt(1);
+            getServiceIdQuery.setString(1, u);
+            var serviceId = getServiceIdQuery.executeQuery().getInt(1);
 
-            izbrisiUsluguZaLjekaraUpit.setInt(1, idUsluge);
-            izbrisiUsluguZaLjekaraUpit.setInt(2, idLjekara);
-            izbrisiUsluguZaLjekaraUpit.executeUpdate();
+            deleteServiceForADoctorQuery.setInt(1, serviceId);
+            deleteServiceForADoctorQuery.setInt(2, idLjekara);
+            deleteServiceForADoctorQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void dodajPregled(Examination examination) {
+    public void addAnAppointment(Examination examination) {
         try {
-            var id = dajSljedeciIdZaPregledUpit.executeQuery().getInt(1);
+            var id = getNextExaminationIdQuery.executeQuery().getInt(1);
 
-            zakaziTerminUpit.setInt(1, id);
-            zakaziTerminUpit.setInt(2, examination.getPacijent().getId());
-            zakaziTerminUpit.setInt(3, -1);
-            zakaziTerminUpit.setString(4, examination.getTypeOfExamination());
-            zakaziTerminUpit.setString(5,null);
-            zakaziTerminUpit.setString(6, examination.getDateAndTimeOfAppointment().toString());
-            zakaziTerminUpit.setString(7, examination.getDateAndTimeOfReservation().toString());
-            zakaziTerminUpit.setBoolean(8, false);
-            zakaziTerminUpit.setString(9, null);
-            zakaziTerminUpit.setBoolean(10, false);
-            zakaziTerminUpit.executeUpdate();
+            scheduleAnAppointmentQuery.setInt(1, id);
+            scheduleAnAppointmentQuery.setInt(2, examination.getPacijent().getId());
+            scheduleAnAppointmentQuery.setInt(3, -1);
+            scheduleAnAppointmentQuery.setString(4, examination.getTypeOfExamination());
+            scheduleAnAppointmentQuery.setString(5,null);
+            scheduleAnAppointmentQuery.setString(6, examination.getDateAndTimeOfAppointment().toString());
+            scheduleAnAppointmentQuery.setString(7, examination.getDateAndTimeOfReservation().toString());
+            scheduleAnAppointmentQuery.setBoolean(8, false);
+            scheduleAnAppointmentQuery.setString(9, null);
+            scheduleAnAppointmentQuery.setBoolean(10, false);
+            scheduleAnAppointmentQuery.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void obrisiPregled(int id) {
+    public void deleteAppoinment(int id) {
 
         try {
-            obrisiPregledUpit.setInt(1, id);
-            obrisiPregledUpit.executeUpdate();
+            deleteAppointmentQuery.setInt(1, id);
+            deleteAppointmentQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void dodajTerapiju(int id, int doctorId, String terapija) {
+    public void addTherapy(int id, int doctorId, String therapy) {
 
         try {
-            dodajTerapijuUpit.setString(1, terapija);
-            dodajTerapijuUpit.setInt(2, doctorId);
-            dodajTerapijuUpit.setInt(3, id);
-            dodajTerapijuUpit.executeUpdate();
+            addTherapyQuery.setString(1, therapy);
+            addTherapyQuery.setInt(2, doctorId);
+            addTherapyQuery.setInt(3, id);
+            addTherapyQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void dodajDijagnozu(int id, int doctorId, String dijagnoza) {
+    public void addDiagnosis(int id, int doctorId, String diagnosis) {
 
         try {
-            dodajDijagnozuUpit.setString(1, dijagnoza);
-            dodajDijagnozuUpit.setInt(2, doctorId);
-            dodajDijagnozuUpit.setInt(3, id);
-            dodajDijagnozuUpit.executeUpdate();
+            addDiagnosisQuery.setString(1, diagnosis);
+            addDiagnosisQuery.setInt(2, doctorId);
+            addDiagnosisQuery.setInt(3, id);
+            addDiagnosisQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Examination dajPregled(int id) {
+    public Examination getAppointment(int id) {
         // neki belaj ima ovdje s rs-om
         try {
-            dajPregledUpit.setInt(1, id);
+            getAppointmentQuery.setInt(1, id);
 
-            var rs = dajPregledUpit.executeQuery();
+            var rs = getAppointmentQuery.executeQuery();
 
             if(rs.next()) {
 
                 id = rs.getInt(1);
 
-                dajPacijentaUpit.setInt(1, rs.getInt(2));
+                getPatientQuery.setInt(1, rs.getInt(2));
 
-                var set = dajPacijentaUpit.executeQuery();
+                var set = getPatientQuery.executeQuery();
 
-                Patient patient = dajPacijentaIzResultSeta(set);
+                Patient patient = getPatientFromResultSet(set);
 
-                dajLjekaraUpit.setInt(1, rs.getInt(3));
+                getDoctorQuery.setInt(1, rs.getInt(3));
 
-                set = dajLjekaraUpit.executeQuery();
+                set = getDoctorQuery.executeQuery();
 
-                Doctor doctor = dajLjekaraIzResultSeta(set);
+                Doctor doctor = getADoctorFromResultSet(set);
 
-                return dajPregledIzResultSeta(rs, doctor, patient);
+                return getAppointmentFromResultSet(rs, doctor, patient);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -536,27 +532,27 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public ArrayList<Examination> dajSvePregledeKojeJePacijentObavio(String username) {
+    public ArrayList<Examination> getAppointmentsPatientDid(String username) {
 
         try {
-            dajIdPacijentaUpit.setString(1, username);
-            var rs =dajIdPacijentaUpit.executeQuery();
+            getPatienIdQuery.setString(1, username);
+            var rs = getPatienIdQuery.executeQuery();
 
-            dajPacijentaUpit.setInt(1, rs.getInt(1));
-            rs = dajPacijentaUpit.executeQuery();
+            getPatientQuery.setInt(1, rs.getInt(1));
+            rs = getPatientQuery.executeQuery();
 
-            Patient p = dajPacijentaIzResultSeta(rs);
+            Patient p = getPatientFromResultSet(rs);
 
-            dajPregledeKojeJePacijentObavioUpit.setInt(1, p.getId());
-            rs = dajPregledeKojeJePacijentObavioUpit.executeQuery();
+            getAppointmentsThatPatientDidQuery.setInt(1, p.getId());
+            rs = getAppointmentsThatPatientDidQuery.executeQuery();
 
             ArrayList<Examination> appointments = new ArrayList<>();
 
             while (rs.next()){
-                dajLjekaraUpit.setInt(1, rs.getInt(3));
-                var set = dajLjekaraUpit.executeQuery();
-                Doctor d = dajLjekaraIzResultSeta(set);
-                appointments.add(dajPregledIzResultSeta(rs, d, p));
+                getDoctorQuery.setInt(1, rs.getInt(3));
+                var set = getDoctorQuery.executeQuery();
+                Doctor d = getADoctorFromResultSet(set);
+                appointments.add(getAppointmentFromResultSet(rs, d, p));
             }
             return appointments;
         } catch (SQLException e) {
@@ -565,19 +561,19 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public boolean provjeriPregled(String vrstaPregleda, String datumPregleda) {
+    public boolean checkAppointment(String typeOfExamination, String date) {
 
         try {
-            dajIdUslugeUpit.setString(1, vrstaPregleda);
-            var idUsluge = dajIdUslugeUpit.executeQuery().getInt(1);
+            getServiceIdQuery.setString(1, typeOfExamination);
+            var idUsluge = getServiceIdQuery.executeQuery().getInt(1);
 
-            dajIdLjekaraKojiMoguObavitiPregledUpit.setInt(1, idUsluge);
-            var rs = dajIdLjekaraKojiMoguObavitiPregledUpit.executeQuery();
+            getIdsOfDoctorsThatCanDoTheExaminationQuery.setInt(1, idUsluge);
+            var rs = getIdsOfDoctorsThatCanDoTheExaminationQuery.executeQuery();
 
             while(rs.next()){
-                provjeriTerminUpit.setInt(1, rs.getInt(1));
-                provjeriTerminUpit.setString(2, datumPregleda);
-                var set = provjeriTerminUpit.executeQuery();
+                checkTheAppointmentQuery.setInt(1, rs.getInt(1));
+                checkTheAppointmentQuery.setString(2, date);
+                var set = checkTheAppointmentQuery.executeQuery();
                 if(!set.next()) return true;
             }
         } catch (SQLException e) {
@@ -586,19 +582,19 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return false;
     }
 
-    public ArrayList<Examination> dajPregledeKojeJePacijentZakazao(int id) {
+    public ArrayList<Examination> getAppointmentsPatitentScheduled(int id) {
 
         try {
-            dajPregledeKojeJePacijentZakazaoUpit.setInt(1,id);
+            getAppointmentsThePatientScheduled.setInt(1,id);
 
-            var rs = dajPregledeKojeJePacijentZakazaoUpit.executeQuery();
+            var rs = getAppointmentsThePatientScheduled.executeQuery();
             ArrayList<Examination> appointments = new ArrayList<>();
 
             while(rs.next()){
-                dajPacijentaUpit.setInt(1, rs.getInt(2));
-                var set = dajPacijentaUpit.executeQuery();
-                Patient patient = dajPacijentaIzResultSeta(set);
-                Examination appointment = dajPregledIzResultSeta(rs, null, patient);
+                getPatientQuery.setInt(1, rs.getInt(2));
+                var set = getPatientQuery.executeQuery();
+                Patient patient = getPatientFromResultSet(set);
+                Examination appointment = getAppointmentFromResultSet(rs, null, patient);
                 appointments.add(appointment);
             }
             return appointments;
@@ -608,19 +604,19 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         return null;
     }
 
-    public void otkaziPregled(int id) {
+    public void cancelAppointment(int id) {
         try {
-            otkaziTerminUpit.setInt(1, id);
-            otkaziTerminUpit.executeUpdate();
+            cancelTheAppointmentQuery.setInt(1, id);
+            cancelTheAppointmentQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<String> dajNaziveUsluga() {
+    public ArrayList<String> getNamesOfServices() {
 
         try {
-            var rs = dajSveUslugeUpit.executeQuery();
+            var rs = getAllServicesQuery.executeQuery();
 
             ArrayList<String> l = new ArrayList<>();
 
