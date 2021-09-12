@@ -34,19 +34,29 @@ public class Korisnik {
         this.id = id;
     }
 
-    public String getPrezime() {
+    public String getPrezime() throws EmptyStringException {
+        if(prezime==null || prezime.equals(""))
+            throw new EmptyStringException("Nemoguće da osoba nema prezime!");
         return prezime;
     }
 
-    public void setPrezime(String prezime) {
+    public void setPrezime(String prezime) throws EmptyStringException {
+        if(prezime==null || prezime.equals(""))
+            throw new EmptyStringException("Nemoguće da osoba nema prezime!");
         this.prezime = prezime;
     }
 
-    public String getIme() {
+    public String getIme() throws EmptyStringException {
+        if(ime==null || ime.equals(""))
+            throw new EmptyStringException("Nemoguće da osoba nema ime!");
         return ime;
     }
 
-    public void setIme(String ime) {
+    public void setIme(String ime) throws EmptyStringException {
+
+        if(ime==null || ime.equals(""))
+            throw new EmptyStringException("Nemoguće da osoba nema ime!");
+
         this.ime = ime;
     }
 
