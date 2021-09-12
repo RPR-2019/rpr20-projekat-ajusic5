@@ -423,4 +423,18 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         }
 
     }
+
+    public void obrisiUsluguZaLjekara(int idLjekara, String u) {
+
+        try {
+            dajIdUslugeUpit.setString(1, u);
+            var idUsluge = dajIdUslugeUpit.executeQuery().getInt(1);
+
+            izbrisiUsluguZaLjekaraUpit.setInt(1, idUsluge);
+            izbrisiUsluguZaLjekaraUpit.setInt(2, idLjekara);
+            izbrisiUsluguZaLjekaraUpit.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
