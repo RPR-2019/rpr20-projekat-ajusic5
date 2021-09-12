@@ -36,7 +36,7 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </Label>
-        <ListView fx:id="uslugeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <ListView fx:id="servicesView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
@@ -46,7 +46,7 @@
         </ListView>
         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-                <Button fx:id="pregledBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pregledClick" text="%Zakazi_pregled">
+                <Button fx:id="examinationBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#examinationClick" text="%Zakazi_pregled">
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
@@ -54,7 +54,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </Button>
-                <Button fx:id="otkaziBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#otkazivanjeClick" text="%Otkazi_pregled">
+                <Button fx:id="cancelBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancelClick" text="%Otkazi_pregled">
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
@@ -62,7 +62,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
                 </Button>
-                <Button fx:id="historijaBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#historijaClick" text="%Historija_pregleda">
+                <Button fx:id="historyBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#historyClick" text="%Historija_pregleda">
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
@@ -80,7 +80,7 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
             <buttons>
-                <Button fx:id="odjavaBtn" mnemonicParsing="false" onAction="#odjavaClick" text="%Odjava">
+                <Button fx:id="signOutBtn" mnemonicParsing="false" onAction="#signOutClick" text="%Odjava">
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </padding>
@@ -90,10 +90,10 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </ButtonBar>
-        <TableView fx:id="preglediTable" prefHeight="200.0" prefWidth="210.0" GridPane.rowIndex="2">
+        <TableView fx:id="examinationsTable" prefHeight="200.0" prefWidth="210.0" GridPane.rowIndex="2">
             <columns>
-                <TableColumn fx:id="vrstaPregledaCol" prefWidth="90.0" text="%Vrsta_pregleda" />
-                <TableColumn fx:id="datumIVrijemePregledaCol" prefWidth="120.0" text="%Datum_i_vrijeme" />
+                <TableColumn fx:id="typeOfExaminationCol" prefWidth="90.0" text="%Vrsta_pregleda" />
+                <TableColumn fx:id="dateAndTimeOfExaminationCol" prefWidth="120.0" text="%Datum_i_vrijeme" />
             </columns>
         </TableView>
     </children>
