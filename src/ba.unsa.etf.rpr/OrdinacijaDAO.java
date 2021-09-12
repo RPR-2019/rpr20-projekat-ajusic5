@@ -523,4 +523,34 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         return null;
     }
 
+    public ArrayList<Pregled> dajSvePregledeKojeJePacijentObavio(String username) {
+
+        try {
+            dajIdPacijentaUpit.setString(1, username);
+            var rs =dajIdPacijentaUpit.executeQuery();
+
+            dajPacijentaUpit.setInt(1, rs.getInt(1));
+            rs = dajPacijentaUpit.executeQuery();
+
+            Pacijent p = dajPacijentaIzResultSeta(rs);
+
+            dajPregledeKojeJePacijentObavioUpit.setInt(1, p.getId());
+            rs = dajPregledeKojeJePacijentObavioUpit.executeQuery();
+
+            ArrayList<Pregled> appointments = new ArrayList<>();
+
+            while (rs.next()){
+                dajLjekaraUpit.setInt(1, rs.getInt(3));
+                var set = dajLjekaraUpit.executeQuery();
+                System.out.println(set.getInt(1));
+                Ljekar d = dajLjekaraIzResultSeta(set);
+                appointments.add(dajPregledIzResultSeta(rs, d, p));
+            }
+            return appointments;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
