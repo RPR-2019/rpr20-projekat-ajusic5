@@ -6,6 +6,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
@@ -240,4 +241,43 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Usluga> dajSveUsluge() {
+        try {
+            var rs = dajSveUslugeUpit.executeQuery();
+
+            ArrayList<Usluga> l = new ArrayList<>();
+
+            while (rs.next()) {
+                Usluga usluga = new Usluga(rs.getInt(1), rs.getString(2));
+                l.add(usluga);
+            }
+
+            return l;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<LocalDateTime> dajSveZakazanePreglede() {
+
+        try {
+            var rs = dajZakazanePregledeUpit.executeQuery();
+
+            ArrayList<LocalDateTime> zakazaniPregledi = new ArrayList<>();
+            while (rs.next()) {
+                var stringSplit = rs.getString(1).split("-|T|:");
+                zakazaniPregledi.add(LocalDateTime.of(LocalDate.of(Integer.parseInt(stringSplit[0]), Integer.parseInt(stringSplit[1]), Integer.parseInt(stringSplit[2])), LocalTime.of(Integer.parseInt(stringSplit[3]), Integer.parseInt(stringSplit[4]))));
+            }
+
+            return zakazaniPregledi;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
