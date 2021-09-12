@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -128,5 +129,13 @@ public class LjekarController {
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(true);
         stage.show();
+    }
+
+    public void printClick(){
+        try {
+            new Report().showReport(dao.getConn());
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 }

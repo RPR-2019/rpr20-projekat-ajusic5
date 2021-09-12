@@ -173,6 +173,10 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         regenerisiBazu();
     }
 
+    public Connection getConn() {
+        return conn;
+    }
+
     public int provjeriPrijavu(String username, String password) {
         try {
             ljekarPrijavaUpit.setString(1, username);

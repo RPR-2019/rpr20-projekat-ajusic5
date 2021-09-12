@@ -68,6 +68,14 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
                 </Button>
+            <Button fx:id="printBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printClick" text="%Printaj">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
             </children>
         </VBox>
         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%Usluge_koje_trenutno_nudite" GridPane.columnIndex="2" GridPane.rowIndex="1">
