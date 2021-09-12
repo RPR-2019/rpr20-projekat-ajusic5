@@ -156,4 +156,37 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         return new Pregled(id, patient, doctor, typeOfExamination, diagnosis, therapy, dateAndTimeOfAppoitment, dateAndTimeOfReservation, successful, archived);
 
     }
+
+    public void vratiBazuNaDefault() throws SQLException {
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("DELETE FROM LJEKAR");
+        stmt.executeUpdate("DELETE FROM PACIJENT");
+        stmt.executeUpdate("DELETE FROM PREGLED");
+        stmt.executeUpdate("DELETE FROM lJEKAR_USLUGE");
+        stmt.executeUpdate("DELETE FROM USLUGE");
+
+        // Regeneriši bazu neće ponovo kreirati tabele jer u .sql datoteci stoji
+        // CREATE TABLE IF NOT EXISTS
+        // Ali će ponovo napuniti default podacima
+        regenerisiBazu();
+    }
+
+    public int provjeriPrijavu(String username, String password) {
+        try {
+            ljekarPrijavaUpit.setString(1, username);
+            ljekarPrijavaUpit.setString(2, password);
+            var rs = ljekarPrijavaUpit.executeQuery();
+            if (!rs.next()) {
+                pacijentPrijavaUpit.setString(1, username);
+                pacijentPrijavaUpit.setString(2, password);
+                rs = pacijentPrijavaUpit.executeQuery();
+                if (!rs.next()) return -1;
+                else return 2;
+            } else return 1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }
