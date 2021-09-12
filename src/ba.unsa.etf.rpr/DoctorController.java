@@ -19,33 +19,33 @@ import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class LjekarController {
+public class DoctorController {
 
     public Button odjavaBtn;
     public ChoiceBox<String> uslugeCB;
     public ListView<String> uslugeView;
-    public TableView<Pregled> preglediTable;
-    public TableColumn<Pregled, String> prezimeCol;
-    public TableColumn<Pregled, String> imeCol;
+    public TableView<Examination> preglediTable;
+    public TableColumn<Examination, String> prezimeCol;
+    public TableColumn<Examination, String> imeCol;
     public TableColumn datumIVrijemeCol;
     public TableColumn vrstaPregledaCol;
 
-    private Ljekar trenutnoPrijavljeniLjekar;
+    private Doctor trenutnoPrijavljeniDoctor;
     private ObservableList<String> uslugeLjekara;
-    private ArrayList<Pregled> preglediKojeLjekarMozeObaviti;
-    private ArrayList<Pregled> preglediKojeJeLjekarObavio;
+    private ArrayList<Examination> preglediKojeLjekarMozeObaviti;
+    private ArrayList<Examination> preglediKojeJeLjekarObavio;
     private ObservableList<String> sveUsluge;
     private ArrayList<String> uslugeKojeTrebaIzbrisati;
-    private OrdinacijaDAO dao;
-    private ObservableList<Pregled> pregledi;
+    private DoctorsOfficeDAO dao;
+    private ObservableList<Examination> pregledi;
 
-    public LjekarController(ArrayList<String> uslugeLjekara, ArrayList<Pregled> preglediKojeLjekarMozeObaviti, ArrayList<Pregled> preglediKojeJeLjekarObavio, Ljekar trenutnoPrijavljeniLjekar, ArrayList<String> sveUsluge) {
+    public DoctorController(ArrayList<String> uslugeLjekara, ArrayList<Examination> preglediKojeLjekarMozeObaviti, ArrayList<Examination> preglediKojeJeLjekarObavio, Doctor trenutnoPrijavljeniDoctor, ArrayList<String> sveUsluge) {
         this.uslugeLjekara = FXCollections.observableArrayList(uslugeLjekara);
         this.preglediKojeLjekarMozeObaviti = preglediKojeLjekarMozeObaviti;
         this.preglediKojeJeLjekarObavio = preglediKojeJeLjekarObavio;
-        this.trenutnoPrijavljeniLjekar = trenutnoPrijavljeniLjekar;
+        this.trenutnoPrijavljeniDoctor = trenutnoPrijavljeniDoctor;
         this.sveUsluge = FXCollections.observableArrayList(sveUsluge);
-        dao = OrdinacijaDAO.getInstanca();
+        dao = DoctorsOfficeDAO.getInstanca();
         pregledi = FXCollections.observableArrayList(preglediKojeLjekarMozeObaviti);
     }
     @FXML
@@ -58,8 +58,8 @@ public class LjekarController {
         uslugeView.setItems(uslugeLjekara);
         uslugeCB.setItems(sveUsluge);
     }
-    public Ljekar getTrenutnoPrijavljeniLjekar() {
-        return trenutnoPrijavljeniLjekar;
+    public Doctor getTrenutnoPrijavljeniLjekar() {
+        return trenutnoPrijavljeniDoctor;
     }
 
 
@@ -72,7 +72,7 @@ public class LjekarController {
         getTrenutnoPrijavljeniLjekar().setUsluge(uslugeView.getItems());
         uslugeLjekara.add(uslugeCB.getValue());
         dao.dodajUsluguZaLjekara(getTrenutnoPrijavljeniLjekar().getId() , uslugeCB.getValue());
-        pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniLjekar.getUsername()));
+        pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniDoctor.getUsername()));
         preglediTable.setItems(pregledi);
     }
 
@@ -81,7 +81,7 @@ public class LjekarController {
         if(!uslugeLjekara.contains(usluga) || usluga==null) return;
         uslugeView.getItems().remove(usluga);
         dao.obrisiUsluguZaLjekara(getTrenutnoPrijavljeniLjekar().getId(), usluga);
-        pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniLjekar.getUsername()));
+        pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniDoctor.getUsername()));
         preglediTable.setItems(pregledi);
     }
 
@@ -91,7 +91,7 @@ public class LjekarController {
 
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tekstualno_polje.fxml"), bundle);
-        TekstualnoPoljeController controller = new TekstualnoPoljeController();
+        TextAreaController controller = new TextAreaController();
         loader.setController(controller);
         Parent root = null;
         root = loader.load();
@@ -104,9 +104,9 @@ public class LjekarController {
         stage.setOnHiding(event -> {
             String dijagnoza = controller.getDijagnozaText();
             String terapija = controller.getTerapijaText();
-            dao.dodajDijagnozu(id, trenutnoPrijavljeniLjekar.getId(), dijagnoza);
-            dao.dodajTerapiju(id, trenutnoPrijavljeniLjekar.getId(), terapija);
-            pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniLjekar.getUsername()));
+            dao.dodajDijagnozu(id, trenutnoPrijavljeniDoctor.getId(), dijagnoza);
+            dao.dodajTerapiju(id, trenutnoPrijavljeniDoctor.getId(), terapija);
+            pregledi = FXCollections.observableArrayList(dao.dajSvePregledeKojeLjekarMozeObaviti(trenutnoPrijavljeniDoctor.getUsername()));
         });
     }
 
@@ -120,7 +120,7 @@ public class LjekarController {
     public void historijaPregledaClick(ActionEvent actionEvent) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historija_pregleda.fxml"), bundle);
-        HistorijaPregledaController controller = new HistorijaPregledaController(dao.dajSvePregledeKojeJeLjekarObavio(trenutnoPrijavljeniLjekar.getUsername()), trenutnoPrijavljeniLjekar);
+        HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.dajSvePregledeKojeJeLjekarObavio(trenutnoPrijavljeniDoctor.getUsername()), trenutnoPrijavljeniDoctor);
         loader.setController(controller);
         Parent root = null;
         root = loader.load();

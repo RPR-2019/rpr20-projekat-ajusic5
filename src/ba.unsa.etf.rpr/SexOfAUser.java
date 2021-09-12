@@ -1,11 +1,11 @@
 package ba.unsa.etf.rpr;
 
-public enum Spol {
+public enum SexOfAUser {
     ZENSKI("Ž"), MUSKI("M");
 
     private final String name;
 
-    Spol(String name) {
+    SexOfAUser(String name) {
         this.name=name;
     }
 

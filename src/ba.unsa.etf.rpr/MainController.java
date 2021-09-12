@@ -29,10 +29,10 @@ public class MainController {
     public TableView<Usluga> uslugeTab = new TableView<>();
     @FXML
     public TableColumn uslugeCol;
-    private OrdinacijaDAO dao;
+    private DoctorsOfficeDAO dao;
 
     public MainController() {
-        dao = OrdinacijaDAO.getInstanca();
+        dao = DoctorsOfficeDAO.getInstanca();
 
     }
 
@@ -56,7 +56,7 @@ public class MainController {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ljekar_naslovna.fxml"), bundle);
 
-            LjekarController controller = new LjekarController(dao.dajUslugeZaLjekara(username), dao.dajSvePregledeKojeLjekarMozeObaviti(username), dao.dajSvePregledeKojeJeLjekarObavio(username), dao.dajTrenutnoPrijavljenogLjekara(username), dao.dajNaziveUsluga());
+            DoctorController controller = new DoctorController(dao.dajUslugeZaLjekara(username), dao.dajSvePregledeKojeLjekarMozeObaviti(username), dao.dajSvePregledeKojeJeLjekarObavio(username), dao.dajTrenutnoPrijavljenogLjekara(username), dao.dajNaziveUsluga());
             loader.setController(controller);
             Parent root = null;
             root = loader.load();
@@ -69,7 +69,7 @@ public class MainController {
         else if(mode == 2){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pacijent_naslovna.fxml"), bundle);
-            PacijentController controller = new PacijentController(dao.dajNaziveUsluga(), dao.dajSveZakazanePreglede(), dao.dajTrenutnoPrijavljenogPacijenta(username, password), dao.dajSveLjekare());
+            PatientController controller = new PatientController(dao.dajNaziveUsluga(), dao.dajSveZakazanePreglede(), dao.dajTrenutnoPrijavljenogPacijenta(username, password), dao.dajSveLjekare());
             loader.setController(controller);
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -104,15 +104,15 @@ public class MainController {
 
         stage.setOnHiding(event -> {
 
-            Pacijent pacijent = controller.getPacijent();
-            Ljekar ljekar = controller.getLjekar();
+            Patient patient = controller.getPacijent();
+            Doctor doctor = controller.getLjekar();
 
             int imaRegistrovan = 0;
-            if(pacijent != null){
-                imaRegistrovan = dao.provjeriPrijavu(pacijent.getUsername(), pacijent.getPassword());
+            if(patient != null){
+                imaRegistrovan = dao.provjeriPrijavu(patient.getUsername(), patient.getPassword());
             }
-            else if(ljekar!=null ){
-                imaRegistrovan = dao.provjeriPrijavu(ljekar.getUsername(), ljekar.getPassword());
+            else if(doctor !=null ){
+                imaRegistrovan = dao.provjeriPrijavu(doctor.getUsername(), doctor.getPassword());
             }
             if(imaRegistrovan==-1){
                 if(controller.getVrstaKRBC().equalsIgnoreCase("pacijent")) dao.dodajPacijenta(controller.getPacijent());

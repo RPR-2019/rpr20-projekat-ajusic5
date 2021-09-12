@@ -73,7 +73,7 @@ INSERT INTO "Pregled" VALUES (5,1,-2,'Oftamolog',NULL,'2021-09-13T10:00','2021-0
 INSERT INTO "Pregled" VALUES (6,1,-2,'Kardiolog',NULL,'2021-09-23T10:30','2021-09-07T11:48:32.561736100',0,NULL,0);
 INSERT INTO "Pregled" VALUES (7,1,-1,'Psihijatar',NULL,'2021-09-11T13:30','2021-09-07T11:48:51.394333300',0,NULL,0);
 INSERT INTO "Pregled" VALUES (8,1,3,'Oftamolog','Terapijske naočale','2021-09-16T14:30','2021-09-07T17:24:39.426522700',1,'Strabizam',1);
-INSERT INTO "Pacijent" VALUES ('ajusic5','neithoaleeng','Amna','Jusić','1999-05-18','pacijent','Ž',1,1);
+INSERT INTO "Pacijent" VALUES ('ajusic5','neithoaleeng','Amna','Jusić','1999-05-18','patient','Ž',1,1);
 INSERT INTO "Pacijent" VALUES ('amilaj','amila','Amila','Jusić','1996-01-14','Pacijent','Ž',2,2);
 INSERT INTO "Pacijent" VALUES ('hjusic1','haris','Haris','Jusić','1958-03-24','Pacijent','M',3,3);
 COMMIT;

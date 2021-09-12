@@ -46,7 +46,7 @@ FROM Pregled p, Pacijent pac
 					<textElement>
 						<font fontName="Times New Roman" size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Pregledi koje je ljekar obavio]]></text>
+					<text><![CDATA[Pregledi koje je doctor obavio]]></text>
 				</staticText>
 			</frame>
 		</band>

@@ -2,11 +2,11 @@ package ba.unsa.etf.rpr;
 
 import java.time.LocalDateTime;
 
-public class Pregled {
+public class Examination {
 
     private int id;
-    private Pacijent pacijent;
-    private Ljekar ljekar;
+    private Patient patient;
+    private Doctor doctor;
     private String vrstaPregleda;
     private String dijagnoza;
     private String terapija;
@@ -15,21 +15,21 @@ public class Pregled {
     private boolean uspjesan;
     private boolean arhiviran;
 
-    public Pregled() {
+    public Examination() {
     }
 
-    public Pregled(int id, Pacijent pacijent, String vrstaPregleda, LocalDateTime datumIVrijemePregleda, LocalDateTime vrijemeZakazivanjaTermina) {
+    public Examination(int id, Patient patient, String vrstaPregleda, LocalDateTime datumIVrijemePregleda, LocalDateTime vrijemeZakazivanjaTermina) {
         this.id = id;
-        this.pacijent = pacijent;
+        this.patient = patient;
         this.vrstaPregleda = vrstaPregleda;
         this.datumIVrijemePregleda = datumIVrijemePregleda;
         this.vrijemeZakazivanjaTermina = vrijemeZakazivanjaTermina;
     }
 
-    public Pregled(int id, Pacijent pacijent, Ljekar ljekar, String vrstaPregleda, String dijagnoza, String terapija, LocalDateTime datumIVrijemePregleda, LocalDateTime vrijemeZakazivanjaTermina, boolean uspjesan, boolean arhiviran) {
+    public Examination(int id, Patient patient, Doctor doctor, String vrstaPregleda, String dijagnoza, String terapija, LocalDateTime datumIVrijemePregleda, LocalDateTime vrijemeZakazivanjaTermina, boolean uspjesan, boolean arhiviran) {
         this.id = id;
-        this.pacijent = pacijent;
-        this.ljekar = ljekar;
+        this.patient = patient;
+        this.doctor = doctor;
         this.vrstaPregleda = vrstaPregleda;
         this.dijagnoza = dijagnoza;
         this.terapija = terapija;
@@ -47,20 +47,20 @@ public class Pregled {
         this.id = id;
     }
 
-    public Ljekar getLjekar() {
-        return ljekar;
+    public Doctor getLjekar() {
+        return doctor;
     }
 
-    public void setLjekar(Ljekar ljekar) {
-        this.ljekar = ljekar;
+    public void setLjekar(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public Pacijent getPacijent() {
-        return pacijent;
+    public Patient getPacijent() {
+        return patient;
     }
 
-    public void setPacijent(Pacijent pacijent) {
-        this.pacijent = pacijent;
+    public void setPacijent(Patient patient) {
+        this.patient = patient;
     }
 
     public String getVrstaPregleda() {
@@ -121,6 +121,6 @@ public class Pregled {
 
     @Override
     public String toString(){
-        return pacijent.getPrezime()+" "+pacijent.getIme()+" "+datumIVrijemePregleda.toString()+" "+vrstaPregleda;
+        return patient.getPrezime()+" "+ patient.getIme()+" "+datumIVrijemePregleda.toString()+" "+vrstaPregleda;
     }
 }

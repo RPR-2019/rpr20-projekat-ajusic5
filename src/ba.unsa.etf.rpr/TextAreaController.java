@@ -7,14 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-public class TekstualnoPoljeController {
+public class TextAreaController {
     public Button okBtn;
     public TextArea dijagnozaArea;
     public TextArea terapijaArea;
     private SimpleStringProperty dijagnozaText;
     private SimpleStringProperty terapijaText;
 
-    public TekstualnoPoljeController() {
+    public TextAreaController() {
         dijagnozaText = new SimpleStringProperty("");
         terapijaText = new SimpleStringProperty("");
 

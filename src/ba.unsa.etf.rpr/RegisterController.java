@@ -21,8 +21,8 @@ public class RegisterController {
     private ObservableList<String> l3;
     private ObservableList<String> l4;
     private ObservableList<String> l5;
-    private Pacijent pacijent;
-    private Ljekar ljekar;
+    private Patient patient;
+    private Doctor doctor;
     @FXML
     public Button registracijaBtn = new Button();
     @FXML
@@ -54,8 +54,8 @@ public class RegisterController {
         vrstaKRBC.setItems(l3);
         spolCB.setItems(l4);
         specCB.setItems(l5);
-        ljekar = null;
-        pacijent = null;
+        doctor = null;
+        patient = null;
     }
 
     public RegisterController() {
@@ -94,12 +94,12 @@ public class RegisterController {
         return vrstaKRBC.getValue();
     }
 
-    public Pacijent getPacijent() {
-        return pacijent;
+    public Patient getPacijent() {
+        return patient;
     }
 
-    public Ljekar getLjekar() {
-        return ljekar;
+    public Doctor getLjekar() {
+        return doctor;
     }
 
     public void registracijaAction(ActionEvent actionEvent) {
@@ -112,16 +112,16 @@ public class RegisterController {
 
         if(vrstaKRBC.getValue().equals("Pacijent")) {
             if(spol=="M")
-            pacijent = new Pacijent(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.PACIJENT, Spol.MUSKI, 1);
+            patient = new Patient(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.PACIJENT, SexOfAUser.MUSKI, 1);
             else
-                pacijent = new Pacijent(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.PACIJENT, Spol.ZENSKI, 1);
+                patient = new Patient(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.PACIJENT, SexOfAUser.ZENSKI, 1);
 
         }
         else {
             if(spol=="M")
-            ljekar = new Ljekar(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.LJEKAR, Spol.MUSKI, specCB.getValue(), null);
+            doctor = new Doctor(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.LJEKAR, SexOfAUser.MUSKI, specCB.getValue(), null);
             else
-                ljekar = new Ljekar(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), VrstaKorisnickogRacuna.LJEKAR, Spol.ZENSKI, specCB.getValue(), null);
+                doctor = new Doctor(0, prezimeFld.getText(), imeFld.getText(), datum, kImeFld.getText(), lozinkaFld.getText(), ProfileType.LJEKAR, SexOfAUser.ZENSKI, specCB.getValue(), null);
 
         }
         Stage stage = (Stage) registracijaBtn.getScene().getWindow();

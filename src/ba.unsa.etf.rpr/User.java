@@ -2,20 +2,20 @@ package ba.unsa.etf.rpr;
 
 import java.time.LocalDate;
 
-public class Korisnik {
+public class User {
     private int id;
     private String prezime;
     private String ime;
     private LocalDate datumRodjenja;
     private String username;
     private String password;
-    private VrstaKorisnickogRacuna vrsta;
-    private Spol spol;
+    private ProfileType vrsta;
+    private SexOfAUser sexOfAUser;
 
-    public Korisnik() {
+    public User() {
     }
 
-    public Korisnik(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, VrstaKorisnickogRacuna vrsta, Spol spol) {
+    public User(int id, String prezime, String ime, LocalDate datumRodjenja, String username, String password, ProfileType vrsta, SexOfAUser sexOfAUser) {
         this.id = id;
         this.prezime = prezime;
         this.ime = ime;
@@ -23,7 +23,7 @@ public class Korisnik {
         this.username = username;
         this.password = password;
         this.vrsta = vrsta;
-        this.spol = spol;
+        this.sexOfAUser = sexOfAUser;
     }
 
     public int getId() {
@@ -88,15 +88,15 @@ public class Korisnik {
         return vrsta.toString();
     }
 
-    public void setVrsta(VrstaKorisnickogRacuna vrsta) {
+    public void setVrsta(ProfileType vrsta) {
         this.vrsta = vrsta;
     }
 
     public String getSpol() {
-        return spol.toString();
+        return sexOfAUser.toString();
     }
 
-    public void setSpol(Spol spol) {
-        this.spol = spol;
+    public void setSpol(SexOfAUser sexOfAUser) {
+        this.sexOfAUser = sexOfAUser;
     }
 }

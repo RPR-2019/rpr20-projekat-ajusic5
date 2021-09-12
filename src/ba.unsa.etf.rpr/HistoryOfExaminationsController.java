@@ -9,16 +9,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 
-public class HistorijaPregledaController {
-    public TableView<Pregled> historyTable;
-    public TableColumn<Pregled, String> prezimeCol;
-    public TableColumn<Pregled,String> imeCol;
+public class HistoryOfExaminationsController {
+    public TableView<Examination> historyTable;
+    public TableColumn<Examination, String> prezimeCol;
+    public TableColumn<Examination,String> imeCol;
     public TableColumn datumCol;
     public TableColumn vrstaPregledaCol;
-    private ObservableList<Pregled> pregledi;
-    Korisnik k;
+    private ObservableList<Examination> pregledi;
+    User k;
 
-    public HistorijaPregledaController(ArrayList<Pregled> pregledi, Korisnik k) {
+    public HistoryOfExaminationsController(ArrayList<Examination> pregledi, User k) {
         this.pregledi= FXCollections.observableArrayList(pregledi);
         this.k = k;
     }

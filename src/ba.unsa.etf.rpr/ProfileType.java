@@ -1,11 +1,11 @@
 package ba.unsa.etf.rpr;
 
-public enum VrstaKorisnickogRacuna {
+public enum ProfileType {
     PACIJENT("Pacijent"), LJEKAR("Ljekar");
 
     private final String name;
 
-    VrstaKorisnickogRacuna(String name) {
+    ProfileType(String name) {
         this.name = name;
     }
     @Override

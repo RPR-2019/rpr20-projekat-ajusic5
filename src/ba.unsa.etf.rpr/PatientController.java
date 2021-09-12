@@ -20,31 +20,31 @@ import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class PacijentController {
+public class PatientController {
 
     public Button odjavaBtn = new Button();
     public ListView<String> uslugeView= new ListView();
-    public TableView<Pregled> preglediTable;
+    public TableView<Examination> preglediTable;
     public TableColumn vrstaPregledaCol;
     public TableColumn datumIVrijemePregledaCol;
 
     private ArrayList<String> usluge;
-    private Pacijent trenutnoPrijavljeniPacijent;
+    private Patient trenutnoPrijavljeniPatient;
     private List<Integer> idLjekara;
-    private ArrayList<Pregled> appointments = new ArrayList<>();
-    private OrdinacijaDAO dao;
+    private ArrayList<Examination> appointments = new ArrayList<>();
+    private DoctorsOfficeDAO dao;
 
 
-    public PacijentController(ArrayList<String> usluge, ArrayList<LocalDateTime> dajSveZakazanePreglede, Pacijent trenutnoPrijavljeniPacijent, List<Integer> idLjekara) {
+    public PatientController(ArrayList<String> usluge, ArrayList<LocalDateTime> dajSveZakazanePreglede, Patient trenutnoPrijavljeniPatient, List<Integer> idLjekara) {
         this.usluge=usluge;
-        this.trenutnoPrijavljeniPacijent = trenutnoPrijavljeniPacijent;
+        this.trenutnoPrijavljeniPatient = trenutnoPrijavljeniPatient;
         this.idLjekara = idLjekara;
-        dao = OrdinacijaDAO.getInstanca();
+        dao = DoctorsOfficeDAO.getInstanca();
     }
     @FXML
     public void initialize(){
         uslugeView.setItems(FXCollections.observableList(usluge));
-        appointments = dao.dajPregledeKojeJePacijentZakazao(trenutnoPrijavljeniPacijent.getId());
+        appointments = dao.dajPregledeKojeJePacijentZakazao(trenutnoPrijavljeniPatient.getId());
         preglediTable.setItems(FXCollections.observableList(appointments));
         vrstaPregledaCol.setCellValueFactory(new PropertyValueFactory<>("vrstaPregleda"));
         datumIVrijemePregledaCol.setCellValueFactory(new PropertyValueFactory<>("datumIVrijemePregleda"));
@@ -57,7 +57,7 @@ public class PacijentController {
     public void pregledClick(ActionEvent actionEvent) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/zakazivanje_termina_forma.fxml"), bundle);
-        PregledController controller = new PregledController(usluge, trenutnoPrijavljeniPacijent, idLjekara);
+        ExaminationController controller = new ExaminationController(usluge, trenutnoPrijavljeniPatient, idLjekara);
         loader.setController(controller);
         Parent root = null;
         root = loader.load();
@@ -68,7 +68,7 @@ public class PacijentController {
         stage.show();
 
         stage.setOnHiding(event -> {
-            Pregled p = controller.getPregled();
+            Examination p = controller.getPregled();
             if(p != null){
                 appointments.add(p);
                 preglediTable.setItems(FXCollections.observableArrayList(appointments));
@@ -102,7 +102,7 @@ public class PacijentController {
     public void historijaClick(ActionEvent actionEvent) throws IOException{
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historija_pregleda.fxml"), bundle);
-        HistorijaPregledaController controller = new HistorijaPregledaController(dao.dajSvePregledeKojeJePacijentObavio(trenutnoPrijavljeniPacijent.getUsername()), trenutnoPrijavljeniPacijent);
+        HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.dajSvePregledeKojeJePacijentObavio(trenutnoPrijavljeniPatient.getUsername()), trenutnoPrijavljeniPatient);
         loader.setController(controller);
         Parent root = null;
         root = loader.load();

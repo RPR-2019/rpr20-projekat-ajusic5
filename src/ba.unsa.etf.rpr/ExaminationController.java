@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PregledController {
+public class ExaminationController {
     @FXML
     public Button okBtn = new Button();
     @FXML
@@ -23,15 +23,15 @@ public class PregledController {
     public ChoiceBox<String> vrijemePregledaCB = new ChoiceBox<>();
 
     private ArrayList<String> usluge;
-    private Pregled pregled = new Pregled();
+    private Examination examination = new Examination();
     private ArrayList<LocalDateTime> zakazaniPregledi = new ArrayList<>();
-    private Pacijent pacijent = new Pacijent();
+    private Patient patient = new Patient();
     private List<Integer> idLjekara = new ArrayList<>();
-    private OrdinacijaDAO dao;
+    private DoctorsOfficeDAO dao;
 
-    public PregledController(ArrayList<String> usluge, Pacijent pacijent, List<Integer> idLjekara) {
+    public ExaminationController(ArrayList<String> usluge, Patient patient, List<Integer> idLjekara) {
         this.usluge = usluge;
-        this.pacijent = pacijent;
+        this.patient = patient;
         this.idLjekara = idLjekara;
     }
 
@@ -48,15 +48,15 @@ public class PregledController {
 
         vrijemePregledaCB.getItems().addAll("08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30");
 
-        dao = OrdinacijaDAO.getInstanca();
+        dao = DoctorsOfficeDAO.getInstanca();
 
     }
 
-    public Pregled getPregled() {
-        return pregled;
+    public Examination getPregled() {
+        return examination;
     }
 
-    public Pregled okClick(ActionEvent actionEvent){
+    public Examination okClick(ActionEvent actionEvent){
         if(vrstaPregledaCB.getValue() == null || vrijemePregledaCB.getValue() == null || datumPregledaDP.getValue() == null) return null;
 
         var splitString = vrijemePregledaCB.getSelectionModel().getSelectedItem().split(":");
@@ -75,14 +75,14 @@ public class PregledController {
             return null;
         }
 
-        pregled.setVrstaPregleda(vrstaPregledaCB.getValue());
-        pregled.setVrijemeZakazivanjaTermina(LocalDateTime.now());
-        pregled.setDatumIVrijemePregleda(LocalDateTime.of(datumPregledaDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
-        pregled.setVrijemeZakazivanjaTermina(LocalDateTime.now());
-        pregled.setPacijent(pacijent);
-        dao.dodajPregled(pregled);
+        examination.setVrstaPregleda(vrstaPregledaCB.getValue());
+        examination.setVrijemeZakazivanjaTermina(LocalDateTime.now());
+        examination.setDatumIVrijemePregleda(LocalDateTime.of(datumPregledaDP.getValue(), LocalTime.of(Integer.parseInt(splitString[0]),Integer.parseInt(splitString[1]))));
+        examination.setVrijemeZakazivanjaTermina(LocalDateTime.now());
+        examination.setPacijent(patient);
+        dao.dodajPregled(examination);
         Stage stage = (Stage) okBtn.getScene().getWindow();
         stage.close();
-        return pregled;
+        return examination;
     }
 }
