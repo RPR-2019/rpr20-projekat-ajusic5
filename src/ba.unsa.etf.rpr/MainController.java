@@ -90,7 +90,36 @@ public class MainController {
 
     }
 
-    public void registracijaClick(ActionEvent actionEvent){
+    public void registracijaClick(ActionEvent actionEvent) throws IOException {
+
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_forma.fxml"), bundle);
+        RegisterController controller = new RegisterController();
+        loader.setController(controller);
+        Parent root = null;
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(true);
+        stage.show();
+
+        stage.setOnHiding(event -> {
+
+            Pacijent pacijent = controller.getPacijent();
+            Ljekar ljekar = controller.getLjekar();
+
+            int imaRegistrovan = 0;
+            if(pacijent != null){
+                imaRegistrovan = dao.provjeriPrijavu(pacijent.getUsername(), pacijent.getPassword());
+            }
+            else if(ljekar!=null ){
+                imaRegistrovan = dao.provjeriPrijavu(ljekar.getUsername(), ljekar.getPassword());
+            }
+            if(imaRegistrovan==-1){
+                if(controller.getVrstaKRBC().equalsIgnoreCase("pacijent")) dao.dodajPacijenta(controller.getPacijent());
+                else dao.dodajLjekara(controller.getLjekar());
+            }
+        });
 
     }
 
