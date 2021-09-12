@@ -50,6 +50,9 @@ public class LjekarController {
         uslugeView.setItems(uslugeLjekara);
         uslugeCB.setItems(sveUsluge);
     }
+    public Ljekar getTrenutnoPrijavljeniLjekar() {
+        return trenutnoPrijavljeniLjekar;
+    }
 
 
     public void odjavaClick(ActionEvent actionEvent){
