@@ -287,10 +287,7 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
             dajTrenutnogPrijavljenogPacijentaUpit.setString(1, username);
             dajTrenutnogPrijavljenogPacijentaUpit.setString(2, password);
             var rs = dajTrenutnogPrijavljenogPacijentaUpit.executeQuery();
-            return dajPacijentaIzResultSeta(rs);// ovdje pošutat' sve ove iz result seta
-            // i onda u pacijent ili pregled controlleru (nisam više sigurna gdje mi je šta Bgmi) update-ovati preko ovoga tamo pacijenta
-            // i onda pošto će se vršiti provjera u pregled controlleru (valjda) ako ta provjera prođe
-            // u main controlleru pozvati upis pregleda u bazu
+            return dajPacijentaIzResultSeta(rs);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -336,5 +333,64 @@ public class OrdinacijaDAO {private static OrdinacijaDAO instanca;
         }
         return null;
     }
+
+    public ArrayList<Pregled> dajSvePregledeKojeLjekarMozeObaviti(String username) {
+
+        try {
+            dajIdLjekaraUpit.setString(1, username);
+            var id = dajIdLjekaraUpit.executeQuery().getInt(1);
+
+            dajPregledeKojeLjekarMozeObavitiUpit.setInt(1, id);
+            var rs = dajPregledeKojeLjekarMozeObavitiUpit.executeQuery();
+
+            ArrayList<Pregled> pregledi = new ArrayList<>();
+
+            while (rs.next()) {
+
+                id = rs.getInt(2);
+                dajPacijentaUpit.setInt(1,id);
+                var set = dajPacijentaUpit.executeQuery();
+
+                Pacijent patient = dajPacijentaIzResultSeta(set);
+
+                Pregled appointment = dajPregledIzResultSeta(rs, null, patient);
+                pregledi.add(appointment);
+
+            }
+            return pregledi;
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<Pregled> dajSvePregledeKojeJeLjekarObavio(String username) {
+        try {
+            dajIdLjekaraUpit.setString(1, username);
+            var set = dajIdLjekaraUpit.executeQuery();
+
+            dajPregledeKojeJeLjekarObavioUpit.setInt(1, set.getInt(1));
+            var rs = dajPregledeKojeJeLjekarObavioUpit.executeQuery();
+
+            dajLjekaraUpit.setInt(1, set.getInt(1));
+            set = dajLjekaraUpit.executeQuery();
+            Ljekar d = dajLjekaraIzResultSeta(set);
+
+            ArrayList<Pregled> appointments = new ArrayList<>();
+
+            while (rs.next()){
+                dajPacijentaUpit.setInt(1, rs.getInt(2));
+                set = dajPacijentaUpit.executeQuery();
+                Pacijent p = dajPacijentaIzResultSeta(set);
+                appointments.add(dajPregledIzResultSeta(rs, d, p));
+            }
+            return appointments;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }
