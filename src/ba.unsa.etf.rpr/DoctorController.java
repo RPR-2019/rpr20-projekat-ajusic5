@@ -89,7 +89,7 @@ public class DoctorController {
         var id = examinationsTable.getSelectionModel().getSelectedItem().getId();
 
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/tekstualno_polje.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/text_area.fxml"), bundle);
         TextAreaController controller = new TextAreaController();
         loader.setController(controller);
         Parent root = null;
@@ -118,7 +118,7 @@ public class DoctorController {
 
     public void historyClick(ActionEvent actionEvent) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historija_pregleda.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/appointments_history.fxml"), bundle);
         HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.getAllExaminationsDoctorDid(doctor.getUsername()), doctor);
         loader.setController(controller);
         Parent root = null;

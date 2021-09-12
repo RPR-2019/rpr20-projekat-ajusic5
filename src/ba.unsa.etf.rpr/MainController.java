@@ -54,7 +54,7 @@ public class MainController {
         passwordFld.setText("");
         if(mode == 1){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ljekar_naslovna.fxml"), bundle);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/doctor_homepage.fxml"), bundle);
 
             DoctorController controller = new DoctorController(dao.getDoctorsServices(username), dao.getAllExaminationsDoctorCanDo(username), dao.getAllExaminationsDoctorDid(username), dao.getCurrentDoctor(username), dao.getNamesOfServices());
             loader.setController(controller);
@@ -68,7 +68,7 @@ public class MainController {
         }
         else if(mode == 2){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pacijent_naslovna.fxml"), bundle);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/patient_homepage.fxml"), bundle);
             PatientController controller = new PatientController(dao.getNamesOfServices(), dao.getAllAppointments(), dao.getCurrentPatient(username, password), dao.getAllDoctors());
             loader.setController(controller);
             Parent root = loader.load();
@@ -92,7 +92,7 @@ public class MainController {
     public void registerClick(ActionEvent actionEvent) throws IOException {
 
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_forma.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registration_form.fxml"), bundle);
         RegisterController controller = new RegisterController();
         loader.setController(controller);
         Parent root = null;
@@ -129,7 +129,7 @@ public class MainController {
         MainController ctrl = new MainController();
         Locale.setDefault(new Locale("bs_BA", "BA"));
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/naslovna_stranica.fxml" ), bundle);
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homepage.fxml"), bundle);
 
         loader.setController(ctrl);
         Parent root = loader.load();
@@ -147,7 +147,7 @@ public class MainController {
         MainController ctrl = new MainController();
         Locale.setDefault(new Locale("en_US", "US"));
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/naslovna_stranica.fxml" ), bundle);
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homepage.fxml"), bundle);
 
         loader.setController(ctrl);
         Parent root = loader.load();
@@ -160,7 +160,7 @@ public class MainController {
     public void aboutClick(ActionEvent actionEvent) throws IOException {
 
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/o_nama.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/about.fxml"), bundle);
         AboutController controller = new AboutController();
         loader.setController(controller);
         Parent root = loader.load();

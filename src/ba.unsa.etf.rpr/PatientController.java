@@ -56,7 +56,7 @@ public class PatientController {
 
     public void examinationClick(ActionEvent actionEvent) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/zakazivanje_termina_forma.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/appointment_form.fxml"), bundle);
         ExaminationController controller = new ExaminationController(services, patient, doctorId);
         loader.setController(controller);
         Parent root = null;
@@ -101,7 +101,7 @@ public class PatientController {
 
     public void historyClick(ActionEvent actionEvent) throws IOException{
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historija_pregleda.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/appointments_history.fxml"), bundle);
         HistoryOfExaminationsController controller = new HistoryOfExaminationsController(dao.getAppointmentsPatientDid(patient.getUsername()), patient);
         loader.setController(controller);
         Parent root = null;
