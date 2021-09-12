@@ -141,7 +141,21 @@ public class MainController {
 
     }
 
-    public void engleskiClick(ActionEvent actionEvent){
+    public void engleskiClick(ActionEvent actionEvent) throws IOException {
+
+        Stage primaryStage = (Stage) kImeFld.getScene().getWindow();
+        primaryStage.close();
+
+        MainController ctrl = new MainController();
+        Locale.setDefault(new Locale("en_US", "US"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/naslovna_stranica.fxml" ), bundle);
+
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        primaryStage.setTitle("Home page");
+        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.show();
 
     }
 
