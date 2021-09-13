@@ -16,6 +16,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -93,10 +94,20 @@ public class PatientController {
             alert.show();
             return;
         }
-        dao.cancelAppointment(examination.getId());
-        var e = examinationsTable.getSelectionModel().getSelectedItem();
-        appointments.remove(e);
-        examinationsTable.setItems(FXCollections.observableArrayList(appointments));
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Potvrda brisanja");
+        alert.setHeaderText("Brisanje pregleda");
+        alert.setContentText("Da li ste sigurni da želite obrisati pregled ?");
+        alert.setResizable(true);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            dao.cancelAppointment(examination.getId());
+            var e = examinationsTable.getSelectionModel().getSelectedItem();
+            appointments.remove(e);
+            examinationsTable.setItems(FXCollections.observableArrayList(appointments));
+        }
     }
 
     public void historyClick(ActionEvent actionEvent) throws IOException{
