@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -105,10 +102,21 @@ public class RegisterController {
 
     public void registracijaAction(ActionEvent actionEvent) {
 
-        int dan = Integer.parseInt((String) dayCB.getValue());
-        int mjesec =Integer.parseInt((String) monthCB.getValue());
-        int godina = Integer.parseInt((String) yearCB.getValue());
-        LocalDate datum = LocalDate.of(godina, mjesec, dan);
+        if(nameFld.getText().equals("") || surnameFld.getText().equals("") || dayCB.getValue()==null || monthCB.getValue()==null || yearCB.getValue()==null
+            || usernameFld.getText().equals("") || passwordFld.getText().equals("") || profileTypeCB.getValue()==null || sexCB.getValue()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greška");
+            alert.setHeaderText("Neispravni podaci");
+            alert.setContentText("Prazno polje!");
+            alert.setResizable(true);
+            alert.show();
+            return;
+        }
+
+        int day = Integer.parseInt((String) dayCB.getValue());
+        int month =Integer.parseInt((String) monthCB.getValue());
+        int year = Integer.parseInt((String) yearCB.getValue());
+        LocalDate datum = LocalDate.of(year, month, day);
         String sex = sexCB.getValue();
 
         if(profileTypeCB.getValue().equals("Pacijent")) {
@@ -118,12 +126,21 @@ public class RegisterController {
                 patient = new Patient(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.PACIJENT, SexOfAUser.ZENSKI, 1);
 
         }
-        else {
+        else if(specializationCB.getValue()!=null){
             if(sex=="M")
                 doctor = new Doctor(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.LJEKAR, SexOfAUser.MUSKI, specializationCB.getValue(), null);
             else
                 doctor = new Doctor(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.LJEKAR, SexOfAUser.ZENSKI, specializationCB.getValue(), null);
 
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greška");
+            alert.setHeaderText("Neispravni podaci");
+            alert.setContentText("Ljekar mora imati specijalizaciju!");
+            alert.setResizable(true);
+            alert.show();
+            return;
         }
         Stage stage = (Stage) registerBtn.getScene().getWindow();
         stage.close();
