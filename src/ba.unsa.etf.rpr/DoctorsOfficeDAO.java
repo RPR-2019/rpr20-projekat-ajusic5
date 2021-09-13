@@ -25,42 +25,42 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             e.printStackTrace();
         }
         try {
-            patientSignInQuery = conn.prepareStatement("SELECT * FROM PACIJENT WHERE username=? AND password=?");
-            doctorSignInQuery = conn.prepareStatement("SELECT * FROM LJEKAR WHERE username=? AND password=?");
-            patientRegistrationQuery = conn.prepareStatement("INSERT INTO PACIJENT VALUES(?,?,?,?,?,?,?,?,?)");
-            doctorRegistrationQuery = conn.prepareStatement("INSERT INTO LJEKAR VALUES(?,?,?,?,?,?,?,?,?)");
-            scheduleAnAppointmentQuery = conn.prepareStatement("INSERT INTO PREGLED VALUES(?,?,?,?,?,?,?,?,?,?)");
-            cancelTheAppointmentQuery = conn.prepareStatement("UPDATE PREGLED SET successful=0, doctor_id=-2 WHERE id=?");
-            addAServiceQuery = conn.prepareStatement("INSERT INTO USLUGE VALUES(?,?)");
-            getNextDoctorIdQuery = conn.prepareStatement("SELECT MAX(doctor_id)+1 FROM LJEKAR");
-            getNextPatientIdQuery = conn.prepareStatement("SELECT MAX(patient_id)+1 FROM PACIJENT");
-            getNextExaminationIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM PREGLED");
-            getNextServiceIdQuery = conn.prepareStatement("SELECT  MAX(id)+1 FROM USLUGE");
-            addAServiceForADoctorQuery = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
-            addTherapyQuery = conn.prepareStatement("UPDATE PREGLED SET therapy=?, doctor_id=?, successful=1 WHERE id=?");
-            linkDoctorAndServiceQuery = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
-            getServiceIdQuery = conn.prepareStatement("SELECT id FROM USLUGE WHERE name=?");
-            getAllServicesQuery = conn.prepareStatement("SELECT * FROM USLUGE");
-            getAllAppointmentsQuery = conn.prepareStatement("SELECT date_and_time_of_appointment, type_of_examination, patient_id, doctor_id FROM PREGLED WHERE successful=1"); //DODATI PROVJERU VREMENA
-            getCurrentPatient = conn.prepareStatement("SELECT * FROM PACIJENT WHERE username=? AND password=?");
-            getAllDoctorsQuery = conn.prepareStatement("SELECT doctor_id FROM LJEKAR");
-            checkTheAppointmentQuery = conn.prepareStatement("SELECT p.id FROM PREGLED p WHERE p.doctor_id=? AND p.date_and_time_of_appointment=?");
-            getDoctorsServicesQuery = conn.prepareStatement("SELECT u.name FROM USLUGE u, LJEKAR lj, lJEKAR_USLUGE lju WHERE u.id=lju.med_service_id AND lju.doctor_id=lj.doctor_id AND lj.doctor_id=?");
-            getDoctorIdQuery = conn.prepareStatement("SELECT doctor_id FROM LJEKAR where username=?");
-            getCurrentDoctorQuery = conn.prepareStatement("SELECT * FROM LJEKAR WHERE username=?");
-            deleteServiceForADoctorQuery = conn.prepareStatement("DELETE FROM LJEKAR_USLUGE WHERE med_service_id=? AND doctor_id=?");
-            getAppointmentsDoctorCanDoQuery = conn.prepareStatement("SELECT * FROM PREGLED p, LJEKAR_USLUGE lju, USLUGE u WHERE p.archived=0 AND p.doctor_id<>-2 AND p.type_of_examination=u.name AND u.id=lju.med_service_id AND SUBSTR(date_and_time_of_appointment,1,10)=CURRENT_DATE AND lju.doctor_id=?");
-            getPatientQuery = conn.prepareStatement("SELECT * FROM PACIJENT WHERE patient_id=?");
-            deleteAppointmentQuery = conn.prepareStatement("DELETE FROM PREGLED WHERE id=?");
-            addDiagnosisQuery = conn.prepareStatement("UPDATE PREGLED SET diagnosis=?, doctor_id=?, archived=1 WHERE id=?");
-            getAppointmentQuery = conn.prepareStatement("SELECT * FROM PREGLED WHERE id=?");
-            getDoctorQuery = conn.prepareStatement("SELECT * FROM LJEKAR WHERE doctor_id=?");
-            getAppointmentsDoctorDidQuery = conn.prepareStatement("SELECT * FROM PREGLED WHERE doctor_id=?");
-            getAppointmentsThatPatientDidQuery = conn.prepareStatement("SELECT * FROM PREGLED WHERE patient_id=? AND doctor_id<>-1 AND doctor_id<>-2");
-            getPatienIdQuery = conn.prepareStatement("SELECT patient_id FROM PACIJENT WHERE username=?");
-            getIdsOfDoctorsThatCanDoTheExaminationQuery = conn.prepareStatement("SELECT doctor_id FROM LJEKAR_USLUGE WHERE med_service_id=?");
-            getAppointmentsThePatientScheduled = conn.prepareStatement("SELECT * FROM PREGLED WHERE patient_id=? AND archived=0 AND doctor_id<>-2");
-            getSpecializationsQuery = conn.prepareStatement("SELECT DISTINCT field_of_expertise from LJEKAR");
+            patientSignInQuery = conn.prepareStatement("SELECT * FROM PATIENT WHERE username=? AND password=?");
+            doctorSignInQuery = conn.prepareStatement("SELECT * FROM DOCTOR WHERE username=? AND password=?");
+            patientRegistrationQuery = conn.prepareStatement("INSERT INTO PATIENT VALUES(?,?,?,?,?,?,?,?,?)");
+            doctorRegistrationQuery = conn.prepareStatement("INSERT INTO DOCTOR VALUES(?,?,?,?,?,?,?,?,?)");
+            scheduleAnAppointmentQuery = conn.prepareStatement("INSERT INTO EXAMINATION VALUES(?,?,?,?,?,?,?,?,?,?)");
+            cancelTheAppointmentQuery = conn.prepareStatement("UPDATE EXAMINATION SET successful=0, doctor_id=-2 WHERE id=?");
+            addAServiceQuery = conn.prepareStatement("INSERT INTO SERVICE VALUES(?,?)");
+            getNextDoctorIdQuery = conn.prepareStatement("SELECT MAX(doctor_id)+1 FROM DOCTOR");
+            getNextPatientIdQuery = conn.prepareStatement("SELECT MAX(patient_id)+1 FROM PATIENT");
+            getNextExaminationIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM EXAMINATION");
+            getNextServiceIdQuery = conn.prepareStatement("SELECT  MAX(id)+1 FROM SERVICE");
+            addAServiceForADoctorQuery = conn.prepareStatement("INSERT INTO DOCTOR_SERVICE VALUES(?,?)");
+            addTherapyQuery = conn.prepareStatement("UPDATE EXAMINATION SET therapy=?, doctor_id=?, successful=1 WHERE id=?");
+            linkDoctorAndServiceQuery = conn.prepareStatement("INSERT INTO DOCTOR_SERVICE VALUES(?,?)");
+            getServiceIdQuery = conn.prepareStatement("SELECT id FROM SERVICE WHERE name=?");
+            getAllServicesQuery = conn.prepareStatement("SELECT * FROM SERVICE");
+            getAllAppointmentsQuery = conn.prepareStatement("SELECT date_and_time_of_appointment, type_of_examination, patient_id, doctor_id FROM EXAMINATION WHERE successful=1");
+            getCurrentPatient = conn.prepareStatement("SELECT * FROM PATIENT WHERE username=? AND password=?");
+            getAllDoctorsQuery = conn.prepareStatement("SELECT doctor_id FROM DOCTOR");
+            checkTheAppointmentQuery = conn.prepareStatement("SELECT p.id FROM EXAMINATION p WHERE p.doctor_id=? AND p.date_and_time_of_appointment=?");
+            getDoctorsServicesQuery = conn.prepareStatement("SELECT u.name FROM SERVICE u, DOCTOR lj, DOCTOR_SERVICE lju WHERE u.id=lju.med_service_id AND lju.doctor_id=lj.doctor_id AND lj.doctor_id=?");
+            getDoctorIdQuery = conn.prepareStatement("SELECT doctor_id FROM DOCTOR where username=?");
+            getCurrentDoctorQuery = conn.prepareStatement("SELECT * FROM DOCTOR WHERE username=?");
+            deleteServiceForADoctorQuery = conn.prepareStatement("DELETE FROM DOCTOR_SERVICE WHERE med_service_id=? AND doctor_id=?");
+            getAppointmentsDoctorCanDoQuery = conn.prepareStatement("SELECT * FROM EXAMINATION p, DOCTOR_SERVICE lju, SERVICE u WHERE p.archived=0 AND p.doctor_id<>-2 AND p.type_of_examination=u.name AND u.id=lju.med_service_id AND SUBSTR(date_and_time_of_appointment,1,10)=CURRENT_DATE AND lju.doctor_id=?");
+            getPatientQuery = conn.prepareStatement("SELECT * FROM PATIENT WHERE patient_id=?");
+            deleteAppointmentQuery = conn.prepareStatement("DELETE FROM EXAMINATION WHERE id=?");
+            addDiagnosisQuery = conn.prepareStatement("UPDATE EXAMINATION SET diagnosis=?, doctor_id=?, archived=1 WHERE id=?");
+            getAppointmentQuery = conn.prepareStatement("SELECT * FROM EXAMINATION WHERE id=?");
+            getDoctorQuery = conn.prepareStatement("SELECT * FROM DOCTOR WHERE doctor_id=?");
+            getAppointmentsDoctorDidQuery = conn.prepareStatement("SELECT * FROM EXAMINATION WHERE doctor_id=?");
+            getAppointmentsThatPatientDidQuery = conn.prepareStatement("SELECT * FROM EXAMINATION WHERE patient_id=? AND doctor_id<>-1 AND doctor_id<>-2");
+            getPatienIdQuery = conn.prepareStatement("SELECT patient_id FROM PATIENT WHERE username=?");
+            getIdsOfDoctorsThatCanDoTheExaminationQuery = conn.prepareStatement("SELECT doctor_id FROM DOCTOR_SERVICE WHERE med_service_id=?");
+            getAppointmentsThePatientScheduled = conn.prepareStatement("SELECT * FROM EXAMINATION WHERE patient_id=? AND archived=0 AND doctor_id<>-2");
+            getSpecializationsQuery = conn.prepareStatement("SELECT DISTINCT field_of_expertise from DOCTOR");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -162,11 +162,11 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
 
     public void vratiBazuNaDefault() throws SQLException {
         Statement stmt = conn.createStatement();
-        stmt.executeUpdate("DELETE FROM LJEKAR");
-        stmt.executeUpdate("DELETE FROM PACIJENT");
-        stmt.executeUpdate("DELETE FROM PREGLED");
-        stmt.executeUpdate("DELETE FROM lJEKAR_USLUGE");
-        stmt.executeUpdate("DELETE FROM USLUGE");
+        stmt.executeUpdate("DELETE FROM DOCTOR");
+        stmt.executeUpdate("DELETE FROM PATIENT");
+        stmt.executeUpdate("DELETE FROM EXAMINATION");
+        stmt.executeUpdate("DELETE FROM DOCTOR_SERVICE");
+        stmt.executeUpdate("DELETE FROM SERVICE");
 
         // Regeneriši bazu neće ponovo kreirati tabele jer u .sql datoteci stoji
         // CREATE TABLE IF NOT EXISTS
