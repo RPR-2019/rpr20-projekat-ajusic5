@@ -98,7 +98,7 @@ public class PatientController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Potvrda brisanja");
         alert.setHeaderText("Brisanje pregleda");
-        alert.setContentText("Da li ste sigurni da želite obrisati pregled ?");
+        alert.setContentText("Da li ste sigurni da želite obrisati pregled?");
         alert.setResizable(true);
 
         Optional<ButtonType> result = alert.showAndWait();

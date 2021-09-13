@@ -115,8 +115,10 @@ public class MainController {
                 registred = dao.checkSignIn(doctor.getUsername(), doctor.getPassword());
             }
             if(registred==-1){
-                if(controller.getProfileTypeCB().equalsIgnoreCase("pacijent")) dao.addAPatient(controller.getPacijent());
-                else dao.addADoctor(controller.getLjekar());
+                if(controller.getProfileTypeCB().equalsIgnoreCase("pacijent"))
+                    dao.addAPatient(controller.getPacijent());
+                else
+                    dao.addADoctor(controller.getLjekar());
             }
         });
 

@@ -132,7 +132,7 @@ public class DoctorController {
 
     public void printClick(){
         try {
-            new Report().showReport(dao.getConn());
+            new Report(doctor.getId()).showReport(dao.getConn());
         } catch (JRException e) {
             e.printStackTrace();
         }

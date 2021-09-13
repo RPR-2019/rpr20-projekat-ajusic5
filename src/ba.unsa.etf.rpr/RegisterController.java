@@ -88,6 +88,7 @@ public class RegisterController {
         l.clear();
         l.add("Oftamolog");
         l5=FXCollections.observableArrayList(l);
+
     }
 
     public String getProfileTypeCB() {
@@ -112,14 +113,14 @@ public class RegisterController {
 
         if(profileTypeCB.getValue().equals("Pacijent")) {
             if(sex=="M")
-            patient = new Patient(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.PACIJENT, SexOfAUser.MUSKI, 1);
+                patient = new Patient(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.PACIJENT, SexOfAUser.MUSKI, 1);
             else
                 patient = new Patient(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.PACIJENT, SexOfAUser.ZENSKI, 1);
 
         }
         else {
             if(sex=="M")
-            doctor = new Doctor(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.LJEKAR, SexOfAUser.MUSKI, specializationCB.getValue(), null);
+                doctor = new Doctor(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.LJEKAR, SexOfAUser.MUSKI, specializationCB.getValue(), null);
             else
                 doctor = new Doctor(0, surnameFld.getText(), nameFld.getText(), datum, usernameFld.getText(), passwordFld.getText(), ProfileType.LJEKAR, SexOfAUser.ZENSKI, specializationCB.getValue(), null);
 

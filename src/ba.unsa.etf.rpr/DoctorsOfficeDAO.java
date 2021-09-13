@@ -187,9 +187,12 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
                 patientSignInQuery.setString(1, username);
                 patientSignInQuery.setString(2, password);
                 rs = patientSignInQuery.executeQuery();
-                if (!rs.next()) return -1;
-                else return 2;
-            } else return 1;
+                if (!rs.next())
+                    return -1;
+                else
+                    return 2;
+            } else
+                return 1;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -239,7 +242,8 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
                 addAServiceQuery.setInt(1, id);
                 addAServiceQuery.setString(2, doctor.getSpecialization());
                 addAServiceQuery.executeUpdate();
-            } else id = rs.getInt(1);
+            } else
+                id = rs.getInt(1);
             linkDoctorAndServiceQuery.setInt(1, id);
             linkDoctorAndServiceQuery.setInt(2, doctor.getId());
             linkDoctorAndServiceQuery.executeUpdate();
