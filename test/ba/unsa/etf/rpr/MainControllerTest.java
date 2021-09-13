@@ -60,4 +60,24 @@ class MainControllerTest {
         Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
         robot.clickOn(okButton);
     }
+
+    @Test
+    public void invalidUsernameOrPasswordTest(FxRobot robot){
+        robot.lookup("#usernameFld").tryQuery().isPresent();
+        robot.clickOn("#usernameFld");
+        robot.write("Amna");
+
+        robot.clickOn("#passwordFld");
+        robot.write("amna");
+
+        robot.clickOn("#signInBtn");
+        robot.lookup(".dialog-pane").tryQuery().isPresent();
+        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
+
+        assertNotNull(dialogPane.lookupAll("Ne postoji korisnički račun s ovim podacima!"));
+
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        robot.clickOn(okButton);
+
+    }
 }
