@@ -17,7 +17,7 @@
                 <TableColumn fx:id="surnameCol" prefWidth="75.0" text="%Prezime" />
                 <TableColumn fx:id="nameCol" prefWidth="75.0" text="%Ime" />
                 <TableColumn fx:id="dateCol" prefWidth="150.0" text="%Datum" />
-                <TableColumn fx:id="typeOfExaminationCol" prefWidth="100.0" text="%Vrsta_pregleda" />
+                <TableColumn fx:id="typeOfExaminationCol" prefWidth="150.0" text="%Vrsta_pregleda" />
             </columns>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

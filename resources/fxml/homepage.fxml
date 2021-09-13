@@ -51,7 +51,7 @@
         </TextArea>
         <TableView fx:id="servicesTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
             <columns>
-                <TableColumn fx:id="servicesCol" maxWidth="1.7976931348623157E308" prefWidth="540.0" text="%Usluge_koje_nudimo" />
+                <TableColumn fx:id="servicesCol" maxWidth="1.7976931348623157E308" prefWidth="550.0" text="%Usluge_koje_nudimo" />
             </columns>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
