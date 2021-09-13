@@ -83,6 +83,7 @@ public class ExaminationController {
         dao.addAnAppointment(examination);
         Stage stage = (Stage) okBtn.getScene().getWindow();
         stage.close();
+
         return examination;
     }
 }

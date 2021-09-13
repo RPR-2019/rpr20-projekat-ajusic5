@@ -95,4 +95,5 @@ class MainControllerTest {
         assertFalse( robot.lookup(".dialog-pane").tryQuery().isPresent());
 
     }
+
 }

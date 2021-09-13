@@ -107,6 +107,7 @@ public class PatientController {
             var e = examinationsTable.getSelectionModel().getSelectedItem();
             appointments.remove(e);
             examinationsTable.setItems(FXCollections.observableArrayList(appointments));
+            examinationsTable.refresh();
         }
     }
 
@@ -127,5 +128,9 @@ public class PatientController {
     public void signOutClick(ActionEvent actionEvent){
         Stage stage = (Stage) signOutBtn.getScene().getWindow();
         stage.close();
+    }
+
+    public ArrayList<Examination> getAppointments() {
+        return appointments;
     }
 }
