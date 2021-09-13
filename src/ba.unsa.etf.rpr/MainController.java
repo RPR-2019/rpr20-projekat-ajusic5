@@ -53,7 +53,16 @@ public class MainController {
         var mode = dao.checkSignIn(username, password);
         usernameFld.setText("");
         passwordFld.setText("");
-        if(mode == 1){
+        if(username.equals("") || password.equals("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greška");
+            alert.setHeaderText("Neispravni podaci");
+            alert.setContentText("Prazno polje!");
+            alert.setResizable(true);
+            alert.show();
+            return;
+        }
+        else if(mode == 1){
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/doctor_homepage.fxml"), bundle);
 
@@ -86,6 +95,7 @@ public class MainController {
             alert.setContentText("Ne postoji korisnički račun s ovim podacima!");
             alert.setResizable(true);
             alert.show();
+            return;
         }
 
     }
