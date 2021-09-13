@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Amna/IdeaProjects/rpr20-projekat-ajusic5/src</OriginalElement>
+  <nodes>
+    <node x="1949.2614734299527" y="2576.0">ba.unsa.etf.rpr.AboutController</node>
+    <node x="948.5" y="1568.0">ba.unsa.etf.rpr.DoctorsOfficeDAO</node>
+    <node x="55.761473429952616" y="2488.0">ba.unsa.etf.rpr.DoctorController</node>
+    <node x="1818.7614734299527" y="1113.0">ba.unsa.etf.rpr.RegisterController</node>
+    <node x="1486.4166666666665" y="2323.0">ba.unsa.etf.rpr.ExaminationController</node>
+    <node x="667.5" y="1865.0">ba.unsa.etf.rpr.HistoryOfExaminationsController</node>
+    <node x="1234.1589371980695" y="0.0">ba.unsa.etf.rpr.SexOfAUser</node>
+    <node x="1319.4556763285007" y="3010.0">ba.unsa.etf.rpr.Main</node>
+    <node x="515.7839371980695" y="34.5">ba.unsa.etf.rpr.EmptyStringException</node>
+    <node x="1638.0948067632862" y="714.0">ba.unsa.etf.rpr.Patient</node>
+    <node x="618.25" y="1135.0">ba.unsa.etf.rpr.Service</node>
+    <node x="1214.7698067632841" y="692.0">ba.unsa.etf.rpr.Doctor</node>
+    <node x="1287.4556763285007" y="2772.0">ba.unsa.etf.rpr.MainController</node>
+    <node x="1025.1589371980695" y="0.0">ba.unsa.etf.rpr.ProfileType</node>
+    <node x="1163.1589371980695" y="948.0">ba.unsa.etf.rpr.Examination</node>
+    <node x="1110.4556763285007" y="2510.0">ba.unsa.etf.rpr.PatientController</node>
+    <node x="156.5" y="2312.0">ba.unsa.etf.rpr.TextAreaController</node>
+    <node x="361.5" y="2345.0">ba.unsa.etf.rpr.Report</node>
+    <node x="831.2614734299527" y="222.0">ba.unsa.etf.rpr.User</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.Report" relationship="CREATE">
+      <point x="103.0" y="-116.0" />
+      <point x="313.2614734299526" y="2466.0" />
+      <point x="288.519806763284" y="2466.0" />
+      <point x="288.519806763284" y="2456.0" />
+      <point x="465.5" y="2456.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.Doctor" relationship="DEPENDENCY">
+      <point x="-71.33333333333326" y="-94.0" />
+      <point x="1323.1223429951674" y="2751.0" />
+      <point x="0.0" y="2751.0" />
+      <point x="0.0" y="896.0" />
+      <point x="92.76147342995262" y="896.0" />
+      <point x="92.76147342995262" y="866.0" />
+      <point x="1249.2698067632841" y="866.0" />
+      <point x="-69.0" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorsOfficeDAO" target="ba.unsa.etf.rpr.Doctor" relationship="CREATE">
+      <point x="-98.75" y="-325.0" />
+      <point x="1047.25" y="1546.0" />
+      <point x="1413.7056763285007" y="1546.0" />
+      <point x="1413.7056763285007" y="1476.0" />
+      <point x="1513.9089371980695" y="1476.0" />
+      <point x="1513.9089371980695" y="906.0" />
+      <point x="1860.1666666666665" y="906.0" />
+      <point x="1860.1666666666665" y="846.0" />
+      <point x="1387.269806763284" y="846.0" />
+      <point x="68.99999999999989" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Examination" target="ba.unsa.etf.rpr.Doctor" relationship="DEPENDENCY">
+      <point x="-84.0" y="-248.0" />
+      <point x="1247.1589371980695" y="926.0" />
+      <point x="1091.9556763285007" y="926.0" />
+      <point x="1091.9556763285007" y="886.0" />
+      <point x="92.76147342995262" y="886.0" />
+      <point x="92.76147342995262" y="866.0" />
+      <point x="1249.2698067632841" y="866.0" />
+      <point x="-69.0" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.ExaminationController" relationship="CREATE">
+      <point x="0.0" y="-94.0" />
+      <point x="1256.4556763285007" y="2456.0" />
+      <point x="1599.9166666666665" y="2456.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.RegisterController" target="ba.unsa.etf.rpr.Doctor" relationship="TO_ONE">
+      <point x="-80.0" y="-83.0" />
+      <point x="1858.7614734299527" y="926.0" />
+      <point x="1747.0948067632862" y="926.0" />
+      <point x="1747.0948067632862" y="876.0" />
+      <point x="1318.2698067632841" y="876.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Examination" target="ba.unsa.etf.rpr.Patient" relationship="DEPENDENCY">
+      <point x="-84.0" y="-248.0" />
+      <point x="1247.1589371980695" y="926.0" />
+      <point x="1091.9556763285007" y="926.0" />
+      <point x="1091.9556763285007" y="876.0" />
+      <point x="985.594806763286" y="876.0" />
+      <point x="985.594806763286" y="856.0" />
+      <point x="1674.4281400966192" y="856.0" />
+      <point x="-72.66666666666669" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.User" target="ba.unsa.etf.rpr.ProfileType" relationship="DEPENDENCY">
+      <point x="73.33333333333326" y="-193.0" />
+      <point x="1014.594806763286" y="191.0" />
+      <point x="922.9281400966192" y="191.0" />
+      <point x="922.9281400966192" y="151.0" />
+      <point x="1457.2839371980695" y="151.0" />
+      <point x="1457.2839371980695" y="131.0" />
+      <point x="1166.9089371980695" y="131.0" />
+      <point x="47.25" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorsOfficeDAO" target="ba.unsa.etf.rpr.Examination" relationship="CREATE">
+      <point x="-98.75" y="-325.0" />
+      <point x="1047.25" y="1546.0" />
+      <point x="1413.7056763285007" y="1546.0" />
+      <point x="1413.7056763285007" y="1516.0" />
+      <point x="1422.094806763286" y="1516.0" />
+      <point x="1422.094806763286" y="1466.0" />
+      <point x="1443.1589371980695" y="1466.0" />
+      <point x="112.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="DEPENDENCY">
+      <point x="-71.33333333333326" y="-94.0" />
+      <point x="1323.1223429951674" y="2751.0" />
+      <point x="0.0" y="2751.0" />
+      <point x="0.0" y="2741.0" />
+      <point x="10.5" y="2741.0" />
+      <point x="10.5" y="2280.0" />
+      <point x="580.0" y="2280.0" />
+      <point x="580.0" y="2260.0" />
+      <point x="1047.25" y="2260.0" />
+      <point x="-98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.HistoryOfExaminationsController" target="ba.unsa.etf.rpr.ProfileType" relationship="DEPENDENCY">
+      <point x="-65.0" y="-28.0" />
+      <point x="732.5" y="1546.0" />
+      <point x="791.75" y="1546.0" />
+      <point x="791.75" y="181.0" />
+      <point x="1457.2839371980695" y="181.0" />
+      <point x="1457.2839371980695" y="131.0" />
+      <point x="1166.9089371980695" y="131.0" />
+      <point x="47.25" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.ExaminationController" target="ba.unsa.etf.rpr.Patient" relationship="CREATE">
+      <point x="75.66666666666663" y="-50.0" />
+      <point x="1675.5833333333333" y="2290.0" />
+      <point x="1778.5948067632858" y="2290.0" />
+      <point x="1778.5948067632858" y="916.0" />
+      <point x="1870.1666666666665" y="916.0" />
+      <point x="1870.1666666666665" y="836.0" />
+      <point x="1819.7614734299527" y="836.0" />
+      <point x="72.66666666666674" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.User" target="ba.unsa.etf.rpr.EmptyStringException" relationship="CREATE">
+      <point x="-73.33333333333326" y="-193.0" />
+      <point x="867.9281400966195" y="131.0" />
+      <point x="611.7839371980695" y="131.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.Examination" relationship="TO_MANY">
+      <point x="97.33333333333331" y="-94.0" />
+      <point x="1353.789009661834" y="2466.0" />
+      <point x="1808.2614734299527" y="2466.0" />
+      <point x="1808.2614734299527" y="1526.0" />
+      <point x="1364.25" y="1526.0" />
+      <point x="1364.25" y="1466.0" />
+      <point x="1331.1589371980695" y="1466.0" />
+      <point x="0.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.RegisterController" target="ba.unsa.etf.rpr.Patient" relationship="CREATE">
+      <point x="0.0" y="-83.0" />
+      <point x="1938.7614734299527" y="886.0" />
+      <point x="1870.1666666666665" y="886.0" />
+      <point x="1870.1666666666665" y="836.0" />
+      <point x="1819.7614734299527" y="836.0" />
+      <point x="72.66666666666674" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.PatientController" relationship="CREATE">
+      <point x="0.0" y="-94.0" />
+      <point x="1394.4556763285007" y="2741.0" />
+      <point x="1256.4556763285007" y="2741.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.RegisterController" relationship="CREATE">
+      <point x="0.0" y="-94.0" />
+      <point x="1394.4556763285007" y="2741.0" />
+      <point x="1938.7614734299527" y="2741.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Doctor" target="ba.unsa.etf.rpr.User" relationship="GENERALIZATION">
+      <point x="51.749999999999886" y="-61.0" />
+      <point x="1370.019806763284" y="650.0" />
+      <point x="1420.4089371980692" y="650.0" />
+      <point x="1420.4089371980692" y="630.0" />
+      <point x="1014.594806763286" y="630.0" />
+      <point x="73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.RegisterController" target="ba.unsa.etf.rpr.ProfileType" relationship="DEPENDENCY">
+      <point x="80.0" y="-83.0" />
+      <point x="2018.7614734299527" y="926.0" />
+      <point x="2004.458333333333" y="926.0" />
+      <point x="2004.458333333333" y="916.0" />
+      <point x="1954.0114734299527" y="916.0" />
+      <point x="1954.0114734299527" y="181.0" />
+      <point x="1457.2839371980695" y="181.0" />
+      <point x="1457.2839371980695" y="131.0" />
+      <point x="1166.9089371980695" y="131.0" />
+      <point x="47.25" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.Examination" relationship="DEPENDENCY">
+      <point x="-97.33333333333331" y="-94.0" />
+      <point x="1159.1223429951674" y="2466.0" />
+      <point x="650.6223429951672" y="2466.0" />
+      <point x="650.6223429951672" y="2456.0" />
+      <point x="613.0" y="2456.0" />
+      <point x="613.0" y="1486.0" />
+      <point x="1219.1589371980695" y="1486.0" />
+      <point x="-112.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.RegisterController" target="ba.unsa.etf.rpr.Doctor" relationship="CREATE">
+      <point x="0.0" y="-83.0" />
+      <point x="1938.7614734299527" y="896.0" />
+      <point x="1860.1666666666665" y="896.0" />
+      <point x="1860.1666666666665" y="846.0" />
+      <point x="1387.269806763284" y="846.0" />
+      <point x="68.99999999999989" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Patient" target="ba.unsa.etf.rpr.User" relationship="GENERALIZATION">
+      <point x="-54.5" y="-39.0" />
+      <point x="1692.5948067632862" y="650.0" />
+      <point x="1420.4089371980692" y="650.0" />
+      <point x="1420.4089371980692" y="630.0" />
+      <point x="1014.594806763286" y="630.0" />
+      <point x="73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.User" relationship="DEPENDENCY">
+      <point x="-71.33333333333326" y="-94.0" />
+      <point x="1323.1223429951674" y="2751.0" />
+      <point x="0.0" y="2751.0" />
+      <point x="0.0" y="660.0" />
+      <point x="849.594806763286" y="660.0" />
+      <point x="849.594806763286" y="640.0" />
+      <point x="867.9281400966195" y="640.0" />
+      <point x="-73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="DEPENDENCY">
+      <point x="-97.33333333333331" y="-94.0" />
+      <point x="1159.1223429951674" y="2466.0" />
+      <point x="650.6223429951672" y="2466.0" />
+      <point x="650.6223429951672" y="2456.0" />
+      <point x="580.0" y="2456.0" />
+      <point x="580.0" y="2260.0" />
+      <point x="1047.25" y="2260.0" />
+      <point x="-98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.User" target="ba.unsa.etf.rpr.SexOfAUser" relationship="TO_ONE">
+      <point x="0.0" y="-193.0" />
+      <point x="941.2614734299527" y="201.0" />
+      <point x="705.6364734299527" y="201.0" />
+      <point x="705.6364734299527" y="141.0" />
+      <point x="1282.1589371980695" y="141.0" />
+      <point x="-48.0" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.Doctor" relationship="TO_ONE">
+      <point x="0.0" y="-116.0" />
+      <point x="210.26147342995262" y="2466.0" />
+      <point x="135.0" y="2466.0" />
+      <point x="135.0" y="2456.0" />
+      <point x="103.76147342995262" y="2456.0" />
+      <point x="103.76147342995262" y="916.0" />
+      <point x="1318.2698067632841" y="916.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.RegisterController" target="ba.unsa.etf.rpr.SexOfAUser" relationship="DEPENDENCY">
+      <point x="80.0" y="-83.0" />
+      <point x="2018.7614734299527" y="926.0" />
+      <point x="2004.458333333333" y="926.0" />
+      <point x="2004.458333333333" y="171.0" />
+      <point x="1656.7839371980695" y="171.0" />
+      <point x="1656.7839371980695" y="121.0" />
+      <point x="1378.1589371980695" y="121.0" />
+      <point x="48.0" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.HistoryOfExaminationsController" target="ba.unsa.etf.rpr.Examination" relationship="TO_MANY">
+      <point x="65.0" y="-28.0" />
+      <point x="862.5" y="1516.0" />
+      <point x="1364.25" y="1516.0" />
+      <point x="1364.25" y="1466.0" />
+      <point x="1331.1589371980695" y="1466.0" />
+      <point x="0.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.HistoryOfExaminationsController" target="ba.unsa.etf.rpr.User" relationship="DEPENDENCY">
+      <point x="-65.0" y="-28.0" />
+      <point x="732.5" y="1546.0" />
+      <point x="791.75" y="1546.0" />
+      <point x="791.75" y="1516.0" />
+      <point x="802.0" y="1516.0" />
+      <point x="802.0" y="660.0" />
+      <point x="849.594806763286" y="660.0" />
+      <point x="849.594806763286" y="640.0" />
+      <point x="867.9281400966195" y="640.0" />
+      <point x="-73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.AboutController" relationship="CREATE">
+      <point x="0.0" y="-94.0" />
+      <point x="1394.4556763285007" y="2741.0" />
+      <point x="2041.7614734299527" y="2741.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.Patient" relationship="DEPENDENCY">
+      <point x="-71.33333333333326" y="-94.0" />
+      <point x="1323.1223429951674" y="2751.0" />
+      <point x="0.0" y="2751.0" />
+      <point x="1.1368683772161603E-13" y="906.0" />
+      <point x="985.594806763286" y="906.0" />
+      <point x="985.594806763286" y="856.0" />
+      <point x="1674.4281400966192" y="856.0" />
+      <point x="-72.66666666666669" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.Patient" relationship="TO_ONE">
+      <point x="97.33333333333331" y="-94.0" />
+      <point x="1353.789009661834" y="2466.0" />
+      <point x="1808.2614734299527" y="2466.0" />
+      <point x="1808.2614734299527" y="866.0" />
+      <point x="1747.0948067632862" y="866.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorsOfficeDAO" target="ba.unsa.etf.rpr.User" relationship="DEPENDENCY">
+      <point x="98.75" y="-325.0" />
+      <point x="1244.75" y="1536.0" />
+      <point x="1616.5948067632862" y="1536.0" />
+      <point x="1616.5948067632862" y="1496.0" />
+      <point x="1526.6146135265699" y="1496.0" />
+      <point x="1526.6146135265699" y="660.0" />
+      <point x="849.5948067632861" y="660.0" />
+      <point x="849.594806763286" y="640.0" />
+      <point x="867.9281400966195" y="640.0" />
+      <point x="-73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="TO_ONE">
+      <point x="0.0" y="-116.0" />
+      <point x="210.26147342995262" y="2466.0" />
+      <point x="135.0" y="2466.0" />
+      <point x="134.9999999999999" y="2270.0" />
+      <point x="1768.0948067632862" y="2270.0" />
+      <point x="1768.0948067632862" y="2250.0" />
+      <point x="1244.75" y="2250.0" />
+      <point x="98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.ExaminationController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="TO_ONE">
+      <point x="0.0" y="-50.0" />
+      <point x="1599.9166666666665" y="2290.0" />
+      <point x="1670.9556763285004" y="2290.0" />
+      <point x="1670.9556763285004" y="2260.0" />
+      <point x="1768.0948067632862" y="2260.0" />
+      <point x="1768.0948067632862" y="2250.0" />
+      <point x="1244.75" y="2250.0" />
+      <point x="98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.Examination" relationship="DEPENDENCY">
+      <point x="-103.0" y="-116.0" />
+      <point x="107.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2456.0" />
+      <point x="92.76147342995262" y="2456.0" />
+      <point x="92.76147342995262" y="1506.0" />
+      <point x="613.0" y="1506.0" />
+      <point x="613.0" y="1486.0" />
+      <point x="1219.1589371980695" y="1486.0" />
+      <point x="-112.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.User" target="ba.unsa.etf.rpr.ProfileType" relationship="TO_ONE">
+      <point x="0.0" y="-193.0" />
+      <point x="941.2614734299527" y="201.0" />
+      <point x="705.6364734299527" y="201.0" />
+      <point x="705.6364734299527" y="141.0" />
+      <point x="1072.4089371980695" y="141.0" />
+      <point x="-47.25" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorsOfficeDAO" target="ba.unsa.etf.rpr.SexOfAUser" relationship="DEPENDENCY">
+      <point x="98.75" y="-325.0" />
+      <point x="1244.75" y="1536.0" />
+      <point x="1616.5948067632862" y="1536.0" />
+      <point x="1616.5948067632862" y="1496.0" />
+      <point x="1627.5948067632862" y="1496.0" />
+      <point x="1627.5948067632862" y="171.0" />
+      <point x="1656.7839371980695" y="171.0" />
+      <point x="1656.7839371980695" y="121.0" />
+      <point x="1378.1589371980695" y="121.0" />
+      <point x="48.0" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Examination" target="ba.unsa.etf.rpr.Patient" relationship="TO_ONE">
+      <point x="84.0" y="-248.0" />
+      <point x="1415.1589371980695" y="896.0" />
+      <point x="1747.0948067632862" y="896.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Examination" target="ba.unsa.etf.rpr.Doctor" relationship="TO_ONE">
+      <point x="84.0" y="-248.0" />
+      <point x="1415.1589371980695" y="886.0" />
+      <point x="1318.2698067632841" y="886.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.User" relationship="DEPENDENCY">
+      <point x="-97.33333333333331" y="-94.0" />
+      <point x="1159.1223429951674" y="2466.0" />
+      <point x="650.6223429951672" y="2466.0" />
+      <point x="650.6223429951672" y="2456.0" />
+      <point x="602.0" y="2456.0" />
+      <point x="602.0" y="660.0" />
+      <point x="849.594806763286" y="660.0" />
+      <point x="849.594806763286" y="640.0" />
+      <point x="867.9281400966195" y="640.0" />
+      <point x="-73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.ExaminationController" target="ba.unsa.etf.rpr.Patient" relationship="TO_ONE">
+      <point x="0.0" y="-50.0" />
+      <point x="1599.9166666666665" y="2290.0" />
+      <point x="1670.9556763285004" y="2290.0" />
+      <point x="1670.9556763285004" y="2240.0" />
+      <point x="1757.5948067632862" y="2240.0" />
+      <point x="1757.5948067632862" y="866.0" />
+      <point x="1747.0948067632862" y="866.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.HistoryOfExaminationsController" relationship="CREATE">
+      <point x="0.0" y="-94.0" />
+      <point x="1256.4556763285007" y="2456.0" />
+      <point x="1194.4556763285007" y="2456.0" />
+      <point x="1194.4556763285007" y="2290.0" />
+      <point x="797.5" y="2290.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.DoctorController" relationship="CREATE">
+      <point x="0.0" y="-94.0" />
+      <point x="1394.4556763285007" y="2741.0" />
+      <point x="210.26147342995262" y="2741.0" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Patient" target="ba.unsa.etf.rpr.SexOfAUser" relationship="DEPENDENCY">
+      <point x="54.5" y="-39.0" />
+      <point x="1801.5948067632862" y="670.0" />
+      <point x="1728.6666666666665" y="670.0" />
+      <point x="1728.6666666666665" y="171.0" />
+      <point x="1656.7839371980695" y="171.0" />
+      <point x="1656.7839371980695" y="121.0" />
+      <point x="1378.1589371980695" y="121.0" />
+      <point x="48.0" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Patient" target="ba.unsa.etf.rpr.ProfileType" relationship="DEPENDENCY">
+      <point x="54.5" y="-39.0" />
+      <point x="1801.5948067632862" y="670.0" />
+      <point x="1728.6666666666665" y="670.0" />
+      <point x="1728.6666666666665" y="181.0" />
+      <point x="1457.2839371980695" y="181.0" />
+      <point x="1457.2839371980695" y="131.0" />
+      <point x="1166.9089371980695" y="131.0" />
+      <point x="47.25" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="TO_ONE">
+      <point x="71.33333333333337" y="-94.0" />
+      <point x="1465.789009661834" y="2751.0" />
+      <point x="2144.7614734299527" y="2751.0" />
+      <point x="2144.7614734299527" y="2270.0" />
+      <point x="1768.0948067632862" y="2270.0" />
+      <point x="1768.0948067632862" y="2250.0" />
+      <point x="1244.75" y="2250.0" />
+      <point x="98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.ExaminationController" target="ba.unsa.etf.rpr.Examination" relationship="TO_ONE">
+      <point x="0.0" y="-50.0" />
+      <point x="1599.9166666666665" y="2290.0" />
+      <point x="1670.9556763285004" y="2290.0" />
+      <point x="1670.9556763285004" y="2240.0" />
+      <point x="1354.0" y="2240.0" />
+      <point x="1354.0" y="1526.0" />
+      <point x="1364.25" y="1526.0" />
+      <point x="1364.25" y="1466.0" />
+      <point x="1331.1589371980695" y="1466.0" />
+      <point x="0.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.MainController" target="ba.unsa.etf.rpr.Service" relationship="DEPENDENCY">
+      <point x="-71.33333333333326" y="-94.0" />
+      <point x="1323.1223429951674" y="2751.0" />
+      <point x="0.0" y="2751.0" />
+      <point x="0.0" y="2741.0" />
+      <point x="10.5" y="2741.0" />
+      <point x="10.5" y="1516.0" />
+      <point x="659.0" y="1516.0" />
+      <point x="-40.75" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorsOfficeDAO" target="ba.unsa.etf.rpr.Service" relationship="CREATE">
+      <point x="-98.75" y="-325.0" />
+      <point x="1047.25" y="1546.0" />
+      <point x="1413.7056763285007" y="1546.0" />
+      <point x="1413.7056763285007" y="1476.0" />
+      <point x="740.5" y="1476.0" />
+      <point x="40.75" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.Examination" relationship="TO_MANY">
+      <point x="0.0" y="-116.0" />
+      <point x="210.26147342995262" y="2466.0" />
+      <point x="135.0" y="2466.0" />
+      <point x="135.0" y="1526.0" />
+      <point x="1364.25" y="1526.0" />
+      <point x="1364.25" y="1466.0" />
+      <point x="1331.1589371980695" y="1466.0" />
+      <point x="0.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.TextAreaController" relationship="CREATE">
+      <point x="103.0" y="-116.0" />
+      <point x="313.2614734299526" y="2466.0" />
+      <point x="288.519806763284" y="2466.0" />
+      <point x="288.519806763284" y="2456.0" />
+      <point x="249.0" y="2456.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.HistoryOfExaminationsController" relationship="CREATE">
+      <point x="103.0" y="-116.0" />
+      <point x="313.2614734299526" y="2466.0" />
+      <point x="288.519806763284" y="2466.0" />
+      <point x="288.519806763284" y="2456.0" />
+      <point x="146.0" y="2456.0" />
+      <point x="146.0" y="2290.0" />
+      <point x="797.5" y="2290.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorsOfficeDAO" target="ba.unsa.etf.rpr.ProfileType" relationship="DEPENDENCY">
+      <point x="98.75" y="-325.0" />
+      <point x="1244.75" y="1536.0" />
+      <point x="1616.5948067632862" y="1536.0" />
+      <point x="1616.5948067632862" y="1496.0" />
+      <point x="1595.4556763285004" y="1496.0" />
+      <point x="1595.4556763285004" y="181.0" />
+      <point x="1457.2839371980695" y="181.0" />
+      <point x="1457.2839371980695" y="131.0" />
+      <point x="1166.9089371980695" y="131.0" />
+      <point x="47.25" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Doctor" target="ba.unsa.etf.rpr.ProfileType" relationship="DEPENDENCY">
+      <point x="-51.750000000000114" y="-61.0" />
+      <point x="1266.519806763284" y="670.0" />
+      <point x="1359.769806763284" y="670.0" />
+      <point x="1359.769806763284" y="640.0" />
+      <point x="1409.9089371980692" y="640.0" />
+      <point x="1409.9089371980692" y="181.0" />
+      <point x="1457.2839371980695" y="181.0" />
+      <point x="1457.2839371980695" y="131.0" />
+      <point x="1166.9089371980695" y="131.0" />
+      <point x="47.25" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Examination" target="ba.unsa.etf.rpr.User" relationship="DEPENDENCY">
+      <point x="-84.0" y="-248.0" />
+      <point x="1247.1589371980695" y="926.0" />
+      <point x="1091.9556763285007" y="926.0" />
+      <point x="1091.9556763285007" y="906.0" />
+      <point x="1097.2056763285007" y="906.0" />
+      <point x="1097.2056763285007" y="660.0" />
+      <point x="849.594806763286" y="660.0" />
+      <point x="849.594806763286" y="640.0" />
+      <point x="867.9281400966195" y="640.0" />
+      <point x="-73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.HistoryOfExaminationsController" target="ba.unsa.etf.rpr.User" relationship="TO_ONE">
+      <point x="65.0" y="-28.0" />
+      <point x="862.5" y="650.0" />
+      <point x="941.2614734299527" y="650.0" />
+      <point x="0.0" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Main" target="ba.unsa.etf.rpr.MainController" relationship="CREATE">
+      <point x="0.0" y="-39.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="TO_ONE">
+      <point x="97.33333333333331" y="-94.0" />
+      <point x="1353.789009661834" y="2466.0" />
+      <point x="1808.0114734299527" y="2466.0" />
+      <point x="1808.0114734299527" y="2270.0" />
+      <point x="1768.0948067632862" y="2270.0" />
+      <point x="1768.0948067632862" y="2250.0" />
+      <point x="1244.75" y="2250.0" />
+      <point x="98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.HistoryOfExaminationsController" target="ba.unsa.etf.rpr.Examination" relationship="DEPENDENCY">
+      <point x="-65.0" y="-28.0" />
+      <point x="732.5" y="1546.0" />
+      <point x="791.75" y="1546.0" />
+      <point x="791.75" y="1496.0" />
+      <point x="613.0" y="1496.0" />
+      <point x="613.0" y="1486.0" />
+      <point x="1219.1589371980695" y="1486.0" />
+      <point x="-112.0" y="248.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.User" relationship="DEPENDENCY">
+      <point x="-103.0" y="-116.0" />
+      <point x="107.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2456.0" />
+      <point x="81.76147342995262" y="2456.0" />
+      <point x="81.76147342995262" y="660.0" />
+      <point x="849.5948067632861" y="660.0" />
+      <point x="849.594806763286" y="640.0" />
+      <point x="867.9281400966195" y="640.0" />
+      <point x="-73.33333333333326" y="193.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.User" target="ba.unsa.etf.rpr.SexOfAUser" relationship="DEPENDENCY">
+      <point x="73.33333333333326" y="-193.0" />
+      <point x="1014.594806763286" y="191.0" />
+      <point x="922.9281400966192" y="191.0" />
+      <point x="922.9281400966192" y="161.0" />
+      <point x="1656.7839371980695" y="161.0" />
+      <point x="1656.7839371980695" y="121.0" />
+      <point x="1378.1589371980695" y="121.0" />
+      <point x="48.0" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.ExaminationController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="DEPENDENCY">
+      <point x="-75.66666666666674" y="-50.0" />
+      <point x="1524.25" y="2280.0" />
+      <point x="580.0" y="2280.0" />
+      <point x="580.0" y="2260.0" />
+      <point x="1047.25" y="2260.0" />
+      <point x="-98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.DoctorsOfficeDAO" relationship="DEPENDENCY">
+      <point x="-103.0" y="-116.0" />
+      <point x="107.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2456.0" />
+      <point x="92.76147342995262" y="2456.0" />
+      <point x="92.76147342995262" y="2280.0" />
+      <point x="580.0" y="2280.0" />
+      <point x="580.0" y="2260.0" />
+      <point x="1047.25" y="2260.0" />
+      <point x="-98.75" y="325.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.PatientController" target="ba.unsa.etf.rpr.Patient" relationship="DEPENDENCY">
+      <point x="-97.33333333333331" y="-94.0" />
+      <point x="1159.1223429951674" y="2466.0" />
+      <point x="650.6223429951672" y="2466.0" />
+      <point x="650.6223429951672" y="2456.0" />
+      <point x="938.0" y="2456.0" />
+      <point x="938.0" y="906.0" />
+      <point x="985.594806763286" y="906.0" />
+      <point x="985.594806763286" y="856.0" />
+      <point x="1674.4281400966192" y="856.0" />
+      <point x="-72.66666666666669" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.Doctor" target="ba.unsa.etf.rpr.SexOfAUser" relationship="DEPENDENCY">
+      <point x="-51.750000000000114" y="-61.0" />
+      <point x="1266.519806763284" y="670.0" />
+      <point x="1359.769806763284" y="670.0" />
+      <point x="1359.769806763284" y="640.0" />
+      <point x="1409.9089371980692" y="640.0" />
+      <point x="1409.9089371980692" y="171.0" />
+      <point x="1656.7839371980695" y="171.0" />
+      <point x="1656.7839371980695" y="121.0" />
+      <point x="1378.1589371980695" y="121.0" />
+      <point x="48.0" y="50.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorController" target="ba.unsa.etf.rpr.Doctor" relationship="DEPENDENCY">
+      <point x="-103.0" y="-116.0" />
+      <point x="107.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2466.0" />
+      <point x="87.26147342995262" y="2456.0" />
+      <point x="92.76147342995262" y="2456.0" />
+      <point x="92.76147342995262" y="866.0" />
+      <point x="1249.2698067632841" y="866.0" />
+      <point x="-69.0" y="61.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.DoctorsOfficeDAO" target="ba.unsa.etf.rpr.Patient" relationship="CREATE">
+      <point x="-98.75" y="-325.0" />
+      <point x="1047.25" y="1546.0" />
+      <point x="1413.7056763285007" y="1546.0" />
+      <point x="1413.7056763285007" y="1476.0" />
+      <point x="1513.9089371980695" y="1476.0" />
+      <point x="1513.9089371980695" y="916.0" />
+      <point x="1870.1666666666665" y="916.0" />
+      <point x="1870.1666666666665" y="836.0" />
+      <point x="1819.7614734299527" y="836.0" />
+      <point x="72.66666666666674" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.RegisterController" target="ba.unsa.etf.rpr.Patient" relationship="TO_ONE">
+      <point x="-80.0" y="-83.0" />
+      <point x="1858.7614734299527" y="926.0" />
+      <point x="1747.0948067632862" y="926.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="ba.unsa.etf.rpr.ExaminationController" target="ba.unsa.etf.rpr.Examination" relationship="CREATE">
+      <point x="75.66666666666663" y="-50.0" />
+      <point x="1675.5833333333333" y="2290.0" />
+      <point x="1778.5948067632858" y="2290.0" />
+      <point x="1778.5948067632858" y="1506.0" />
+      <point x="1422.094806763286" y="1506.0" />
+      <point x="1422.094806763286" y="1466.0" />
+      <point x="1443.1589371980695" y="1466.0" />
+      <point x="112.0" y="248.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="1072.5" y="170.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
