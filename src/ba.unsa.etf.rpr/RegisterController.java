@@ -146,4 +146,9 @@ public class RegisterController {
         stage.close();
     }
 
+    public void cancelClick(ActionEvent actionEvent){
+        Stage stage = (Stage) registerBtn.getScene().getWindow();
+        stage.close();
+    }
+
 }

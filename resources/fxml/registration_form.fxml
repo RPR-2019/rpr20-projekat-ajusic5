@@ -159,6 +159,7 @@
         <ButtonBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="8">
             <buttons>
                 <Button fx:id="registerBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registracijaAction" text="%Registracija" ButtonBar.buttonData="LEFT" />
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancelClick" text="%otkazi" />
             </buttons>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
