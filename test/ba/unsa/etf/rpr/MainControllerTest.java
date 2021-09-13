@@ -80,4 +80,19 @@ class MainControllerTest {
         robot.clickOn(okButton);
 
     }
+
+    @Test
+    public void validUsernameAndPasswordTest(FxRobot robot){
+        robot.lookup("#usernameFld").tryQuery().isPresent();
+        robot.clickOn("#usernameFld");
+        robot.write("ajusic5");
+
+        robot.clickOn("#passwordFld");
+        robot.write("neithoaleeng");
+
+        robot.clickOn("#signInBtn");
+
+        assertFalse( robot.lookup(".dialog-pane").tryQuery().isPresent());
+
+    }
 }
