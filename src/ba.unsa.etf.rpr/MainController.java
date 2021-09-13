@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -31,7 +32,7 @@ public class MainController {
     public TableColumn servicesCol;
     private DoctorsOfficeDAO dao;
 
-    public MainController() {
+    public MainController() throws SQLException {
         dao = DoctorsOfficeDAO.getInstanca();
 
     }
@@ -124,7 +125,7 @@ public class MainController {
 
     }
 
-    public void bosnianClick(ActionEvent actionEvent) throws IOException {
+    public void bosnianClick(ActionEvent actionEvent) throws IOException, SQLException {
         Stage primaryStage = (Stage) usernameFld.getScene().getWindow();
         primaryStage.close();
 
@@ -141,7 +142,7 @@ public class MainController {
 
     }
 
-    public void englishClick(ActionEvent actionEvent) throws IOException {
+    public void englishClick(ActionEvent actionEvent) throws IOException, SQLException {
 
         Stage primaryStage = (Stage) usernameFld.getScene().getWindow();
         primaryStage.close();

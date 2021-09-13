@@ -7,12 +7,13 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, SQLException {
 
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/homepage.fxml"), bundle);
