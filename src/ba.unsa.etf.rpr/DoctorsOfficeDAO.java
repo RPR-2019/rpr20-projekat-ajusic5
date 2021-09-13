@@ -16,7 +16,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             addAServiceQuery, getNextPatientIdQuery, getNextDoctorIdQuery, getNextExaminationIdQuery, getNextServiceIdQuery, addAServiceForADoctorQuery, addTherapyQuery, linkDoctorAndServiceQuery,
             getServiceIdQuery, checkTheAppointmentQuery, getDoctorIdQuery, getAllDoctorsQuery, getAllServicesQuery,  getAllAppointmentsQuery, getCurrentPatient, getDoctorsServicesQuery,
             getAppointmentsDoctorCanDoQuery, getAppointmentsThePatientScheduled, getIdsOfDoctorsThatCanDoTheExaminationQuery, getPatienIdQuery, getAppointmentsThatPatientDidQuery, getAppointmentsDoctorDidQuery,
-            getDoctorQuery, getAppointmentQuery, addDiagnosisQuery, getPatientQuery, deleteAppointmentQuery, deleteServiceForADoctorQuery, getCurrentDoctorQuery;
+            getDoctorQuery, getAppointmentQuery, getSpecializationsQuery, addDiagnosisQuery, getPatientQuery, deleteAppointmentQuery, deleteServiceForADoctorQuery, getCurrentDoctorQuery;
 
     private DoctorsOfficeDAO() {
         try {
@@ -37,7 +37,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             getNextExaminationIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM PREGLED");
             getNextServiceIdQuery = conn.prepareStatement("SELECT  MAX(id)+1 FROM USLUGE");
             addAServiceForADoctorQuery = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
-            addTherapyQuery = conn.prepareStatement("UPDATE PREGLED SET therapy=?, doctor_id=? WHERE id=?");
+            addTherapyQuery = conn.prepareStatement("UPDATE PREGLED SET therapy=?, doctor_id=?, successful=1 WHERE id=?");
             linkDoctorAndServiceQuery = conn.prepareStatement("INSERT INTO LJEKAR_USLUGE VALUES(?,?)");
             getServiceIdQuery = conn.prepareStatement("SELECT id FROM USLUGE WHERE name=?");
             getAllServicesQuery = conn.prepareStatement("SELECT * FROM USLUGE");
@@ -60,7 +60,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             getPatienIdQuery = conn.prepareStatement("SELECT patient_id FROM PACIJENT WHERE username=?");
             getIdsOfDoctorsThatCanDoTheExaminationQuery = conn.prepareStatement("SELECT doctor_id FROM LJEKAR_USLUGE WHERE med_service_id=?");
             getAppointmentsThePatientScheduled = conn.prepareStatement("SELECT * FROM PREGLED WHERE patient_id=? AND archived=0 AND doctor_id<>-2");
-
+            getSpecializationsQuery = conn.prepareStatement("SELECT DISTINCT field_of_expertise from LJEKAR");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -628,6 +628,23 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
                 l.add(rs.getString(2));
             }
             return l;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<String> getSpecializations() {
+
+        try {
+            var rs = getSpecializationsQuery.executeQuery();
+
+            ArrayList<String> specializations = new ArrayList<>();
+
+            while (rs.next()) {
+                specializations.add(rs.getString(1));
+            }
+            return specializations;
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -58,7 +58,7 @@ public class RegisterController {
         patient = null;
     }
 
-    public RegisterController() {
+    public RegisterController(ArrayList<String> namesOfServices) {
 
         ArrayList<String> l = new ArrayList<>();
         for(int i=1; i<32; i++)
@@ -86,8 +86,8 @@ public class RegisterController {
         l4=FXCollections.observableArrayList(l);
 
         l.clear();
-        l.add("Oftamolog");
-        l5=FXCollections.observableArrayList(l);
+
+        l5=FXCollections.observableArrayList(namesOfServices);
 
     }
 

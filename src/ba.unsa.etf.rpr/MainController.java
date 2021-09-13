@@ -93,7 +93,7 @@ public class MainController {
 
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registration_form.fxml"), bundle);
-        RegisterController controller = new RegisterController();
+        RegisterController controller = new RegisterController(dao.getSpecializations());
         loader.setController(controller);
         Parent root = null;
         root = loader.load();
