@@ -33,14 +33,14 @@ public class PatientController {
     private Patient patient;
     private List<Integer> doctorId;
     private ArrayList<Examination> appointments = new ArrayList<>();
-    private DoctorsOfficeDAO dao;
+    private DoctorsOffice dao;
 
 
     public PatientController(ArrayList<String> services, ArrayList<LocalDateTime> dajSveZakazanePreglede, Patient patient, List<Integer> doctorId) {
         this.services = services;
         this.patient = patient;
         this.doctorId = doctorId;
-        dao = DoctorsOfficeDAO.getInstanca();
+        dao = DoctorsOffice.getInstanca();
     }
     @FXML
     public void initialize(){

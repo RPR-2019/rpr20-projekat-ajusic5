@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
+public class DoctorsOffice {private static DoctorsOffice instanca;
     private Connection conn;
     private PreparedStatement patientSignInQuery, doctorSignInQuery, patientRegistrationQuery, doctorRegistrationQuery, scheduleAnAppointmentQuery, cancelTheAppointmentQuery,
             addAServiceQuery, getNextPatientIdQuery, getNextDoctorIdQuery, getNextExaminationIdQuery, getNextServiceIdQuery, addAServiceForADoctorQuery, addTherapyQuery, linkDoctorAndServiceQuery,
@@ -18,7 +18,7 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
             getAppointmentsDoctorCanDoQuery, getAppointmentsThePatientScheduled, getIdsOfDoctorsThatCanDoTheExaminationQuery, getPatienIdQuery, getAppointmentsThatPatientDidQuery, getAppointmentsDoctorDidQuery,
             getDoctorQuery, getAppointmentQuery, getSpecializationsQuery, addDiagnosisQuery, getPatientQuery, deleteAppointmentQuery, deleteServiceForADoctorQuery, getCurrentDoctorQuery;
 
-    private DoctorsOfficeDAO() {
+    private DoctorsOffice() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:baza.db");
         } catch (SQLException e) {
@@ -66,8 +66,8 @@ public class DoctorsOfficeDAO {private static DoctorsOfficeDAO instanca;
         }
     }
 
-    public static DoctorsOfficeDAO getInstanca() {
-        if (instanca == null) instanca = new DoctorsOfficeDAO();
+    public static DoctorsOffice getInstanca() {
+        if (instanca == null) instanca = new DoctorsOffice();
         return instanca;
     }
 

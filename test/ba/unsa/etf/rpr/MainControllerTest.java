@@ -24,7 +24,7 @@ class MainControllerTest {
 
     Stage theStage;
     MainController controller;
-    DoctorsOfficeDAO dao = DoctorsOfficeDAO.getInstanca();
+    DoctorsOffice dao = DoctorsOffice.getInstanca();
 
 
     @Start
@@ -88,7 +88,7 @@ class MainControllerTest {
         robot.write("ajusic5");
 
         robot.clickOn("#passwordFld");
-        robot.write("neithoaleeng");
+        robot.write("amna");
 
         robot.clickOn("#signInBtn");
 

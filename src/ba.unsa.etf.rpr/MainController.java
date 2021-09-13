@@ -30,10 +30,11 @@ public class MainController {
     public TableView<Service> servicesTab = new TableView<>();
     @FXML
     public TableColumn servicesCol;
-    private DoctorsOfficeDAO dao;
+    private DoctorsOffice dao;
 
     public MainController() throws SQLException {
-        dao = DoctorsOfficeDAO.getInstanca();
+        dao = DoctorsOffice.getInstanca();
+        dao.vratiBazuNaDefault();
 
     }
 

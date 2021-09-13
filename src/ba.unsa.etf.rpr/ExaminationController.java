@@ -27,7 +27,7 @@ public class ExaminationController {
     private ArrayList<LocalDateTime> appointments = new ArrayList<>();
     private Patient patient = new Patient();
     private List<Integer> doctorId = new ArrayList<>();
-    private DoctorsOfficeDAO dao;
+    private DoctorsOffice dao;
 
     public ExaminationController(ArrayList<String> services, Patient patient, List<Integer> doctorId) {
         this.services = services;
@@ -48,7 +48,7 @@ public class ExaminationController {
 
         timeCB.getItems().addAll("08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30");
 
-        dao = DoctorsOfficeDAO.getInstanca();
+        dao = DoctorsOffice.getInstanca();
 
     }
 

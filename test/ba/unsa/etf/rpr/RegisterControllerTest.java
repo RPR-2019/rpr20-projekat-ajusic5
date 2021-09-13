@@ -30,7 +30,7 @@ class RegisterControllerTest {
 
     Stage theStage;
     RegisterController controller;
-    DoctorsOfficeDAO dao = DoctorsOfficeDAO.getInstanca();
+    DoctorsOffice dao = DoctorsOffice.getInstanca();
 
     @Start
     public void start(Stage stage) throws Exception {

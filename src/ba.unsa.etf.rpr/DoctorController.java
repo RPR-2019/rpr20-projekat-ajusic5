@@ -35,7 +35,7 @@ public class DoctorController {
     private ArrayList<Examination> examinationsThatDoctorCanDo;
     private ArrayList<Examination> examinationsThatDoctorDid;
     private ObservableList<String> allServices;
-    private DoctorsOfficeDAO dao;
+    private DoctorsOffice dao;
     private ObservableList<Examination> examinations;
 
     public DoctorController(ArrayList<String> doctorsServices, ArrayList<Examination> examinationsThatDoctorCanDo, ArrayList<Examination> examinationsThatDoctorDid, Doctor doctor, ArrayList<String> allServices) {
@@ -44,7 +44,7 @@ public class DoctorController {
         this.examinationsThatDoctorDid = examinationsThatDoctorDid;
         this.doctor = doctor;
         this.allServices = FXCollections.observableArrayList(allServices);
-        dao = DoctorsOfficeDAO.getInstanca();
+        dao = DoctorsOffice.getInstanca();
         examinations = FXCollections.observableArrayList(examinationsThatDoctorCanDo);
     }
     @FXML

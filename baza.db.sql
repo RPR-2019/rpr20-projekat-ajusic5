@@ -61,7 +61,7 @@ INSERT INTO "Doctor_service" VALUES (3,2);
 INSERT INTO "Doctor_service" VALUES (4,2);
 INSERT INTO "Doctor_service" VALUES (5,3);
 INSERT INTO "Doctor_service" VALUES (6,3);
-INSERT INTO "Patient" VALUES ('ajusic5','neithoaleeng','Amna','Jusić','1999-05-18','pacijent','Ž',1,1);
+INSERT INTO "Patient" VALUES ('ajusic5','amna','Amna','Jusić','1999-05-18','pacijent','Ž',1,1);
 INSERT INTO "Patient" VALUES ('amilaj','amila','Amila','Jusić','1996-01-14','Pacijent','Ž',2,2);
 INSERT INTO "Patient" VALUES ('hjusic1','haris','Haris','Jusić','1958-03-24','Pacijent','M',3,3);
 INSERT INTO "Examination" VALUES (1,1,1,'Pregled vida','Terapijske naočale','2021-09-08T10:30','2021-09-06T10:00',1,'Strabizam',1);

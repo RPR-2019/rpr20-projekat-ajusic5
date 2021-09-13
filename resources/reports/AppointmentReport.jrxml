@@ -6,7 +6,7 @@
 	<parameter name="doctorId" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT pac.surname, pac.name, p.diagnosis, p.therapy, p.date_and_time_of_appointment
-FROM Pregled p, Pacijent pac
+FROM Examination p, Patient pac
  WHERE p.patient_id=pac.patient_id 
  AND p.successful=1 
  AND p.archived=1
